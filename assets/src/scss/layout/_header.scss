@@ -1,0 +1,159 @@
+/**
+ * Header
+ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba($color-white, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: $shadow-sm;
+  z-index: $z-index-sticky;
+  transition: all $transition-base;
+  
+  &.scrolled {
+    box-shadow: $shadow-md;
+  }
+}
+
+.header-content {
+  @include flex-between;
+  padding: $spacing-4 0;
+  
+  @include respond-to('md') {
+    padding: $spacing-5 0;
+  }
+}
+
+// Логотип
+.logo {
+  display: flex;
+  align-items: center;
+  
+  img {
+    height: 32px;
+    width: auto;
+    
+    @include respond-to('md') {
+      height: 40px;
+    }
+  }
+  
+  .logo-text {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+  }
+}
+
+// Навигация
+.main-nav {
+  display: none;
+  
+  @include respond-to('md') {
+    display: block;
+  }
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: $spacing-8;
+}
+
+.nav-link {
+  font-weight: $font-weight-medium;
+  color: $color-gray-700;
+  transition: color $transition-fast;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $color-primary;
+    transition: width $transition-base;
+  }
+  
+  &:hover {
+    color: $color-primary;
+    
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+// Мобильное меню
+.mobile-menu-toggle {
+  @include button-reset;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 28px;
+  height: 24px;
+  z-index: $z-index-modal + 1;
+  
+  @include respond-to('md') {
+    display: none;
+  }
+  
+  span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: $color-gray-900;
+    border-radius: $border-radius-full;
+    transition: all $transition-base;
+  }
+  
+  &.active {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+    
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+}
+
+// Мобильное меню
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $color-white;
+  z-index: $z-index-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all $transition-base;
+  
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .nav-list {
+    flex-direction: column;
+    gap: $spacing-6;
+  }
+  
+  .nav-link {
+    font-size: $font-size-2xl;
+  }
+}

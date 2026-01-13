@@ -1,0 +1,124 @@
+/**
+ * Typography
+ */
+
+// Import Google Fonts
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+// Заголовки
+h1,
+.h1 {
+  font-size: $font-size-4xl;
+  margin-bottom: $spacing-6;
+
+  @include respond-to("md") {
+    font-size: $font-size-5xl;
+  }
+
+  @include respond-to("lg") {
+    font-size: $font-size-6xl;
+  }
+}
+
+h2,
+.h2 {
+  font-size: $font-size-3xl;
+  margin-bottom: $spacing-5;
+
+  @include respond-to("md") {
+    font-size: $font-size-4xl;
+  }
+
+  @include respond-to("lg") {
+    font-size: $font-size-5xl;
+  }
+}
+
+h3,
+.h3 {
+  font-size: $font-size-2xl;
+  margin-bottom: $spacing-4;
+
+  @include respond-to("md") {
+    font-size: $font-size-3xl;
+  }
+}
+
+h4,
+.h4 {
+  font-size: $font-size-xl;
+  margin-bottom: $spacing-4;
+
+  @include respond-to("md") {
+    font-size: $font-size-2xl;
+  }
+}
+
+h5,
+.h5 {
+  font-size: $font-size-lg;
+  margin-bottom: $spacing-3;
+
+  @include respond-to("md") {
+    font-size: $font-size-xl;
+  }
+}
+
+h6,
+.h6 {
+  font-size: $font-size-base;
+  margin-bottom: $spacing-3;
+
+  @include respond-to("md") {
+    font-size: $font-size-lg;
+  }
+}
+
+// Text utilities
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-primary {
+  color: $color-primary;
+}
+
+.text-secondary {
+  color: $color-secondary;
+}
+
+.text-gray {
+  color: $color-gray-600;
+}
+
+.text-muted {
+  color: $color-gray-500;
+}
+
+.font-light {
+  font-weight: $font-weight-light;
+}
+
+.font-normal {
+  font-weight: $font-weight-normal;
+}
+
+.font-medium {
+  font-weight: $font-weight-medium;
+}
+
+.font-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+.font-bold {
+  font-weight: $font-weight-bold;
+}

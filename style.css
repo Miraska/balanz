@@ -1,0 +1,18 @@
+/*
+Theme Name: Balanz
+Theme URI: https://balanz.app
+Author: Miraz
+Author URI: https://balanz.app
+Description: Кастомная тема для сайта-визитки приложения Balanz. Современный стек: SCSS, GSAP, ACF, Vite.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.4
+Requires PHP: 8.2
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: balanz
+Tags: custom, modern, app-landing
+*/
+
+/* Основные стили компилируются из SCSS через Vite */
+/* См. assets/src/scss/main.scss */

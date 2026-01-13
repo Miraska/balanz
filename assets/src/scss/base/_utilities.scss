@@ -1,0 +1,100 @@
+/**
+ * Utility Classes
+ */
+
+// Container
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+  
+  @include respond-to('md') {
+    padding: 0 $spacing-8;
+  }
+}
+
+// Section
+.section {
+  padding: $section-padding-mobile 0;
+  
+  @include respond-to('md') {
+    padding: $section-padding 0;
+  }
+}
+
+// Display utilities
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.d-grid {
+  display: grid !important;
+}
+
+// Spacing utilities
+@each $key, $value in (
+  0: 0,
+  1: $spacing-1,
+  2: $spacing-2,
+  3: $spacing-3,
+  4: $spacing-4,
+  5: $spacing-5,
+  6: $spacing-6,
+  8: $spacing-8,
+  10: $spacing-10,
+  12: $spacing-12,
+  16: $spacing-16,
+  20: $spacing-20
+) {
+  .mt-#{$key} { margin-top: $value !important; }
+  .mb-#{$key} { margin-bottom: $value !important; }
+  .ml-#{$key} { margin-left: $value !important; }
+  .mr-#{$key} { margin-right: $value !important; }
+  .pt-#{$key} { padding-top: $value !important; }
+  .pb-#{$key} { padding-bottom: $value !important; }
+  .pl-#{$key} { padding-left: $value !important; }
+  .pr-#{$key} { padding-right: $value !important; }
+}
+
+// Flexbox utilities
+.flex-center {
+  @include flex-center;
+}
+
+.flex-between {
+  @include flex-between;
+}
+
+.flex-column {
+  @include flex-column;
+}
+
+// Visibility
+@include respond-to('md') {
+  .hide-md {
+    display: none !important;
+  }
+}
+
+@include respond-to('lg') {
+  .hide-lg {
+    display: none !important;
+  }
+}
+
+.show-md {
+  display: none !important;
+  
+  @include respond-to('md') {
+    display: block !important;
+  }
+}

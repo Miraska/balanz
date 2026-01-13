@@ -1,0 +1,63 @@
+/**
+ * Grid System
+ */
+
+.grid {
+  display: grid;
+  gap: $spacing-6;
+
+  &-cols-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  &-cols-2 {
+    grid-template-columns: repeat(1, 1fr);
+
+    @include respond-to("md") {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &-cols-3 {
+    grid-template-columns: repeat(1, 1fr);
+
+    @include respond-to("md") {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to("lg") {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &-cols-4 {
+    grid-template-columns: repeat(1, 1fr);
+
+    @include respond-to("sm") {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to("lg") {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+// Flex Grid
+.flex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-6;
+
+  > * {
+    flex: 1 1 100%;
+
+    @include respond-to("md") {
+      flex: 1 1 calc(50% - #{$spacing-6});
+    }
+
+    @include respond-to("lg") {
+      flex: 1 1 calc(33.333% - #{$spacing-6});
+    }
+  }
+}

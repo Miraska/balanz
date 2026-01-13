@@ -1,0 +1,33 @@
+/**
+ * Main SCSS Entry Point
+ * Balanz Theme
+ */
+
+// 1. Abstracts
+@import "abstracts/variables";
+@import "abstracts/mixins";
+@import "abstracts/functions";
+
+// 2. Base
+@import "base/reset";
+@import "base/typography";
+@import "base/utilities";
+
+// 3. Layout
+@import "layout/header";
+@import "layout/footer";
+@import "layout/grid";
+
+// 4. Components
+@import "components/buttons";
+@import "components/forms";
+@import "components/cards";
+
+// 5. Sections
+@import "sections/hero";
+@import "sections/features";
+@import "sections/download";
+@import "sections/contact";
+
+// 6. Animations
+@import "animations/animations";

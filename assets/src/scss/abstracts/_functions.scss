@@ -1,0 +1,19 @@
+/**
+ * Functions
+ * SCSS функции
+ */
+
+// Конвертация px в rem
+@function rem($px) {
+  @return ($px / 16) * 1rem;
+}
+
+// Затемнение цвета
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// Осветление цвета
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}

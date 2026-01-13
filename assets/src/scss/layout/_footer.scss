@@ -1,0 +1,79 @@
+/**
+ * Footer
+ */
+
+.site-footer {
+  background-color: $color-gray-900;
+  color: $color-white;
+  padding: $spacing-16 0 $spacing-8;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $spacing-8;
+}
+
+.footer-logo {
+  img {
+    height: 48px;
+    width: auto;
+  }
+  
+  .logo-text {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+}
+
+.footer-apps {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  
+  @include respond-to('md') {
+    flex-direction: row;
+    gap: $spacing-6;
+  }
+}
+
+.footer-social {
+  .social-links {
+    display: flex;
+    gap: $spacing-4;
+    
+    a {
+      width: 40px;
+      height: 40px;
+      border-radius: $border-radius-full;
+      background-color: rgba($color-white, 0.1);
+      @include flex-center;
+      transition: all $transition-base;
+      
+      &:hover {
+        background-color: $color-primary;
+        transform: translateY(-2px);
+      }
+      
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+.footer-copy {
+  width: 100%;
+  padding-top: $spacing-8;
+  border-top: 1px solid rgba($color-white, 0.1);
+  
+  p {
+    margin: 0;
+    font-size: $font-size-sm;
+    color: $color-gray-400;
+  }
+}

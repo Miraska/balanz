@@ -1,0 +1,134 @@
+/**
+ * Mixins
+ * Переиспользуемые SCSS миксины
+ */
+
+// === RESPONSIVE ===
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "sm" {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == "md" {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == "lg" {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == "xl" {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == "2xl" {
+    @media (min-width: $breakpoint-2xl) {
+      @content;
+    }
+  }
+}
+
+// === FLEXBOX ===
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// === TYPOGRAPHY ===
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// === POSITIONING ===
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// === ANIMATIONS ===
+@mixin transition($properties...) {
+  transition: $properties $transition-base;
+}
+
+// === BUTTONS ===
+@mixin button-reset {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+// === ГРАДИЕНТЫ ===
+@mixin gradient-primary {
+  background: linear-gradient(
+    135deg,
+    $color-primary 0%,
+    $color-primary-light 100%
+  );
+}
+
+// === СТИЛИ ДЛЯ ИЗОБРАЖЕНИЙ ===
+@mixin img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@mixin img-contain {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+// === HOVER EFFECTS ===
+@mixin hover-lift {
+  transition: transform $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-xl;
+  }
+}
+
+@mixin hover-scale($scale: 1.05) {
+  transition: transform $transition-base;
+
+  &:hover {
+    transform: scale($scale);
+  }
+}

@@ -1,0 +1,92 @@
+/**
+ * Animations
+ * Классы для GSAP анимаций
+ */
+
+// Fade Up
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+// Fade Down
+.animate-fade-down {
+  opacity: 0;
+  transform: translateY(-40px);
+}
+
+// Fade Left
+.animate-fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+// Fade Right
+.animate-fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+// Scale
+.animate-scale {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+// Rotate
+.animate-rotate {
+  opacity: 0;
+  transform: rotate(-10deg);
+}
+
+// CSS Animations (fallback)
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Utility classes
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
