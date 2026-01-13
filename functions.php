@@ -92,6 +92,18 @@ function balanz_enqueue_assets() {
 add_action('wp_enqueue_scripts', 'balanz_enqueue_assets');
 
 /**
+ * Настройка сохранения полей ACF в JSON
+ */
+add_filter('acf/settings/save_json', function () {
+    return get_stylesheet_directory() . '/acf-json';
+});
+
+add_filter('acf/settings/load_json', function ($paths) {
+    $paths[] = get_stylesheet_directory() . '/acf-json';
+    return $paths;
+});
+
+/**
  * Настройка ACF Options Page для глобальных настроек
  */
 if (function_exists('acf_add_options_page')) {
