@@ -19,15 +19,12 @@ export default defineConfig({
         entryFileNames: "js/[name].js",
         chunkFileNames: "js/[name].js",
         assetFileNames: (assetInfo) => {
-          // SCSS/CSS файлы в папку css
           if (assetInfo.name.endsWith(".css")) {
             return "css/[name][extname]";
           }
-          // Изображения в папку images
           if (/\.(png|jpe?g|svg|gif|webp|avif)$/.test(assetInfo.name)) {
             return "images/[name][extname]";
           }
-          // Шрифты в папку fonts
           if (/\.(woff2?|eot|ttf|otf)$/.test(assetInfo.name)) {
             return "fonts/[name][extname]";
           }
@@ -40,11 +37,10 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "./assets/src/scss/abstracts/_variables.scss";`,
+        // Modern Sass API - no deprecation warnings
+        api: 'modern-compiler',
+        silenceDeprecations: ['legacy-js-api', 'import'],
       },
-    },
-    postcss: {
-      plugins: [require("autoprefixer")],
     },
   },
 

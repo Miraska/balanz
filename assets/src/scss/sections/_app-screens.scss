@@ -1,0 +1,191 @@
+/**
+ * Manage Your Balance - App Screens Section
+ */
+
+.app-section {
+  @include section-padding;
+  text-align: center;
+}
+
+.app-container {
+  @include container;
+}
+
+// ============================================
+// SECTION HEADER
+// ============================================
+
+.app-header {
+  max-width: 600px;
+  margin: 0 auto $space-48;
+  
+  @include desktop {
+    margin-bottom: $space-64;
+  }
+}
+
+.app-title {
+  @include heading-52;
+  margin-bottom: $space-16;
+}
+
+.app-description {
+  font-size: $font-size-18;
+  color: $color-gray-500;
+}
+
+// ============================================
+// INTERACTIVE SCREENS
+// ============================================
+
+.app-screens-wrapper {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.app-screens {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $space-24;
+  flex-wrap: wrap;
+  
+  @include desktop {
+    gap: $space-48;
+  }
+}
+
+// ============================================
+// PHONE SCREEN
+// ============================================
+
+.app-phone {
+  position: relative;
+  width: 280px;
+  
+  @include desktop {
+    width: 320px;
+  }
+}
+
+.app-phone-frame {
+  background-color: $color-white;
+  border-radius: $radius-2xl;
+  padding: $space-16;
+  box-shadow: $shadow-xl;
+  overflow: hidden;
+}
+
+.app-phone-screen {
+  position: relative;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity $transition-base;
+    
+    &.is-hidden {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+    
+    &.is-active {
+      opacity: 1;
+    }
+  }
+}
+
+// ============================================
+// NAVIGATION DOTS
+// ============================================
+
+.app-nav-items {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+  
+  &.nav-left {
+    left: -120px;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    @include until-desktop {
+      position: static;
+      transform: none;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: $space-24;
+    }
+  }
+  
+  &.nav-right {
+    right: -120px;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    @include until-desktop {
+      position: static;
+      transform: none;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: $space-24;
+    }
+  }
+}
+
+.app-nav-item {
+  display: flex;
+  align-items: center;
+  gap: $space-8;
+  padding: $space-8 $space-16;
+  background-color: $color-white;
+  border-radius: $radius-full;
+  box-shadow: $shadow-sm;
+  cursor: pointer;
+  transition: all $transition-base;
+  white-space: nowrap;
+  
+  &:hover,
+  &.is-active {
+    background-color: $color-secondary-light;
+    box-shadow: $shadow-md;
+  }
+  
+  .nav-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .nav-text {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+  }
+}
+
+// Arrow decorations
+.app-arrow {
+  position: absolute;
+  width: 60px;
+  height: auto;
+  
+  &.arrow-left {
+    left: -80px;
+    top: 30%;
+  }
+  
+  &.arrow-right {
+    right: -80px;
+    bottom: 30%;
+  }
+  
+  @include until-desktop {
+    display: none;
+  }
+}

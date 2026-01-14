@@ -4,46 +4,76 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
 <div id="page" class="site">
-    <header class="site-header">
-        <div class="container">
-            <div class="header-content">
-                <!-- Логотип -->
-                <div class="logo">
-                    <a href="<?php echo home_url('/'); ?>">
-                        <?php 
-                        $logo = get_field('site_logo', 'option');
-                        if ($logo): ?>
-                            <img src="<?php echo esc_url($logo['url']); ?>" alt="<?php bloginfo('name'); ?>">
-                        <?php else: ?>
-                            <span class="logo-text"><?php bloginfo('name'); ?></span>
-                        <?php endif; ?>
-                    </a>
-                </div>
-
-                <!-- Навигация -->
-                <nav class="main-nav">
-                    <ul class="nav-list">
-                        <li><a href="#features" class="nav-link">Возможности</a></li>
-                        <li><a href="#download" class="nav-link">Скачать</a></li>
-                        <li><a href="#contact" class="nav-link">Контакты</a></li>
-                    </ul>
-                </nav>
-
-                <!-- Мобильное меню -->
-                <button class="mobile-menu-toggle" aria-label="Открыть меню">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+    
+    <!-- Header -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="<?php echo home_url('/'); ?>" class="header-logo">
+                <img class="logo-left" src="<?php echo BALANZ_THEME_URI; ?>/assets/images/logo/logo.svg" alt="Balanz Logo">
+                <img class="logo-right" src="<?php echo BALANZ_THEME_URI; ?>/assets/images/logo/logo-02.svg" alt="Balanz Logo">
+            </a>
+            
+            <div class="header-right">
+                          <!-- Desktop Navigation -->
+            <nav class="header-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="<?php echo home_url('/'); ?>" class="nav-link <?php echo is_front_page() ? 'is-active' : ''; ?>">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo get_permalink(get_page_by_path('about-us')); ?>" class="nav-link <?php echo is_page('about-us') ? 'is-active' : ''; ?>">
+                            About Us
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <a href="<?php echo esc_url(get_field('download_link', 'option') ?: '#'); ?>" class="btn-download-app">
+                    <span>Download App</span>
+                    <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/icons/download.svg" alt="Download Icon">
+                </a>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/icons/menu.svg" alt="Menu Icon">
                 </button>
             </div>
+            </div>
+
         </div>
     </header>
+    
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-list">
+            <li>
+                <a href="<?php echo home_url('/'); ?>" class="mobile-nav-link <?php echo is_front_page() ? 'is-active' : ''; ?>">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo get_permalink(get_page_by_path('about-us')); ?>" class="mobile-nav-link <?php echo is_page('about-us') ? 'is-active' : ''; ?>">
+                    About Us
+                </a>
+            </li>
+        </ul>
+        <div class="mobile-menu-actions">
+            <a href="<?php echo esc_url(get_field('download_link', 'option') ?: '#'); ?>" class="btn-download-app" style="margin-top: 24px">
+                <span>Download App</span>
+                <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/icons/download.svg" alt="Download Icon">
+            </a>
+        </div>
+    </nav>
 
     <main id="main" class="site-main">

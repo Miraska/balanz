@@ -1,19 +1,13 @@
 /**
- * Functions
- * SCSS функции
+ * Functions - Balanz Design System
  */
 
-// Конвертация px в rem
+// Convert px to rem
 @function rem($px) {
-  @return ($px / 16) * 1rem;
+  @return calc($px / 16) * 1rem;
 }
 
-// Затемнение цвета
-@function shade($color, $percentage) {
-  @return mix(black, $color, $percentage);
-}
-
-// Осветление цвета
-@function tint($color, $percentage) {
-  @return mix(white, $color, $percentage);
+// Convert px to em
+@function em($px, $base: 16) {
+  @return calc($px / $base) * 1em;
 }

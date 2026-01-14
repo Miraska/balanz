@@ -1,57 +1,436 @@
 /**
- * Cards
+ * Cards - Balanz Design System
  */
 
+// ============================================
+// BASE CARD
+// ============================================
+
 .card {
+  @include card;
+}
+
+.card-hover {
+  @include card-hover;
+}
+
+// ============================================
+// PROGRAM CARD (Hero Grid)
+// ============================================
+
+.program-card {
   background-color: $color-white;
-  border-radius: $border-radius-xl;
-  padding: $spacing-6;
-  box-shadow: $shadow-md;
+  border-radius: $radius-lg;
+  width: 254px;
+  min-height: 263px;
+  padding: $space-32;
+  text-align: center;
   transition: all $transition-base;
-  
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+  flex-shrink: 0; // Prevent cards from shrinking in flex layout
+
   &:hover {
-    box-shadow: $shadow-xl;
     transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  // Mobile & Tablet: fixed width for marquee
+  @include until-tablet {
+    width: 254px;
+  }
+
+  @include desktop {
+    padding: $space-32 $space-24;
+    width: 254px;
   }
 }
 
-.feature-card {
-  text-align: center;
-  padding: $spacing-8 $spacing-6;
+// Special card with dashed border (4th card)
+.program-card-special {
   background-color: $color-white;
-  border-radius: $border-radius-xl;
-  box-shadow: $shadow-md;
-  transition: all $transition-base;
-  
-  &:hover {
-    box-shadow: $shadow-xl;
-    transform: translateY(-8px);
+
+  .program-image {
+    position: relative;
+    width: 120px;
+    height: 120px;
   }
-  
-  .feature-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto $spacing-6;
-    border-radius: $border-radius-xl;
-    background: linear-gradient(135deg, $color-primary-light 0%, $color-primary 100%);
+}
+
+.program-kals {
+  position: absolute;
+  width: 90%;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  top: -20px;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-8;
+  background-color: $color-secondary;
+  padding: $space-8 $space-16;
+  border-radius: $radius-full;
+  font-size: $font-size-20;
+  font-weight: $font-weight-bold;
+  margin-bottom: $space-16;
+  color: $color-primary;
+
+  .icon-bolt {
+    color: $color-accent;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  @include desktop {
+    margin-bottom: $space-16;
+  }
+}
+
+.program-image {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto $space-16;
+  border-radius: $radius-full;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include desktop {
+    width: 140px;
+    height: 140px;
+    margin-bottom: $space-24;
+  }
+}
+
+.program-title {
+  font-family: $font-heading;
+  font-size: $font-size-18;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  margin-bottom: $space-8;
+  letter-spacing: 0.02em;
+
+  @include desktop {
+    font-size: $font-size-20;
+  }
+}
+
+.program-description {
+  font-size: 0.8125rem;
+  color: $color-gray-500;
+  line-height: $line-height-base;
+
+  @include desktop {
+    font-size: $font-size-sm;
+  }
+}
+
+// ============================================
+// FEATURE CARD (Benefits)
+// ============================================
+
+.feature-card {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-16;
+  padding: $space-16 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $color-gray-200;
+  }
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  background-color: $color-primary-lighter;
+  border-radius: $radius-full;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: $color-white;
+  }
+}
+
+.feature-text {
+  font-size: $font-size-base;
+  color: $color-gray-800;
+}
+
+// ============================================
+// BENEFIT CARD (What This Offers)
+// ============================================
+
+.benefit-section {
+  padding: $space-48;
+  border-radius: $radius-xl;
+
+  @include desktop {
+    padding: $space-64;
+  }
+
+  &.benefit-rational {
+    background-color: $color-white;
+  }
+
+  &.benefit-emotional {
+    background-color: $color-secondary-light;
+  }
+}
+
+.benefit-title {
+  @include heading-24;
+  margin-bottom: $space-32;
+}
+
+.benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-24;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-16;
+
+  .benefit-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: $color-primary-lighter;
+  }
+
+  .benefit-text {
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+  }
+}
+
+// ============================================
+// TESTIMONIAL CARD
+// ============================================
+
+.testimonial-card {
+  background-color: $color-white;
+  border-radius: $radius-xl;
+  padding: $space-32;
+
+  @include desktop {
+    padding: $space-48;
+  }
+}
+
+.testimonial-quote {
+  position: relative;
+  margin-bottom: $space-32;
+
+  &::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 80px;
+    color: $color-secondary;
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+}
+
+.testimonial-text {
+  font-size: $font-size-18;
+  line-height: $line-height-relaxed;
+  padding-left: $space-32;
+
+  @include desktop {
+    font-size: $font-size-20;
+  }
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: $space-16;
+}
+
+.testimonial-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: $radius-full;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.testimonial-info {
+  .author-name {
+    font-family: $font-heading;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $space-8;
+  }
+
+  .author-role {
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+  }
+}
+
+// ============================================
+// STEP CARD (How It Works)
+// ============================================
+
+.step-card {
+  position: relative;
+  padding: $space-24;
+  border-radius: $radius-lg;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &.is-active {
+    background-color: $color-white;
+    box-shadow: $shadow-md;
+  }
+}
+
+.step-number {
+  font-family: $font-heading;
+  font-size: $font-size-52;
+  font-weight: $font-weight-bold;
+  color: $color-secondary;
+  line-height: 1;
+  margin-bottom: $space-16;
+}
+
+.step-title {
+  font-family: $font-heading;
+  font-size: $font-size-20;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  margin-bottom: $space-8;
+}
+
+.step-description {
+  font-size: $font-size-base;
+  color: $color-gray-500;
+  display: none;
+
+  .step-card.is-active & {
+    display: block;
+  }
+}
+
+// ============================================
+// VALUE CARD (About page)
+// ============================================
+
+.value-item {
+  border-bottom: 1px solid $color-gray-200;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.value-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-24 0;
+  cursor: pointer;
+
+  .value-number {
+    font-family: $font-heading;
+    font-size: $font-size-24;
+    font-weight: $font-weight-bold;
+    color: $color-secondary-dark;
+    margin-right: $space-16;
+  }
+
+  .value-title {
+    flex: 1;
+    font-family: $font-heading;
+    font-size: $font-size-18;
+    font-weight: $font-weight-semibold;
+  }
+
+  .value-toggle {
+    width: 32px;
+    height: 32px;
     @include flex-center;
-    
-    img {
-      width: 48px;
-      height: 48px;
+
+    svg {
+      transition: transform $transition-base;
     }
   }
-  
-  .feature-title {
-    font-size: $font-size-xl;
-    margin-bottom: $spacing-3;
-    color: $color-gray-900;
+
+  &[aria-expanded="true"] .value-toggle svg {
+    transform: rotate(180deg);
   }
-  
-  .feature-description {
-    font-size: $font-size-base;
-    color: $color-gray-600;
-    line-height: $line-height-relaxed;
-    margin: 0;
+}
+
+.value-content {
+  padding-bottom: $space-24;
+  display: none;
+
+  &.is-open {
+    display: block;
   }
+}
+
+// ============================================
+// TEAM CARD
+// ============================================
+
+.team-card {
+  text-align: center;
+  padding: $space-32;
+  background-color: $color-white;
+  border-radius: $radius-xl;
+}
+
+.team-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto $space-24;
+  border-radius: $radius-full;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.team-name {
+  font-family: $font-heading;
+  font-size: $font-size-20;
+  font-weight: $font-weight-bold;
+  margin-bottom: $space-8;
+}
+
+.team-role {
+  font-size: $font-size-sm;
+  color: $color-gray-500;
+  margin-bottom: $space-16;
+}
+
+.team-social {
+  display: flex;
+  justify-content: center;
+  gap: $space-8;
 }

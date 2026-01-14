@@ -1,114 +1,122 @@
 /**
- * Typography
+ * Typography - Balanz Design System
  */
 
-// Import Google Fonts
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+// ============================================
+// FONT IMPORTS
+// ============================================
 
-// Заголовки
-h1,
-.h1 {
-  font-size: $font-size-4xl;
-  margin-bottom: $spacing-6;
+// Asul - Body text
+@import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap');
 
-  @include respond-to("md") {
-    font-size: $font-size-5xl;
-  }
+// Plus Jakarta Sans - Headings
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-  @include respond-to("lg") {
-    font-size: $font-size-6xl;
-  }
+// ============================================
+// BASE TYPOGRAPHY
+// ============================================
+
+body {
+  @include font-body;
+  color: $color-gray-800;
+  background-color: $color-secondary-lighter;
 }
 
-h2,
-.h2 {
-  font-size: $font-size-3xl;
-  margin-bottom: $spacing-5;
+// ============================================
+// HEADINGS
+// ============================================
 
-  @include respond-to("md") {
-    font-size: $font-size-4xl;
-  }
-
-  @include respond-to("lg") {
-    font-size: $font-size-5xl;
-  }
+h1, .h1 {
+  @include heading-80;
+  color: $color-primary;
+  margin-bottom: $space-24;
 }
 
-h3,
-.h3 {
-  font-size: $font-size-2xl;
-  margin-bottom: $spacing-4;
-
-  @include respond-to("md") {
-    font-size: $font-size-3xl;
-  }
+h2, .h2 {
+  @include heading-52;
+  color: $color-primary;
+  margin-bottom: $space-24;
 }
 
-h4,
-.h4 {
-  font-size: $font-size-xl;
-  margin-bottom: $spacing-4;
-
-  @include respond-to("md") {
-    font-size: $font-size-2xl;
-  }
+h3, .h3 {
+  @include heading-32;
+  color: $color-primary;
+  margin-bottom: $space-16;
 }
 
-h5,
-.h5 {
-  font-size: $font-size-lg;
-  margin-bottom: $spacing-3;
+h4, .h4 {
+  @include heading-24;
+  color: $color-primary;
+  margin-bottom: $space-16;
+}
 
-  @include respond-to("md") {
-    font-size: $font-size-xl;
+// ============================================
+// PARAGRAPHS & TEXT
+// ============================================
+
+p {
+  margin-bottom: $space-16;
+  
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
-h6,
-.h6 {
-  font-size: $font-size-base;
-  margin-bottom: $spacing-3;
+.text-lg {
+  font-size: $font-size-18;
+}
 
-  @include respond-to("md") {
-    font-size: $font-size-lg;
+.text-xl {
+  font-size: $font-size-20;
+}
+
+.text-sm {
+  font-size: $font-size-sm;
+}
+
+.text-xs {
+  font-size: $font-size-xs;
+}
+
+// ============================================
+// LINKS
+// ============================================
+
+a {
+  color: $color-primary;
+  transition: color $transition-fast;
+  
+  &:hover {
+    color: $color-primary-lighter;
   }
 }
 
-// Text utilities
-.text-center {
-  text-align: center;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
+// ============================================
+// TEXT COLORS
+// ============================================
 
 .text-primary {
   color: $color-primary;
 }
 
-.text-secondary {
-  color: $color-secondary;
+.text-white {
+  color: $color-white;
 }
 
 .text-gray {
-  color: $color-gray-600;
-}
-
-.text-muted {
   color: $color-gray-500;
 }
 
-.font-light {
-  font-weight: $font-weight-light;
+.text-accent {
+  color: $color-accent;
 }
 
-.font-normal {
-  font-weight: $font-weight-normal;
+// ============================================
+// FONT WEIGHTS
+// ============================================
+
+.font-regular {
+  font-weight: $font-weight-regular;
 }
 
 .font-medium {
@@ -121,4 +129,20 @@ h6,
 
 .font-bold {
   font-weight: $font-weight-bold;
+}
+
+// ============================================
+// TEXT ALIGNMENT
+// ============================================
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }

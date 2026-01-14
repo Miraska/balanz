@@ -1,159 +1,294 @@
 /**
- * Header
+ * Header - Balanz Design System
  */
+
+// ============================================
+// HEADER BASE
+// ============================================
 
 .site-header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  background-color: rgba($color-white, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: $shadow-sm;
-  z-index: $z-index-sticky;
-  transition: all $transition-base;
-  
-  &.scrolled {
-    box-shadow: $shadow-md;
+  right: 0;
+  z-index: $z-header;
+  padding: 0 $space-16;
+  will-change: transform;
+  // Без transition для мгновенного следования за скроллом
+  // Скрыть до инициализации JS, чтобы не было дергания
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+
+  // Класс добавляется JS после установки позиции
+  &.is-ready {
+    opacity: 1;
+  }
+
+  @include desktop {
+    padding: 0 $space-64;
   }
 }
 
-.header-content {
-  @include flex-between;
-  padding: $spacing-4 0;
-  
-  @include respond-to('md') {
-    padding: $spacing-5 0;
-  }
-}
+// ============================================
+// HEADER INNER (темная подложка)
+// ============================================
 
-// Логотип
-.logo {
+.header-inner {
   display: flex;
   align-items: center;
-  
-  img {
-    height: 32px;
-    width: auto;
-    
-    @include respond-to('md') {
-      height: 40px;
-    }
+  justify-content: space-between;
+  background-color: $color-primary;
+  border-radius: $radius-full;
+  padding: $space-8 $space-24;
+  max-width: 600px;
+  margin: 0 auto;
+  // Анимируем расширение ширины и появление тени плавно
+  transition: max-width $transition-base ease, box-shadow $transition-base ease,
+    padding $transition-base ease;
+
+  @include tablet-up {
+    padding: 20px $space-32;
+    max-width: 700px;
   }
-  
-  .logo-text {
-    font-size: $font-size-xl;
-    font-weight: $font-weight-bold;
-    color: $color-primary;
+
+  @include desktop {
+    max-width: 1252px;
+  }
+
+  // Scrolled state - расширяется + тень
+  .site-header.is-scrolled & {
+    max-width: 1280px;
+    box-shadow: $shadow-header;
+    // чуть увеличим радиус и подпополним padding для акцента (не ломает позиционирование)
+    border-radius: $radius-xl;
   }
 }
 
-// Навигация
-.main-nav {
+// ============================================
+// LOGO
+// ============================================
+
+.header-logo {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 6px;
+  color: $color-white;
+
+  .logo-left,
+  .logo-right {
+    width: 103px;
+    height: auto;
+  }
+
+  @include desktop {
+    align-items: center;
+    flex-direction: row;
+    gap: 12px;
+
+    .logo-left {
+      width: 143px;
+      height: auto;
+    }
+
+    .logo-right {
+      width: 102px;
+      height: auto;
+    }
+  }
+}
+
+.header-right {
+  display: flex;
+  gap: $space-24;
+}
+
+// ============================================
+// NAVIGATION (desktop)
+// ============================================
+
+.header-nav {
   display: none;
-  
-  @include respond-to('md') {
-    display: block;
+
+  @include desktop {
+    display: flex;
+    align-items: center;
+    gap: $space-24;
   }
 }
 
 .nav-list {
   display: flex;
   align-items: center;
-  gap: $spacing-8;
+  gap: $space-32;
 }
 
 .nav-link {
-  font-weight: $font-weight-medium;
-  color: $color-gray-700;
+  color: $color-white;
+  font-family: $font-body;
+  font-size: $font-size-base;
   transition: color $transition-fast;
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: $color-primary;
-    transition: width $transition-base;
-  }
-  
-  &:hover {
-    color: $color-primary;
-    
-    &::after {
-      width: 100%;
-    }
+
+  &.is-active {
+    text-decoration: underline;
   }
 }
 
-// Мобильное меню
-.mobile-menu-toggle {
-  @include button-reset;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  width: 28px;
-  height: 24px;
-  z-index: $z-index-modal + 1;
-  
-  @include respond-to('md') {
-    display: none;
-  }
-  
-  span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: $color-gray-900;
-    border-radius: $border-radius-full;
-    transition: all $transition-base;
-  }
-  
-  &.active {
-    span:nth-child(1) {
-      transform: rotate(45deg) translate(8px, 8px);
-    }
-    
-    span:nth-child(2) {
-      opacity: 0;
-    }
-    
-    span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
-    }
-  }
-}
+// ============================================
+// HEADER BUTTONS
+// ============================================
 
-// Мобильное меню
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: $color-white;
-  z-index: $z-index-modal;
+.header-actions {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: $space-24;
+}
+
+.btn-download-app {
+  @include button-base;
+  background-color: $color-white;
+  color: $color-primary;
+  padding: $space-8 $space-16;
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+
+  @include tablet-up {
+    padding: 12px $space-16;
+    font-size: $font-size-base;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    color: $color-white;
+    background-color: $color-primary-lighter;
+  }
+}
+
+// Скрыть Download App в header на мобильных (до tablet)
+.header-actions .btn-download-app {
+  display: none;
+
+  @include tablet-up {
+    display: flex;
+  }
+}
+
+// ============================================
+// MOBILE MENU TOGGLE
+// ============================================
+
+.menu-toggle {
+  @include flex-center;
+  width: 48px;
+  height: 48px;
+  background-color: $color-primary-light;
+  border-radius: $radius-full;
+  cursor: pointer;
+
+  @include desktop {
+    display: none;
+  }
+
+  .icon-bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: $color-white;
+    border-radius: 2px;
+    transition: all $transition-fast;
+
+    & + .icon-bar {
+      margin-top: 5px;
+    }
+  }
+
+  // Open state
+  &.is-open {
+    .icon-bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .icon-bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .icon-bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  }
+}
+
+// ============================================
+// MOBILE MENU DROPDOWN
+// ============================================
+
+.mobile-menu {
+  position: fixed;
+  top: 100px; // будет динамически обновляться через JS
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background-color: $color-primary;
+  border-radius: $radius-lg;
+  padding: $space-24;
   opacity: 0;
+  text-align: center;
   visibility: hidden;
-  transition: all $transition-base;
-  
-  &.active {
+  transition: opacity $transition-base, visibility $transition-base,
+    top $transition-base;
+  z-index: $z-header - 1;
+
+  // Ширина совпадает с header-inner
+  width: calc(100% - #{$space-16} * 2);
+  max-width: 600px;
+
+  @include tablet-up {
+    max-width: 700px;
+  }
+
+  @include desktop {
+    display: none;
+  }
+
+  &.is-open {
     opacity: 1;
     visibility: visible;
+    transform: translateX(-50%) translateY(0);
   }
-  
-  .nav-list {
-    flex-direction: column;
-    gap: $spacing-6;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-24;
+}
+
+.mobile-nav-link {
+  color: $color-white;
+  font-family: $font-body;
+  font-size: $font-size-18;
+  text-align: center;
+
+  &.is-active {
+    text-decoration: underline;
   }
-  
-  .nav-link {
-    font-size: $font-size-2xl;
+}
+
+.mobile-menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+
+  // Показывать Download App только на мобильных (до tablet)
+  @include tablet-up {
+    display: none;
+  }
+
+  .btn-download-app {
+    justify-content: center;
+    width: 100%;
   }
 }

@@ -1,131 +1,152 @@
 /**
- * Variables
- * Все переменные проекта
+ * Variables - Balanz Design System
+ * Based on Figma Design
  */
 
-// === ЦВЕТА ===
-// Primary
-$color-primary: #6c5ce7;
-$color-primary-dark: #5849c7;
-$color-primary-light: #a29bfe;
+// ============================================
+// COLORS (уже настроены)
+// ============================================
 
-// Secondary
-$color-secondary: #00b894;
-$color-secondary-dark: #00966d;
+// Primary - темно-зеленый
+$color-primary: #2d4030;
+$color-primary-light: #313f31;
+$color-primary-lighter: #6b986d;
+$color-primary-dark: #1d261d;
+
+// Secondary - желтый/бежевый
+$color-secondary: #efdf80;
+$color-secondary-light: #f8f1c9;
+$color-secondary-lighter: #edebde;
+$color-secondary-dark: #f4de70;
 
 // Neutral
 $color-white: #ffffff;
 $color-black: #000000;
 $color-gray-50: #f9fafb;
-$color-gray-100: #f3f4f6;
-$color-gray-200: #e5e7eb;
-$color-gray-300: #d1d5db;
+$color-gray-200: #e0e0e0;
+$color-gray-300: #c4c4c4;
 $color-gray-400: #9ca3af;
-$color-gray-500: #6b7280;
+$color-gray-500: #616d79;
 $color-gray-600: #4b5563;
 $color-gray-700: #374151;
-$color-gray-800: #1f2937;
-$color-gray-900: #111827;
+$color-gray-800: #292c31;
 
-// System colors
-$color-success: #10b981;
-$color-error: #ef4444;
-$color-warning: #f59e0b;
-$color-info: #3b82f6;
+// Accent/System
+$color-success: #90b380;
+$color-error: #f2415a;
+$color-accent: #f2415a; // розовый акцент для иконок молнии
 
-// === ТИПОГРАФИКА ===
-// Font families
-$font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-  "Oxygen", "Ubuntu", sans-serif;
-$font-heading: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+// ============================================
+// TYPOGRAPHY
+// ============================================
+
+// Font Families
+$font-body: "Asul", Georgia, serif;
+$font-heading: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
   sans-serif;
 
-// Font sizes
-$font-size-xs: 0.75rem; // 12px
-$font-size-sm: 0.875rem; // 14px
-$font-size-base: 1rem; // 16px
-$font-size-lg: 1.125rem; // 18px
-$font-size-xl: 1.25rem; // 20px
-$font-size-2xl: 1.5rem; // 24px
-$font-size-3xl: 1.875rem; // 30px
-$font-size-4xl: 2.25rem; // 36px
-$font-size-5xl: 3rem; // 48px
-$font-size-6xl: 3.75rem; // 60px
-$font-size-7xl: 4.5rem; // 72px
+// Font Sizes (по макету)
+$font-size-14: 0.875rem; // 14px
+$font-size-16: 1rem; // 16px - base
+$font-size-18: 1.125rem; // 18px
+$font-size-20: 1.25rem; // 20px
+$font-size-24: 1.5rem; // 24px
+$font-size-32: 2rem; // 32px
+$font-size-40: 2.5rem; // 40px
+$font-size-48: 3rem; // 48px
+$font-size-52: 3.25rem; // 52px
+$font-size-80: 5rem; // 80px
 
-// Font weights
-$font-weight-light: 300;
-$font-weight-normal: 400;
+// Алиасы для удобства
+$font-size-base: $font-size-16;
+$font-size-sm: $font-size-14; // 14px
+$font-size-xs: 0.75rem; // 12px
+
+// Font Weights
+$font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
-$font-weight-extrabold: 800;
 
-// Line heights
-$line-height-tight: 1.25;
-$line-height-normal: 1.5;
+// Line Heights
+$line-height-base: 1.5; // 24px при 16px
+$line-height-tight: 1.2; // для заголовков
 $line-height-relaxed: 1.75;
-$line-height-loose: 2;
 
-// === SPACING ===
-$spacing-1: 0.25rem; // 4px
-$spacing-2: 0.5rem; // 8px
-$spacing-3: 0.75rem; // 12px
-$spacing-4: 1rem; // 16px
-$spacing-5: 1.25rem; // 20px
-$spacing-6: 1.5rem; // 24px
-$spacing-8: 2rem; // 32px
-$spacing-10: 2.5rem; // 40px
-$spacing-12: 3rem; // 48px
-$spacing-16: 4rem; // 64px
-$spacing-20: 5rem; // 80px
-$spacing-24: 6rem; // 96px
-$spacing-32: 8rem; // 128px
+// ============================================
+// SPACING (по макету)
+// ============================================
 
-// === BREAKPOINTS ===
-$breakpoint-sm: 640px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 1024px;
-$breakpoint-xl: 1280px;
-$breakpoint-2xl: 1536px;
+$space-4: 0.25rem; // 4px
+$space-8: 0.5rem; // 8px
+$space-12: 0.75rem; // 12px
+$space-16: 1rem; // 16px
+$space-20: 1.25rem; // 20px
+$space-24: 1.5rem; // 24px
+$space-28: 1.75rem; // 28px
+$space-32: 2rem; // 32px
+$space-36: 2.25rem; // 36px
+$space-40: 2.5rem; // 40px
+$space-48: 3rem; // 48px
+$space-64: 4rem; // 64px
+$space-80: 5rem; // 80px
+$space-120: 7.5rem; // 120px
 
-// === LAYOUT ===
-$container-max-width: 1200px;
-$container-padding: $spacing-6;
-$section-padding: $spacing-20;
-$section-padding-mobile: $spacing-12;
+// ============================================
+// BREAKPOINTS (по макету)
+// ============================================
 
-// === BORDERS ===
-$border-radius-sm: 0.25rem; // 4px
-$border-radius-md: 0.5rem; // 8px
-$border-radius-lg: 0.75rem; // 12px
-$border-radius-xl: 1rem; // 16px
-$border-radius-2xl: 1.5rem; // 24px
-$border-radius-full: 9999px;
+$breakpoint-mobile: 420px;
+$breakpoint-tablet: 900px;
+$breakpoint-desktop: 1344px;
 
-$border-width: 1px;
-$border-width-thick: 2px;
+// ============================================
+// LAYOUT
+// ============================================
 
-// === SHADOWS ===
-$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-  0 2px 4px -1px rgba(0, 0, 0, 0.06);
-$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-  0 4px 6px -2px rgba(0, 0, 0, 0.05);
-$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-  0 10px 10px -5px rgba(0, 0, 0, 0.04);
-$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+$container-max-width: 1344px;
+$container-padding: $space-16;
+$container-padding-tablet: $space-32;
+$container-padding-desktop: $space-36;
 
-// === TRANSITIONS ===
-$transition-fast: 150ms ease-in-out;
-$transition-base: 300ms ease-in-out;
-$transition-slow: 500ms ease-in-out;
+$header-height: 80px;
+$header-height-scrolled: 72px;
 
-// === Z-INDEX ===
-$z-index-dropdown: 1000;
-$z-index-sticky: 1020;
-$z-index-fixed: 1030;
-$z-index-modal-backdrop: 1040;
-$z-index-modal: 1050;
-$z-index-popover: 1060;
-$z-index-tooltip: 1070;
+// ============================================
+// BORDER RADIUS (по макету)
+// ============================================
+
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 24px;
+$radius-xl: 32px;
+$radius-2xl: 48px;
+$radius-full: 9999px; // pill shape
+
+// ============================================
+// SHADOWS
+// ============================================
+
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+$shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.15);
+$shadow-header: 0 8px 40px rgba(0, 0, 0, 0.35);
+
+// ============================================
+// TRANSITIONS
+// ============================================
+
+$transition-fast: 200ms ease;
+$transition-base: 300ms ease;
+$transition-slow: 500ms ease;
+$transition-slider: 6000ms; // для автоплея слайдеров
+
+// ============================================
+// Z-INDEX
+// ============================================
+
+$z-header: 100;
+$z-dropdown: 200;
+$z-modal: 300;
+$z-tooltip: 400;

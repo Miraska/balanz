@@ -1,71 +1,51 @@
 /**
- * Utility Classes
+ * Utilities - Balanz Design System
  */
 
-// Container
+// ============================================
+// LAYOUT UTILITIES
+// ============================================
+
 .container {
-  width: 100%;
-  max-width: $container-max-width;
-  margin: 0 auto;
-  padding: 0 $container-padding;
-  
-  @include respond-to('md') {
-    padding: 0 $spacing-8;
-  }
+  @include container;
 }
 
-// Section
 .section {
-  padding: $section-padding-mobile 0;
-  
-  @include respond-to('md') {
-    padding: $section-padding 0;
-  }
+  @include section-padding;
 }
 
-// Display utilities
-.d-none {
+// ============================================
+// DISPLAY
+// ============================================
+
+.hidden {
   display: none !important;
 }
 
-.d-block {
-  display: block !important;
+.block {
+  display: block;
 }
 
-.d-flex {
-  display: flex !important;
+.inline-block {
+  display: inline-block;
 }
 
-.d-grid {
-  display: grid !important;
+.flex {
+  display: flex;
 }
 
-// Spacing utilities
-@each $key, $value in (
-  0: 0,
-  1: $spacing-1,
-  2: $spacing-2,
-  3: $spacing-3,
-  4: $spacing-4,
-  5: $spacing-5,
-  6: $spacing-6,
-  8: $spacing-8,
-  10: $spacing-10,
-  12: $spacing-12,
-  16: $spacing-16,
-  20: $spacing-20
-) {
-  .mt-#{$key} { margin-top: $value !important; }
-  .mb-#{$key} { margin-bottom: $value !important; }
-  .ml-#{$key} { margin-left: $value !important; }
-  .mr-#{$key} { margin-right: $value !important; }
-  .pt-#{$key} { padding-top: $value !important; }
-  .pb-#{$key} { padding-bottom: $value !important; }
-  .pl-#{$key} { padding-left: $value !important; }
-  .pr-#{$key} { padding-right: $value !important; }
+.inline-flex {
+  display: inline-flex;
 }
 
-// Flexbox utilities
+.grid {
+  display: grid;
+}
+
+// ============================================
+// FLEX UTILITIES
+// ============================================
+
 .flex-center {
   @include flex-center;
 }
@@ -74,27 +54,231 @@
   @include flex-between;
 }
 
-.flex-column {
-  @include flex-column;
+.flex-col {
+  flex-direction: column;
 }
 
-// Visibility
-@include respond-to('md') {
-  .hide-md {
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+// ============================================
+// GAP UTILITIES
+// ============================================
+
+.gap-8 { gap: $space-8; }
+.gap-16 { gap: $space-16; }
+.gap-24 { gap: $space-24; }
+.gap-32 { gap: $space-32; }
+.gap-48 { gap: $space-48; }
+.gap-64 { gap: $space-64; }
+
+// ============================================
+// SPACING UTILITIES
+// ============================================
+
+// Margin
+.mt-8 { margin-top: $space-8; }
+.mt-16 { margin-top: $space-16; }
+.mt-24 { margin-top: $space-24; }
+.mt-32 { margin-top: $space-32; }
+.mt-48 { margin-top: $space-48; }
+.mt-64 { margin-top: $space-64; }
+.mt-80 { margin-top: $space-80; }
+
+.mb-8 { margin-bottom: $space-8; }
+.mb-16 { margin-bottom: $space-16; }
+.mb-24 { margin-bottom: $space-24; }
+.mb-32 { margin-bottom: $space-32; }
+.mb-48 { margin-bottom: $space-48; }
+.mb-64 { margin-bottom: $space-64; }
+.mb-80 { margin-bottom: $space-80; }
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Padding
+.p-16 { padding: $space-16; }
+.p-24 { padding: $space-24; }
+.p-32 { padding: $space-32; }
+.p-48 { padding: $space-48; }
+
+.py-64 { 
+  padding-top: $space-64; 
+  padding-bottom: $space-64; 
+}
+
+.py-80 { 
+  padding-top: $space-80; 
+  padding-bottom: $space-80; 
+}
+
+.py-120 { 
+  padding-top: $space-120; 
+  padding-bottom: $space-120; 
+}
+
+// ============================================
+// WIDTH/HEIGHT
+// ============================================
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+// ============================================
+// POSITION
+// ============================================
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.sticky {
+  position: sticky;
+}
+
+// ============================================
+// OVERFLOW
+// ============================================
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+// ============================================
+// BORDER RADIUS
+// ============================================
+
+.rounded-sm { border-radius: $radius-sm; }
+.rounded-md { border-radius: $radius-md; }
+.rounded-lg { border-radius: $radius-lg; }
+.rounded-xl { border-radius: $radius-xl; }
+.rounded-full { border-radius: $radius-full; }
+
+// ============================================
+// BACKGROUNDS
+// ============================================
+
+.bg-primary { background-color: $color-primary; }
+.bg-secondary { background-color: $color-secondary; }
+.bg-secondary-light { background-color: $color-secondary-light; }
+.bg-secondary-lighter { background-color: $color-secondary-lighter; }
+.bg-white { background-color: $color-white; }
+
+// ============================================
+// VISIBILITY
+// ============================================
+
+.sr-only {
+  @include visually-hidden;
+}
+
+// Responsive visibility
+.hide-mobile {
+  @include mobile {
     display: none !important;
   }
 }
 
-@include respond-to('lg') {
-  .hide-lg {
+.hide-tablet {
+  @include tablet {
     display: none !important;
   }
 }
 
-.show-md {
+.hide-desktop {
+  @include desktop {
+    display: none !important;
+  }
+}
+
+.show-mobile {
   display: none !important;
   
-  @include respond-to('md') {
+  @include mobile {
     display: block !important;
   }
+}
+
+.show-tablet-down {
+  display: none !important;
+  
+  @include until-tablet {
+    display: block !important;
+  }
+}
+
+// ============================================
+// CURSOR
+// ============================================
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// ============================================
+// TRANSITIONS
+// ============================================
+
+.transition {
+  transition: all $transition-base;
+}
+
+.transition-fast {
+  transition: all $transition-fast;
+}
+
+.transition-slow {
+  transition: all $transition-slow;
 }

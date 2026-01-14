@@ -1,0 +1,464 @@
+/**
+ * About Page Sections
+ */
+
+// ============================================
+// ABOUT HERO
+// ============================================
+
+.about-hero {
+  position: relative;
+  padding-top: calc($header-height + $space-48);
+  padding-bottom: $space-64;
+  overflow: hidden;
+
+  @include desktop {
+    padding-top: calc($header-height + $space-80);
+    padding-bottom: $space-120;
+  }
+}
+
+.about-hero-container {
+  @include container;
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.about-hero-title {
+  @include heading-80;
+  max-width: 800px;
+}
+
+.about-hero-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+
+  @include until-desktop {
+    display: none;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 0 0 $radius-2xl;
+  }
+}
+
+// ============================================
+// PHILOSOPHY SECTION
+// ============================================
+
+.philosophy-section {
+  @include section-padding;
+  background-color: $color-secondary-light;
+}
+
+.philosophy-container {
+  @include container;
+  text-align: center;
+}
+
+.philosophy-title {
+  @include heading-52;
+  margin-bottom: $space-48;
+}
+
+.philosophy-video {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto $space-48;
+  border-radius: $radius-xl;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%; // 16:9
+  }
+
+  img,
+  video,
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background-color: $color-white;
+  border-radius: $radius-full;
+  @include flex-center;
+  cursor: pointer;
+  transition: transform $transition-base;
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  svg {
+    width: 32px;
+    height: 32px;
+    color: $color-primary;
+    margin-left: 4px;
+  }
+}
+
+.philosophy-quote {
+  font-size: $font-size-18;
+  font-style: italic;
+  color: $color-gray-500;
+  max-width: 600px;
+  margin: 0 auto;
+
+  @include desktop {
+    font-size: $font-size-20;
+  }
+}
+
+// ============================================
+// VALUES SECTION
+// ============================================
+
+.values-section {
+  @include section-padding;
+}
+
+.values-container {
+  @include container;
+}
+
+.values-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-48;
+
+  @include desktop {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-80;
+  }
+}
+
+.values-text {
+  .values-title {
+    @include heading-52;
+    margin-bottom: $space-16;
+  }
+
+  .values-description {
+    font-size: $font-size-18;
+    color: $color-gray-500;
+  }
+}
+
+.values-accordion {
+  .value-item {
+    border-bottom: 1px solid $color-gray-200;
+  }
+}
+
+// ============================================
+// HOW WE WORK SECTION
+// ============================================
+
+.how-we-work-section {
+  @include section-padding;
+  background-color: $color-primary;
+  color: $color-white;
+}
+
+.how-we-work-container {
+  @include container;
+}
+
+.how-we-work-title {
+  @include heading-52;
+  color: $color-white;
+  text-align: center;
+  margin-bottom: $space-64;
+}
+
+.work-steps {
+  display: flex;
+  flex-direction: column;
+  gap: $space-24;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.work-step {
+  display: flex;
+  align-items: center;
+  gap: $space-16;
+  background-color: rgba($color-white, 0.1);
+  padding: $space-16 $space-24;
+  border-radius: $radius-lg;
+
+  .step-number {
+    @include flex-center;
+    width: 32px;
+    height: 32px;
+    background-color: $color-secondary;
+    color: $color-primary;
+    border-radius: $radius-full;
+    font-family: $font-heading;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-sm;
+  }
+
+  .step-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .step-text {
+    flex: 1;
+    font-size: $font-size-base;
+  }
+}
+
+// ============================================
+// TEAM SECTION
+// ============================================
+
+.team-section {
+  @include section-padding;
+}
+
+.team-container {
+  @include container;
+}
+
+.team-header {
+  text-align: center;
+  margin-bottom: $space-64;
+
+  .team-title {
+    @include heading-52;
+    margin-bottom: $space-16;
+  }
+
+  .team-description {
+    font-size: $font-size-18;
+    color: $color-gray-500;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+// ============================================
+// CONTACT SECTION (About page)
+// ============================================
+
+.contact-section {
+  @include section-padding;
+  background-color: $color-secondary-light;
+}
+
+.contact-container {
+  @include container;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-48;
+
+  @include desktop {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-80;
+  }
+}
+
+.contact-info {
+  .contact-title {
+    @include heading-52;
+    margin-bottom: $space-32;
+  }
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: $space-24;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-16;
+
+  .contact-icon {
+    width: 24px;
+    height: 24px;
+    color: $color-primary-lighter;
+  }
+
+  .contact-label {
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+    margin-bottom: $space-8;
+  }
+
+  .contact-value {
+    font-size: $font-size-base;
+
+    a {
+      color: $color-primary;
+
+      &:hover {
+        color: $color-primary-lighter;
+      }
+    }
+  }
+}
+
+.contact-map {
+  border-radius: $radius-xl;
+  overflow: hidden;
+  height: 300px;
+
+  @include desktop {
+    height: 100%;
+    min-height: 400px;
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+// ============================================
+// FAQ SECTION
+// ============================================
+
+.faq-section {
+  @include section-padding;
+}
+
+.faq-container {
+  @include container;
+}
+
+.faq-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-48;
+
+  @include desktop {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-80;
+  }
+}
+
+.faq-header {
+  .faq-title {
+    @include heading-52;
+    margin-bottom: $space-16;
+  }
+
+  .faq-description {
+    font-size: $font-size-18;
+    color: $color-gray-500;
+  }
+}
+
+.faq-accordion {
+  .faq-item {
+    border-bottom: 1px solid $color-gray-200;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-24 0;
+  cursor: pointer;
+
+  .question-number {
+    font-family: $font-heading;
+    font-size: $font-size-24;
+    font-weight: $font-weight-bold;
+    color: $color-secondary-dark;
+    margin-right: $space-16;
+  }
+
+  .question-text {
+    flex: 1;
+    font-family: $font-heading;
+    font-size: $font-size-18;
+    font-weight: $font-weight-semibold;
+  }
+
+  .question-toggle {
+    width: 32px;
+    height: 32px;
+    @include flex-center;
+
+    svg {
+      transition: transform $transition-base;
+    }
+  }
+
+  &[aria-expanded="true"] .question-toggle svg {
+    transform: rotate(180deg);
+  }
+}
+
+.faq-answer {
+  padding-bottom: $space-24;
+  color: $color-gray-500;
+  display: none;
+
+  &.is-open {
+    display: block;
+  }
+}
+
+// ============================================
+// SHARE SECTION
+// ============================================
+
+.share-section {
+  @include section-padding;
+  background-color: $color-secondary-light;
+}
+
+.share-container {
+  @include container;
+  text-align: center;
+}
+
+.share-title {
+  @include heading-52;
+  margin-bottom: $space-16;
+}
+
+.share-description {
+  font-size: $font-size-18;
+  color: $color-gray-500;
+  margin-bottom: $space-48;
+}

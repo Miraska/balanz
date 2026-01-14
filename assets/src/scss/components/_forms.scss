@@ -1,105 +1,174 @@
 /**
- * Forms
+ * Forms - Balanz Design System
  */
 
+// ============================================
+// FORM BASE
+// ============================================
+
 .form-group {
-  margin-bottom: $spacing-6;
+  margin-bottom: $space-24;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-label {
+.form-label {
   display: block;
-  margin-bottom: $spacing-2;
+  font-size: $font-size-sm;
   font-weight: $font-weight-medium;
-  color: $color-gray-700;
-  
-  .required {
-    color: $color-error;
-  }
+  color: $color-gray-800;
+  margin-bottom: $space-8;
 }
 
-.form-control {
+.form-required {
+  color: $color-error;
+}
+
+// ============================================
+// INPUT FIELDS
+// ============================================
+
+.form-input,
+.form-textarea,
+.form-select {
   width: 100%;
-  padding: $spacing-3 $spacing-4;
+  padding: $space-16;
+  font-family: $font-body;
   font-size: $font-size-base;
-  font-family: $font-primary;
-  color: $color-gray-900;
+  color: $color-gray-800;
   background-color: $color-white;
-  border: 2px solid $color-gray-300;
-  border-radius: $border-radius-md;
-  transition: all $transition-fast;
-  
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-md;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+
   &::placeholder {
-    color: $color-gray-400;
+    color: $color-gray-500;
   }
-  
+
   &:focus {
     outline: none;
     border-color: $color-primary;
     box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
   }
-  
+
   &:disabled {
-    background-color: $color-gray-100;
+    background-color: $color-gray-200;
     cursor: not-allowed;
   }
-  
-  &.error {
+
+  &.is-error {
     border-color: $color-error;
-    
+
     &:focus {
       box-shadow: 0 0 0 3px rgba($color-error, 0.1);
     }
   }
 }
 
-textarea.form-control {
-  resize: vertical;
+.form-textarea {
   min-height: 120px;
+  resize: vertical;
 }
 
-// Form messages
-.form-message {
-  margin-top: $spacing-4;
-  padding: $spacing-4;
-  border-radius: $border-radius-md;
+// ============================================
+// ERROR MESSAGE
+// ============================================
+
+.form-error {
   font-size: $font-size-sm;
+  color: $color-error;
+  margin-top: $space-8;
+}
+
+// ============================================
+// CONTACT FORM
+// ============================================
+
+.contact-form {
+  background-color: $color-white;
+  border-radius: $radius-xl;
+  padding: $space-32;
+
+  @include desktop {
+    padding: $space-48;
+  }
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-24;
+
+  @include tablet-up {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.contact-form-full {
+  @include tablet-up {
+    grid-column: span 2;
+  }
+}
+
+// ============================================
+// FORM SUCCESS/ERROR MESSAGES
+// ============================================
+
+.form-message {
+  padding: $space-16;
+  border-radius: $radius-md;
+  margin-top: $space-24;
   display: none;
-  
-  &.show {
+
+  &.is-visible {
     display: block;
   }
-  
-  &.success {
+
+  &.is-success {
     background-color: rgba($color-success, 0.1);
-    color: $color-success;
-    border: 1px solid rgba($color-success, 0.3);
+    color: color.adjust($color-success, $lightness: -20%);
   }
-  
-  &.error {
+
+  &.is-error {
     background-color: rgba($color-error, 0.1);
     color: $color-error;
-    border: 1px solid rgba($color-error, 0.3);
   }
 }
 
-// Checkbox & Radio
-input[type="checkbox"],
-input[type="radio"] {
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-  margin-right: $spacing-2;
+// ============================================
+// SHARE FORM (About page)
+// ============================================
+
+.share-form {
+  background-color: $color-white;
+  border-radius: $radius-xl;
+  padding: $space-32;
+  box-shadow: $shadow-md;
 }
 
-.checkbox-group,
-.radio-group {
+.share-input-group {
+  display: flex;
+  gap: $space-8;
+  margin-bottom: $space-16;
+
+  .form-input {
+    flex: 1;
+  }
+
+  .btn-copy {
+    flex-shrink: 0;
+  }
+}
+
+.share-social {
   display: flex;
   align-items: center;
-  margin-bottom: $spacing-3;
-  
-  label {
-    margin-bottom: 0;
-    font-weight: $font-weight-normal;
-    cursor: pointer;
+  gap: $space-16;
+
+  .share-label {
+    font-size: $font-size-sm;
+    color: $color-gray-500;
   }
 }

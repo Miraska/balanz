@@ -1,63 +1,74 @@
 /**
  * Mobile Menu Module
- * Мобильное меню
+ * - Позиционирует mobile-menu на 20px ниже header-inner
+ * - Синхронизирует ширину с header-inner
  */
 
 export function initMobileMenu() {
-  const toggle = document.querySelector('.mobile-menu-toggle');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  const headerInner = document.querySelector('.header-inner');
   
-  if (!toggle) return;
+  if (!toggle || !menu || !headerInner) return;
   
-  // Создаем мобильное меню если его нет
-  let mobileMenu = document.querySelector('.mobile-menu');
-  
-  if (!mobileMenu) {
-    mobileMenu = document.createElement('div');
-    mobileMenu.className = 'mobile-menu';
+  // Обновляем позицию меню относительно header-inner
+  function updateMenuPosition() {
+    const headerRect = headerInner.getBoundingClientRect();
+    const menuOffset = 20; // отступ от header-inner
     
-    const navList = document.querySelector('.nav-list');
-    if (navList) {
-      mobileMenu.appendChild(navList.cloneNode(true));
-      document.body.appendChild(mobileMenu);
-    }
+    // Позиция: низ header-inner + 20px отступ
+    const topPosition = headerRect.bottom + menuOffset;
+    menu.style.top = `${topPosition}px`;
   }
+  
+  // Обновляем позицию при инициализации
+  updateMenuPosition();
+  
+  // Обновляем позицию при скролле и ресайзе
+  window.addEventListener('scroll', updateMenuPosition, { passive: true });
+  window.addEventListener('resize', updateMenuPosition, { passive: true });
   
   // Toggle menu
   toggle.addEventListener('click', () => {
-    toggle.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-    document.body.classList.toggle('menu-open');
-  });
-  
-  // Закрытие при клике на ссылку
-  const mobileNavLinks = mobileMenu.querySelectorAll('.nav-link');
-  
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      toggle.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      document.body.classList.remove('menu-open');
-    });
-  });
-  
-  // Закрытие при клике вне меню
-  mobileMenu.addEventListener('click', (e) => {
-    if (e.target === mobileMenu) {
-      toggle.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      document.body.classList.remove('menu-open');
+    const isOpen = menu.classList.contains('is-open');
+    
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
     }
   });
   
-  // Закрытие при Escape
+  // Close on link click
+  const links = menu.querySelectorAll('.mobile-nav-link');
+  links.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+  
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      closeMenu();
+    }
+  });
+  
+  // Close on escape
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-      toggle.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      document.body.classList.remove('menu-open');
+    if (e.key === 'Escape') {
+      closeMenu();
     }
   });
   
-  console.log('📱 Mobile menu initialized');
+  function openMenu() {
+    updateMenuPosition(); // обновляем позицию перед открытием
+    menu.classList.add('is-open');
+    toggle.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    toggle.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
 }

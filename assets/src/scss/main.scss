@@ -1,33 +1,60 @@
 /**
- * Main SCSS Entry Point
- * Balanz Theme
+ * Balanz Theme - Main Stylesheet
+ * 
+ * Based on Figma Design
+ * https://www.figma.com/design/D9aTZWxKW0yiVPvSa59f0T/Balanz---UI-Design
  */
 
-// 1. Abstracts
-@import "abstracts/variables";
-@import "abstracts/mixins";
-@import "abstracts/functions";
+// ============================================
+// SASS MODULES
+// ============================================
+@use "sass:color";
 
-// 2. Base
+// ============================================
+// 1. ABSTRACTS (variables, mixins, functions)
+// ============================================
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+
+// ============================================
+// 2. BASE (reset, typography, utilities)
+// ============================================
 @import "base/reset";
 @import "base/typography";
 @import "base/utilities";
 
-// 3. Layout
+// ============================================
+// 3. LAYOUT (header, footer, grid)
+// ============================================
 @import "layout/header";
 @import "layout/footer";
 @import "layout/grid";
 
-// 4. Components
+// ============================================
+// 4. COMPONENTS (buttons, cards, forms)
+// ============================================
 @import "components/buttons";
-@import "components/forms";
 @import "components/cards";
+@import "components/forms";
 
-// 5. Sections
+// ============================================
+// 5. SECTIONS - HOME PAGE
+// ============================================
 @import "sections/hero";
-@import "sections/features";
-@import "sections/download";
-@import "sections/contact";
+@import "sections/how-it-works";
+@import "sections/why-matters";
+@import "sections/app-screens";
+@import "sections/offers";
+@import "sections/testimonials";
+@import "sections/cta";
 
-// 6. Animations
+// ============================================
+// 6. SECTIONS - ABOUT PAGE
+// ============================================
+@import "sections/about";
+
+// ============================================
+// 7. ANIMATIONS
+// ============================================
 @import "animations/animations";

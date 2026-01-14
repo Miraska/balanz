@@ -6,29 +6,29 @@
  * @version 1.0.0
  */
 
-// Запретить прямой доступ к файлу
+// Prevent direct access
 if (!defined('ABSPATH')) {
     exit;
 }
 
-// Константы темы
+// Theme constants
 define('BALANZ_VERSION', '1.0.0');
 define('BALANZ_THEME_DIR', get_template_directory());
 define('BALANZ_THEME_URI', get_template_directory_uri());
 define('BALANZ_ASSETS_URI', BALANZ_THEME_URI . '/assets/dist');
 
 /**
- * Настройка темы
+ * Theme Setup
  */
 function balanz_theme_setup() {
-    // Поддержка заголовка
+    // Document title
     add_theme_support('title-tag');
     
-    // Поддержка миниатюр
+    // Post thumbnails
     add_theme_support('post-thumbnails');
     
-    // HTML5 разметка
-    add_theme_support('html5', array(
+    // HTML5 markup
+    add_theme_support('html5', [
         'search-form',
         'comment-form',
         'comment-list',
@@ -36,63 +36,45 @@ function balanz_theme_setup() {
         'caption',
         'style',
         'script'
-    ));
+    ]);
     
-    // Отключить редактор Gutenberg для страниц (используем ACF)
+    // Disable Gutenberg for pages (we use ACF)
     add_filter('use_block_editor_for_post', '__return_false');
 }
 add_action('after_setup_theme', 'balanz_theme_setup');
 
 /**
- * Подключение стилей и скриптов
+ * Enqueue Assets
  */
 function balanz_enqueue_assets() {
-    // Основные стили
+    // Main CSS
     wp_enqueue_style(
         'balanz-main',
         BALANZ_ASSETS_URI . '/css/main.css',
-        array(),
+        [],
         BALANZ_VERSION
     );
     
-    // GSAP (CDN для оптимизации)
-    wp_enqueue_script(
-        'gsap',
-        'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js',
-        array(),
-        '3.12.5',
-        true
-    );
-    
-    // ScrollTrigger для GSAP
-    wp_enqueue_script(
-        'gsap-scrolltrigger',
-        'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js',
-        array('gsap'),
-        '3.12.5',
-        true
-    );
-    
-    // Основной JS
+    // Main JS
     wp_enqueue_script(
         'balanz-main',
         BALANZ_ASSETS_URI . '/js/main.js',
-        array('gsap', 'gsap-scrolltrigger'),
+        [],
         BALANZ_VERSION,
         true
     );
     
-    // Передача данных в JS
-    wp_localize_script('balanz-main', 'balanzData', array(
+    // Pass data to JS
+    wp_localize_script('balanz-main', 'balanzData', [
         'ajaxUrl' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('balanz_nonce'),
         'themeUrl' => BALANZ_THEME_URI
-    ));
+    ]);
 }
 add_action('wp_enqueue_scripts', 'balanz_enqueue_assets');
 
 /**
- * Настройка сохранения полей ACF в JSON
+ * ACF JSON Save/Load
  */
 add_filter('acf/settings/save_json', function () {
     return get_stylesheet_directory() . '/acf-json';
@@ -104,132 +86,103 @@ add_filter('acf/settings/load_json', function ($paths) {
 });
 
 /**
- * Настройка ACF Options Page для глобальных настроек
+ * ACF Options Pages
  */
 if (function_exists('acf_add_options_page')) {
-    acf_add_options_page(array(
-        'page_title' => 'Настройки темы',
-        'menu_title' => 'Настройки темы',
+    // Main Settings Page
+    acf_add_options_page([
+        'page_title' => 'Theme Settings',
+        'menu_title' => 'Theme Settings',
         'menu_slug' => 'theme-settings',
         'capability' => 'edit_posts',
         'icon_url' => 'dashicons-admin-generic',
         'position' => 60,
         'redirect' => false
-    ));
+    ]);
     
-    // Подстраница для ссылок на приложение
-    acf_add_options_sub_page(array(
-        'page_title' => 'Ссылки на приложение',
-        'menu_title' => 'Ссылки на приложение',
+    // App Links
+    acf_add_options_sub_page([
+        'page_title' => 'App Links',
+        'menu_title' => 'App Links',
         'parent_slug' => 'theme-settings',
-    ));
+    ]);
     
-    // Подстраница для контактов
-    acf_add_options_sub_page(array(
-        'page_title' => 'Контакты',
-        'menu_title' => 'Контакты',
+    // Contact Info
+    acf_add_options_sub_page([
+        'page_title' => 'Contact Info',
+        'menu_title' => 'Contact Info',
         'parent_slug' => 'theme-settings',
-    ));
+    ]);
+    
+    // Social Links
+    acf_add_options_sub_page([
+        'page_title' => 'Social Links',
+        'menu_title' => 'Social Links',
+        'parent_slug' => 'theme-settings',
+    ]);
 }
 
 /**
- * Обработка формы обратной связи через AJAX
+ * Performance Optimizations
  */
-function balanz_contact_form_handler() {
-    // Проверка nonce
-    check_ajax_referer('balanz_nonce', 'nonce');
-    
-    // Получение данных формы
-    $name = sanitize_text_field($_POST['name'] ?? '');
-    $email = sanitize_email($_POST['email'] ?? '');
-    $message = sanitize_textarea_field($_POST['message'] ?? '');
-    
-    // Валидация
-    if (empty($name) || empty($email) || empty($message)) {
-        wp_send_json_error(array(
-            'message' => 'Заполните все поля'
-        ));
-    }
-    
-    if (!is_email($email)) {
-        wp_send_json_error(array(
-            'message' => 'Некорректный email'
-        ));
-    }
-    
-    // Email для отправки (из ACF)
-    $to = get_field('contact_email', 'option') ?: get_option('admin_email');
-    
-    // Тема письма
-    $subject = 'Новая заявка с сайта Balanz';
-    
-    // Тело письма
-    $body = "
-        Имя: {$name}\n
-        Email: {$email}\n
-        Сообщение:\n{$message}
-    ";
-    
-    // Заголовки
-    $headers = array(
-        'Content-Type: text/plain; charset=UTF-8',
-        'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>',
-        'Reply-To: ' . $email
-    );
-    
-    // Отправка
-    $sent = wp_mail($to, $subject, $body, $headers);
-    
-    if ($sent) {
-        wp_send_json_success(array(
-            'message' => 'Спасибо! Ваша заявка отправлена.'
-        ));
-    } else {
-        wp_send_json_error(array(
-            'message' => 'Ошибка отправки. Попробуйте позже.'
-        ));
-    }
-}
-add_action('wp_ajax_balanz_contact_form', 'balanz_contact_form_handler');
-add_action('wp_ajax_nopriv_balanz_contact_form', 'balanz_contact_form_handler');
-
-/**
- * Отключение ненужных функций WordPress
- */
-// Отключить emoji
+// Remove emoji
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
 
-// Отключить REST API для неавторизованных (опционально)
-add_filter('rest_authentication_errors', function($result) {
-    if (!is_user_logged_in()) {
-        return new WP_Error(
-            'rest_disabled',
-            'REST API disabled for non-authenticated users',
-            array('status' => 401)
-        );
-    }
-    return $result;
-});
-
-// Убрать версию WP из header
+// Remove WP version
 remove_action('wp_head', 'wp_generator');
 
-/**
- * Оптимизация
- */
-// Отключить jQuery Migrate
+// Remove jQuery Migrate
 function balanz_remove_jquery_migrate($scripts) {
     if (!is_admin() && isset($scripts->registered['jquery'])) {
         $script = $scripts->registered['jquery'];
         if ($script->deps) {
-            $script->deps = array_diff($script->deps, array('jquery-migrate'));
+            $script->deps = array_diff($script->deps, ['jquery-migrate']);
         }
     }
 }
 add_action('wp_default_scripts', 'balanz_remove_jquery_migrate');
 
 /**
- * Security: Отключить XML-RPC
+ * Security
  */
+// Disable XML-RPC
 add_filter('xmlrpc_enabled', '__return_false');
+
+// Restrict REST API to logged in users (optional)
+// add_filter('rest_authentication_errors', function($result) {
+//     if (!is_user_logged_in()) {
+//         return new WP_Error('rest_disabled', 'REST API disabled', ['status' => 401]);
+//     }
+//     return $result;
+// });
+
+/**
+ * Custom Image Sizes
+ */
+add_action('after_setup_theme', function() {
+    add_image_size('program-card', 240, 240, true);
+    add_image_size('testimonial', 400, 400, true);
+    add_image_size('hero-image', 800, 800, false);
+});
+
+/**
+ * Allow SVG uploads
+ */
+function balanz_allow_svg($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'balanz_allow_svg');
+
+/**
+ * Clean up WordPress head
+ */
+function balanz_clean_head() {
+    remove_action('wp_head', 'rsd_link');
+    remove_action('wp_head', 'wlwmanifest_link');
+    remove_action('wp_head', 'wp_shortlink_wp_head');
+    remove_action('wp_head', 'rest_output_link_wp_head');
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
+}
+add_action('init', 'balanz_clean_head');

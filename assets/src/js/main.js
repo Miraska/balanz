@@ -1,56 +1,52 @@
 /**
- * Main JavaScript
- * Balanz Theme
+ * Balanz Theme - Main JavaScript
  */
 
 // Import SCSS
-import '../scss/main.scss';
-
-// Import GSAP
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger);
+import "../scss/main.scss";
 
 // Import modules
-import { initAnimations } from './modules/animations';
-import { initHeader } from './modules/header';
-import { initMobileMenu } from './modules/mobile-menu';
-import { initContactForm } from './modules/contact-form';
-import { initSmoothScroll } from './modules/smooth-scroll';
+import { initHeader } from "./modules/header";
+import { initMobileMenu } from "./modules/mobile-menu";
+import { initScrollAnimations } from "./modules/scroll-animations";
+import { initHeroMarquee } from "./modules/hero";
+import { initHowItWorks } from "./modules/how-it-works";
+import { initAppScreens } from "./modules/app-screens";
+import { initTestimonials } from "./modules/testimonials";
+import { initAccordion } from "./modules/accordion";
+import { initShare } from "./modules/share";
 
 /**
  * Initialize app
  */
 function init() {
-  console.log('🚀 Balanz Theme Loaded');
-  
-  // Initialize modules
+  console.log("🥗 Balanz Theme Loaded");
+
+  // Core modules
   initHeader();
   initMobileMenu();
-  initAnimations();
-  initContactForm();
-  initSmoothScroll();
+  initScrollAnimations();
+
+  // Page-specific modules
+  initHeroMarquee();
+  initHowItWorks();
+  initAppScreens();
+  initTestimonials();
+  initAccordion();
+  initShare();
 }
 
 // DOM Ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
 } else {
   init();
 }
 
 // Window Load
-window.addEventListener('load', () => {
-  console.log('✅ All resources loaded');
-  
-  // Refresh ScrollTrigger после загрузки всех ресурсов
-  ScrollTrigger.refresh();
-});
+window.addEventListener("load", () => {
+  console.log("✅ All resources loaded");
 
-// Export for external use
-window.BalanzTheme = {
-  gsap,
-  ScrollTrigger
-};
+  // Trigger scroll animations check
+  window.dispatchEvent(new Event("scroll"));
+});

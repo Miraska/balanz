@@ -1,6 +1,6 @@
 <?php
 /**
- * Главная страница (Landing Page)
+ * Front Page Template - Home
  * 
  * @package Balanz
  */
@@ -8,17 +8,26 @@
 get_header();
 ?>
 
-<!-- Hero Section -->
-<?php get_template_part('template-parts/sections/hero'); ?>
+<!-- Hero Section: What is Balanz -->
+<?php get_template_part('template-parts/home/hero'); ?>
 
-<!-- Features Section -->
-<?php get_template_part('template-parts/sections/features'); ?>
+<!-- How It Works Section -->
+<?php get_template_part('template-parts/home/how-it-works'); ?>
 
-<!-- Download Section -->
-<?php get_template_part('template-parts/sections/download'); ?>
+<!-- Why This Matters Section -->
+<?php get_template_part('template-parts/home/why-matters'); ?>
 
-<!-- Contact Section -->
-<?php get_template_part('template-parts/sections/contact'); ?>
+<!-- App Screens Section -->
+<?php get_template_part('template-parts/home/app-screens'); ?>
+
+<!-- What This Offers Section -->
+<?php get_template_part('template-parts/home/offers'); ?>
+
+<!-- Testimonials Section -->
+<?php get_template_part('template-parts/home/testimonials'); ?>
+
+<!-- CTA Section -->
+<?php get_template_part('template-parts/home/cta'); ?>
 
 <?php
 get_footer();

@@ -1,0 +1,98 @@
+/**
+ * What This Offers Section
+ */
+
+.offers-section {
+  @include section-padding;
+  background-color: $color-secondary-light;
+}
+
+.offers-container {
+  @include container;
+}
+
+// ============================================
+// SECTION HEADER
+// ============================================
+
+.offers-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto $space-48;
+  
+  @include desktop {
+    margin-bottom: $space-64;
+  }
+}
+
+.offers-title {
+  @include heading-52;
+  margin-bottom: $space-16;
+}
+
+.offers-subtitle {
+  font-size: $font-size-18;
+  color: $color-gray-500;
+}
+
+// ============================================
+// BENEFITS GRID
+// ============================================
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-32;
+  
+  @include desktop {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-48;
+  }
+}
+
+// ============================================
+// BENEFIT CARD
+// ============================================
+
+.offers-card {
+  background-color: $color-white;
+  border-radius: $radius-xl;
+  padding: $space-32;
+  
+  @include desktop {
+    padding: $space-48;
+  }
+  
+  &.card-emotional {
+    background-color: $color-secondary;
+  }
+}
+
+.offers-card-title {
+  @include heading-24;
+  margin-bottom: $space-32;
+}
+
+.offers-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-24;
+}
+
+.offers-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-16;
+  
+  .item-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: $color-primary-lighter;
+  }
+  
+  .item-text {
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+  }
+}

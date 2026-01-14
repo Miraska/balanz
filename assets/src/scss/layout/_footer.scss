@@ -1,79 +1,199 @@
 /**
- * Footer
+ * Footer - Balanz Design System
  */
 
+// ============================================
+// FOOTER BASE
+// ============================================
+
 .site-footer {
-  background-color: $color-gray-900;
+  background-color: $color-primary;
   color: $color-white;
-  padding: $spacing-16 0 $spacing-8;
+  padding: $space-48 0;
+  
+  @include desktop {
+    padding: $space-64 0 $space-32;
+  }
 }
 
-.footer-content {
+.footer-inner {
+  @include container;
+}
+
+// ============================================
+// FOOTER TOP
+// ============================================
+
+.footer-top {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: $spacing-8;
+  gap: $space-32;
+  padding-bottom: $space-32;
+  border-bottom: 1px solid rgba($color-white, 0.1);
+  
+  @include desktop {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 }
 
+// ============================================
+// FOOTER LOGO
+// ============================================
+
 .footer-logo {
-  img {
-    height: 48px;
-    width: auto;
+  .logo-text {
+    font-family: $font-body;
+    font-size: $font-size-32;
+    color: $color-white;
+    margin-bottom: $space-8;
+    
+    span {
+      color: $color-secondary;
+    }
   }
   
-  .logo-text {
-    font-size: $font-size-2xl;
-    font-weight: $font-weight-bold;
+  .logo-tagline {
+    font-size: $font-size-sm;
+    color: rgba($color-white, 0.7);
+  }
+}
+
+// ============================================
+// FOOTER LINKS
+// ============================================
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: $space-24;
+  
+  @include tablet-up {
+    flex-direction: row;
+    gap: $space-64;
+  }
+}
+
+.footer-nav-title {
+  font-family: $font-heading;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba($color-white, 0.5);
+  margin-bottom: $space-16;
+}
+
+.footer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.footer-nav-link {
+  color: $color-white;
+  font-size: $font-size-base;
+  transition: color $transition-fast;
+  
+  &:hover {
+    color: $color-secondary;
+  }
+}
+
+// ============================================
+// FOOTER STORE BUTTONS
+// ============================================
+
+.footer-store-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+  
+  @include tablet-up {
+    flex-direction: row;
+  }
+}
+
+.store-button {
+  display: flex;
+  align-items: center;
+  gap: $space-8;
+  background-color: rgba($color-white, 0.1);
+  padding: $space-8 $space-16;
+  border-radius: $radius-sm;
+  transition: background-color $transition-fast;
+  
+  &:hover {
+    background-color: rgba($color-white, 0.2);
+  }
+  
+  .store-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .store-text {
+    font-size: $font-size-xs;
+    color: rgba($color-white, 0.7);
+  }
+  
+  .store-name {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+  }
+}
+
+// ============================================
+// FOOTER SOCIAL
+// ============================================
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: $space-16;
+}
+
+.social-link {
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba($color-white, 0.1);
+  border-radius: $radius-full;
+  transition: background-color $transition-fast;
+  
+  &:hover {
+    background-color: $color-secondary;
+    
+    svg {
+      color: $color-primary;
+    }
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
     color: $color-white;
   }
 }
 
-.footer-apps {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-4;
-  
-  @include respond-to('md') {
-    flex-direction: row;
-    gap: $spacing-6;
-  }
-}
+// ============================================
+// FOOTER BOTTOM
+// ============================================
 
-.footer-social {
-  .social-links {
+.footer-bottom {
+  padding-top: $space-32;
+  text-align: center;
+  
+  @include desktop {
     display: flex;
-    gap: $spacing-4;
-    
-    a {
-      width: 40px;
-      height: 40px;
-      border-radius: $border-radius-full;
-      background-color: rgba($color-white, 0.1);
-      @include flex-center;
-      transition: all $transition-base;
-      
-      &:hover {
-        background-color: $color-primary;
-        transform: translateY(-2px);
-      }
-      
-      svg {
-        width: 20px;
-        height: 20px;
-      }
-    }
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
   }
 }
 
-.footer-copy {
-  width: 100%;
-  padding-top: $spacing-8;
-  border-top: 1px solid rgba($color-white, 0.1);
-  
-  p {
-    margin: 0;
-    font-size: $font-size-sm;
-    color: $color-gray-400;
-  }
+.footer-copyright {
+  font-size: $font-size-sm;
+  color: rgba($color-white, 0.5);
 }

@@ -1,6 +1,7 @@
 {
   "name": "balanz-theme",
   "version": "1.0.0",
+  "type": "module",
   "description": "Кастомная тема WordPress для сайта-визитки Balanz",
   "author": "Miraz",
   "license": "GPL-2.0-or-later",

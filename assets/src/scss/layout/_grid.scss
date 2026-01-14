@@ -1,63 +1,107 @@
 /**
- * Grid System
+ * Grid System - Balanz Design System
  */
 
-.grid {
+// ============================================
+// SIMPLE GRID
+// ============================================
+
+.grid-2 {
   display: grid;
-  gap: $spacing-6;
-
-  &-cols-1 {
-    grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: 1fr;
+  gap: $space-24;
+  
+  @include tablet-up {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-32;
   }
+}
 
-  &-cols-2 {
-    grid-template-columns: repeat(1, 1fr);
-
-    @include respond-to("md") {
-      grid-template-columns: repeat(2, 1fr);
-    }
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-24;
+  
+  @include tablet-up {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-32;
   }
-
-  &-cols-3 {
-    grid-template-columns: repeat(1, 1fr);
-
-    @include respond-to("md") {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @include respond-to("lg") {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
 
-  &-cols-4 {
-    grid-template-columns: repeat(1, 1fr);
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-16;
+  
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include tablet-up {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-24;
+  }
+  
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 
-    @include respond-to("sm") {
-      grid-template-columns: repeat(2, 1fr);
-    }
+// ============================================
+// SPECIAL LAYOUTS
+// ============================================
 
-    @include respond-to("lg") {
-      grid-template-columns: repeat(4, 1fr);
+// Two columns with image
+.grid-content-image {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-32;
+  align-items: center;
+  
+  @include desktop {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-64;
+  }
+  
+  &.reverse {
+    @include desktop {
+      .grid-image {
+        order: -1;
+      }
     }
   }
 }
 
-// Flex Grid
-.flex-grid {
+// Hero programs slider
+.programs-slider {
   display: flex;
-  flex-wrap: wrap;
-  gap: $spacing-6;
+  gap: $space-16;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: $space-16 0;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  @include desktop {
+    justify-content: center;
+    overflow-x: visible;
+  }
+}
 
-  > * {
-    flex: 1 1 100%;
-
-    @include respond-to("md") {
-      flex: 1 1 calc(50% - #{$spacing-6});
-    }
-
-    @include respond-to("lg") {
-      flex: 1 1 calc(33.333% - #{$spacing-6});
-    }
+.program-card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  min-width: 160px;
+  
+  @include tablet-up {
+    min-width: 200px;
   }
 }

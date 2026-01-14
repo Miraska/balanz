@@ -1,0 +1,124 @@
+/**
+ * Why This Matters Section
+ */
+
+.why-section {
+  @include section-padding;
+}
+
+.why-container {
+  @include container;
+}
+
+.why-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-48;
+  align-items: center;
+  
+  @include desktop {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-80;
+  }
+}
+
+// ============================================
+// IMAGE SIDE
+// ============================================
+
+.why-images {
+  position: relative;
+}
+
+.why-image-main {
+  border-radius: $radius-xl;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.why-image-badge {
+  position: absolute;
+  bottom: -$space-24;
+  left: $space-24;
+  background-color: $color-white;
+  padding: $space-16 $space-24;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+  
+  @include desktop {
+    bottom: $space-32;
+    left: -$space-32;
+  }
+  
+  .badge-label {
+    font-size: $font-size-xs;
+    color: $color-gray-500;
+    margin-bottom: $space-8;
+  }
+  
+  .badge-value {
+    display: flex;
+    align-items: center;
+    gap: $space-8;
+    
+    .stars {
+      color: $color-secondary-dark;
+    }
+    
+    .rating {
+      font-family: $font-heading;
+      font-weight: $font-weight-bold;
+    }
+  }
+}
+
+// ============================================
+// TEXT SIDE
+// ============================================
+
+.why-text {
+  max-width: 500px;
+}
+
+.why-title {
+  @include heading-52;
+  margin-bottom: $space-16;
+}
+
+.why-subtitle {
+  font-size: $font-size-18;
+  color: $color-gray-500;
+  margin-bottom: $space-32;
+}
+
+// ============================================
+// BENEFITS LIST
+// ============================================
+
+.why-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+}
+
+.why-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-16;
+  
+  .benefit-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: $color-primary-lighter;
+  }
+  
+  .benefit-text {
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+  }
+}
