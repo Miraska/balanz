@@ -4,7 +4,7 @@
 
 .offers-section {
   @include section-padding;
-  background-color: $color-secondary-light;
+  background-color: $color-primary;
 }
 
 .offers-container {
@@ -17,22 +17,42 @@
 
 .offers-header {
   text-align: center;
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto $space-48;
-  
-  @include desktop {
+
+  @include tablet-up {
     margin-bottom: $space-64;
+  }
+
+  @include desktop {
+    margin-bottom: $space-80;
   }
 }
 
 .offers-title {
   @include heading-52;
+  color: $color-white;
   margin-bottom: $space-16;
+
+  @include tablet-up {
+    font-size: $font-size-40;
+  }
+
+  @include desktop {
+    font-size: $font-size-52;
+  }
 }
 
 .offers-subtitle {
-  font-size: $font-size-18;
-  color: $color-gray-500;
+  font-size: $font-size-16;
+  line-height: $line-height-relaxed;
+  color: rgba($color-white, 0.8);
+  max-width: 720px;
+  margin: 0 auto;
+
+  @include tablet-up {
+    font-size: $font-size-18;
+  }
 }
 
 // ============================================
@@ -40,59 +60,149 @@
 // ============================================
 
 .offers-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $space-32;
-  
+  display: flex;
+  flex-direction: column;
+  gap: $space-24;
+
+  @include tablet-up {
+    gap: $space-32;
+  }
+
   @include desktop {
+    display: grid;
+    grid-template-columns: 1fr;
     grid-template-columns: repeat(2, 1fr);
-    gap: $space-48;
+    gap: $space-40;
   }
 }
 
 // ============================================
-// BENEFIT CARD
+// BENEFIT CARDS
 // ============================================
 
 .offers-card {
-  background-color: $color-white;
-  border-radius: $radius-xl;
-  padding: $space-32;
-  
-  @include desktop {
-    padding: $space-48;
+  border-radius: $radius-lg;
+  overflow: hidden;
+
+  // Text cards (Rational & Emotional Benefits)
+  &.offers-card-text {
+    background-color: $color-secondary-light;
+    outline: 2px solid $color-secondary;
+    outline-offset: 4px;
+    padding: $space-32;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include tablet-up {
+      padding: $space-40;
+    }
+
+    @include desktop {
+      padding: $space-48;
+    }
   }
-  
-  &.card-emotional {
-    background-color: $color-secondary;
+
+  // Image cards
+  &.offers-card-image {
+    position: relative;
+    aspect-ratio: 1;
+    border: none;
+
+    @include tablet-up {
+      aspect-ratio: auto;
+      min-height: 400px;
+    }
   }
 }
 
 .offers-card-title {
-  @include heading-24;
-  margin-bottom: $space-32;
+  font-family: $font-heading;
+  font-size: $font-size-24;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-primary-dark;
+  margin-bottom: $space-24;
+
+  @include tablet-up {
+    font-size: $font-size-32;
+    margin-bottom: $space-32;
+  }
 }
+
+@include mobile {
+  .offers-card:nth-child(3) {
+    order: 3;
+  }
+}
+
+@include tablet {
+  .offers-card:nth-child(3) {
+    order: 3;
+  }
+}
+
+// ============================================
+// BENEFITS LIST
+// ============================================
 
 .offers-list {
   display: flex;
   flex-direction: column;
-  gap: $space-24;
+  gap: $space-20;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  @include tablet-up {
+    gap: $space-24;
+  }
 }
 
 .offers-item {
   display: flex;
   align-items: flex-start;
   gap: $space-16;
-  
+
   .item-icon {
     flex-shrink: 0;
     width: 24px;
     height: 24px;
-    color: $color-primary-lighter;
+    margin-top: 2px;
+    color: $color-success;
+
+    circle {
+      fill: none;
+    }
+
+    path {
+      fill: none;
+    }
   }
-  
+
   .item-text {
-    font-size: $font-size-base;
+    font-family: $font-body;
+    font-size: $font-size-16;
     line-height: $line-height-base;
+    color: $color-primary-dark;
+
+    @include tablet-up {
+      font-size: $font-size-18;
+      line-height: $line-height-relaxed;
+    }
   }
+}
+
+// ============================================
+// IMAGE STYLING
+// ============================================
+
+.offers-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

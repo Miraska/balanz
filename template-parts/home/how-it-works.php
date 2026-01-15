@@ -58,10 +58,18 @@ $steps = get_field('hiw_steps'); // Repeater
                 ?>
                 <div class="hiw-step <?php echo $index === 0 ? 'is-active' : ''; ?>" data-step="<?php echo $index; ?>">
                     <span class="hiw-step-number"><?php echo $number; ?>.</span>
+                  
                     <div class="hiw-step-content">
-                        <h3 class="hiw-step-title"><?php echo esc_html($step['title']); ?></h3>
-                        <p class="hiw-step-description"><?php echo esc_html($step['description']); ?></p>
+                      <h3 class="hiw-step-title"><?php echo esc_html($step['title']); ?></h3>
+                      <p class="hiw-step-description"><?php echo esc_html($step['description']); ?></p>
                     </div>
+                    <!-- Image inside card (for mobile/tablet) -->
+                    <?php if ($step['image']): ?>
+                    <div class="hiw-step-image-mobile">
+                        <img src="<?php echo esc_url($step['image']['url']); ?>" 
+                             alt="<?php echo esc_attr($step['title']); ?>">
+                    </div>
+                    <?php endif; ?>
                 </div>
                 <?php 
                     endforeach;
@@ -78,9 +86,16 @@ $steps = get_field('hiw_steps'); // Repeater
                 ?>
                 <div class="hiw-step <?php echo $index === 0 ? 'is-active' : ''; ?>" data-step="<?php echo $index; ?>">
                     <span class="hiw-step-number"><?php echo $number; ?>.</span>
+                    
                     <div class="hiw-step-content">
                         <h3 class="hiw-step-title"><?php echo $step['title']; ?></h3>
                         <p class="hiw-step-description"><?php echo $step['desc']; ?></p>
+                    </div>
+                    
+                    <!-- Image inside card (for mobile/tablet) -->
+                    <div class="hiw-step-image-mobile">
+                        <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/steps/step-<?php echo $index + 1; ?>.png" 
+                             alt="<?php echo esc_attr($step['title']); ?>">
                     </div>
                 </div>
                 <?php 

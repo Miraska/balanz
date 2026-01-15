@@ -3,7 +3,16 @@
  */
 
 .why-section {
-  @include section-padding;
+  padding: $space-80 0;
+  background-color: $color-secondary-lighter;
+
+  @include tablet {
+    padding: $space-80 0;
+  }
+
+  @include desktop {
+    padding: $space-80 0;
+  }
 }
 
 .why-container {
@@ -15,10 +24,10 @@
   grid-template-columns: 1fr;
   gap: $space-48;
   align-items: center;
-  
+
   @include desktop {
     grid-template-columns: 1fr 1fr;
-    gap: $space-80;
+    gap: $space-64;
   }
 }
 
@@ -28,51 +37,138 @@
 
 .why-images {
   position: relative;
+  order: 1;
+  @include desktop {
+    order: 0;
+  }
 }
 
 .why-image-main {
+  position: relative;
   border-radius: $radius-xl;
-  overflow: hidden;
-  
-  img {
+  overflow: visible;
+
+  > img {
     width: 100%;
-    height: auto;
+    border-radius: $radius-xl;
+    display: block;
+    height: 514px;
+    object-fit: cover;
+
+    @include desktop {
+      height: auto;
+    }
   }
 }
 
-.why-image-badge {
+// ============================================
+// FOOD CARDS
+// ============================================
+
+.food-cards-wrapper {
   position: absolute;
-  bottom: -$space-24;
-  left: $space-24;
-  background-color: $color-white;
-  padding: $space-16 $space-24;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-md;
-  
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+  padding: 24px 0;
+
+  @include tablet {
+    padding: 32px 0;
+  }
+
   @include desktop {
-    bottom: $space-32;
-    left: -$space-32;
+    padding: 40px 0;
   }
-  
-  .badge-label {
-    font-size: $font-size-xs;
-    color: $color-gray-500;
-    margin-bottom: $space-8;
+}
+
+.food-card {
+  pointer-events: none;
+  position: absolute;
+
+  @include tablet {
   }
-  
-  .badge-value {
-    display: flex;
-    align-items: center;
-    gap: $space-8;
-    
-    .stars {
-      color: $color-secondary-dark;
+
+  @include desktop {
+  }
+
+
+
+  img {
+    width: 140px;
+    height: auto;
+    display: block;
+    box-shadow: $shadow-lg;
+    border-radius: $radius-md;
+
+    @include tablet {
+      width: 155px;
     }
-    
-    .rating {
-      font-family: $font-heading;
-      font-weight: $font-weight-bold;
+
+    @include desktop {
+      width: 165px;
     }
+  }
+}
+
+.food-card-1 {
+  display: none;
+  left: 25px;
+
+  @include tablet {
+    display: block;
+  }
+
+  @include desktop {
+    display: block;
+    left: -25px;
+  }
+}
+
+.food-card-2 {
+  bottom: 25px;
+  left: 25px;
+
+  @include tablet {
+    display: none;
+  }
+
+  @include desktop {
+    display: block;
+    left: 50px;
+    bottom: -50px;
+  }
+}
+
+.food-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.food-card-title {
+  font-family: $font-heading;
+  font-size: $font-size-14;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.food-card-meta {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  font-size: 12px;
+  color: $color-gray-500;
+
+  .food-card-dot {
+    font-size: 6px;
+    color: $color-gray-400;
   }
 }
 
@@ -81,18 +177,35 @@
 // ============================================
 
 .why-text {
-  max-width: 500px;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+
+
 }
 
 .why-title {
-  @include heading-52;
-  margin-bottom: $space-16;
+  font-family: $font-heading;
+  font-size: $font-size-48;
+  font-weight: $font-weight-semibold;
+  line-height: 1.2;
+  color: $color-gray-800;
+  margin: 0 0 $space-16 0;
+
+  @include desktop {
+    font-size: $font-size-52;
+  }
 }
 
 .why-subtitle {
+  font-family: $font-body;
   font-size: $font-size-18;
-  color: $color-gray-500;
-  margin-bottom: $space-32;
+  color: $color-gray-600;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 400px;
 }
 
 // ============================================
@@ -103,22 +216,38 @@
   display: flex;
   flex-direction: column;
   gap: $space-16;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .why-benefit {
   display: flex;
   align-items: flex-start;
-  gap: $space-16;
-  
+  gap: $space-12;
+
   .benefit-icon {
     flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    color: $color-primary-lighter;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
   }
-  
+
   .benefit-text {
-    font-size: $font-size-base;
-    line-height: $line-height-base;
+    font-family: $font-body;
+    font-size: $font-size-18;
+    line-height: 1.6;
+    color: $color-primary;
+    margin: 0;
+    padding-top: 2px;
   }
 }

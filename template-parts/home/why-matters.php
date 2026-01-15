@@ -18,32 +18,37 @@ $benefits = get_field('why_benefits'); // Repeater
         <div class="why-content">
             
             <!-- Image Side -->
-            <div class="why-images animate-on-scroll">
+            <div class="why-images">
                 <div class="why-image-main">
                     <?php if ($image): ?>
                     <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
                     <?php else: ?>
-                    <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/why-this-matters.png" alt="Why Balanz">
+                    <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/why-this-matters/why-this-matters.png" alt="Why Balanz">
                     <?php endif; ?>
                 </div>
                 
-                <?php if ($badge_label || $badge_value): ?>
-                <div class="why-image-badge">
-                    <span class="badge-label"><?php echo esc_html($badge_label ?: 'based on'); ?></span>
-                    <div class="badge-value">
-                        <span class="stars">★★★★★</span>
-                        <span class="rating"><?php echo esc_html($badge_value ?: '500+ reviews'); ?></span>
+                <!-- Food Cards -->
+                <div class="food-cards-wrapper">
+                    <div class="food-card food-card-1">
+                        <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/why-this-matters/food-card-01.png" alt="Japanese Rice">
+                    </div>
+                    
+                    <div class="food-card food-card-2">
+                        <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/why-this-matters/food-card-02.png" alt="Greek Yogurt">
                     </div>
                 </div>
-                <?php endif; ?>
             </div>
             
             <!-- Text Side -->
-            <div class="why-text animate-on-scroll">
-                <h2 class="why-title"><?php echo esc_html($title); ?></h2>
-                <?php if ($subtitle): ?>
-                <p class="why-subtitle"><?php echo esc_html($subtitle); ?></p>
-                <?php endif; ?>
+            <div class="why-text">
+                <div class="why-header">
+                    <h2 class="why-title"><?php echo esc_html($title); ?></h2>
+                    <?php if ($subtitle): ?>
+                    <p class="why-subtitle"><?php echo esc_html($subtitle); ?></p>
+                    <?php else: ?>
+                    <p class="why-subtitle">A simpler way to eat well, without stress or constant decisions.</p>
+                    <?php endif; ?>
+                </div>
                 
                 <ul class="why-benefits">
                     <?php 
@@ -51,10 +56,9 @@ $benefits = get_field('why_benefits'); // Repeater
                         foreach ($benefits as $benefit):
                     ?>
                     <li class="why-benefit">
-                        <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                            <polyline points="22,4 12,14.01 9,11.01"/>
-                        </svg>
+                        <div class="benefit-icon">
+                            <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/icons/check-mark.svg" alt="">
+                        </div>
                         <span class="benefit-text"><?php echo esc_html($benefit['text']); ?></span>
                     </li>
                     <?php 
@@ -70,11 +74,10 @@ $benefits = get_field('why_benefits'); // Repeater
                         foreach ($default_benefits as $benefit):
                     ?>
                     <li class="why-benefit">
-                        <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                            <polyline points="22,4 12,14.01 9,11.01"/>
-                        </svg>
-                        <span class="benefit-text"><?php echo $benefit; ?></span>
+                        <div class="benefit-icon">
+                            <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/icons/check-mark.svg" alt="">
+                        </div>
+                        <span class="benefit-text"><?php echo esc_html($benefit); ?></span>
                     </li>
                     <?php 
                         endforeach;
