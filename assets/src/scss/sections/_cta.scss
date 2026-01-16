@@ -4,103 +4,293 @@
 
 .cta-section {
   position: relative;
-  @include section-padding;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  padding: 80px 0;
+
+  @include tablet-up {
+    padding: 120px 0;
+  }
 }
+
+// ============================================
+// BACKGROUND
+// ============================================
+
+.cta-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+// ============================================
+// PHONES
+// ============================================
+
+.cta-phones {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cta-phone {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  // Left Phone
+  &.cta-phone-left {
+    left: 0;
+    top: 20%;
+    transform: translate(-100%, -50%);
+    width: 140px;
+    height: auto;
+
+    @include tablet-up {
+      width: 250px;
+      left: 5%;
+      top: 30%;
+    }
+
+    @include desktop {
+      width: 320px;
+      left: 8%;
+      top: 50%;
+    }
+
+    &.animate-in {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+  }
+
+  // Right Phone
+  &.cta-phone-right {
+    left: 10%;
+    top: 70%;
+    transform: translate(100%, -50%);
+    width: 140px;
+    height: auto;
+    z-index: -2;
+
+    @include tablet-up {
+      left: 15%;
+      width: 250px;
+      right: 5%;
+      top: 75%;
+    }
+
+    @include desktop {
+      left: 20%;
+      width: 320px;
+      right: 8%;
+      top: 80%;
+    }
+
+    &.animate-in {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+  }
+
+  // Center Phone
+  &.cta-phone-center {
+    right: 5%;
+    bottom: -15%;
+    transform: translateY(100%) rotate(0deg);
+    width: 160px;
+    height: auto;
+
+    @include tablet-up {
+      width: 220px;
+      right: 8%;
+    }
+
+    @include desktop {
+      width: 280px;
+      right: 12%;
+    }
+
+    &.animate-in {
+      opacity: 1;
+      transform: translateY(0) rotate(-15deg);
+    }
+  }
+
+  // Center Right Phone
+  &.cta-phone-center-right {
+    right: 2%;
+    top: 55%;
+    transform: translate(100%, -50%);
+    width: 140px;
+    height: auto;
+
+    @include tablet-up {
+      width: 200px;
+      right: 3%;
+    }
+
+    @include desktop {
+      width: 280px;
+      right: 3%;
+      top: 60%;
+    }
+
+    &.animate-in {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+// ============================================
+// CONTENT
+// ============================================
 
 .cta-container {
   @include container;
+  position: relative;
+  z-index: 2;
 }
 
 .cta-content {
-  position: relative;
-  z-index: 1;
   text-align: center;
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .cta-title {
-  @include heading-52;
-  margin-bottom: $space-16;
+  font-size: 36px;
+  font-weight: $font-weight-semibold;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+
+  @include tablet-up {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+
+  @include desktop {
+    font-size: 64px;
+    margin-bottom: 24px;
+  }
 }
 
 .cta-subtitle {
-  font-size: $font-size-18;
-  color: $color-gray-500;
-  margin-bottom: $space-32;
+  font-size: 16px;
+  font-weight: $font-weight-regular;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.623);
+  margin-bottom: 32px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+
+  @include tablet-up {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+
+  @include desktop {
+    font-size: 20px;
+    margin-bottom: 48px;
+  }
 }
+
+// ============================================
+// BUTTONS
+// ============================================
 
 .cta-buttons {
   display: flex;
   flex-direction: column;
-  gap: $space-16;
+  gap: 16px;
   justify-content: center;
+  align-items: center;
 
   @include tablet-up {
     flex-direction: row;
-    gap: $space-24;
+    gap: 20px;
   }
 }
 
-// ============================================
-// BACKGROUND DECORATIONS
-// ============================================
+.cta-btn-primary {
+  background: #313f31;
+  color: #ffffff;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
 
-.cta-decorations {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.cta-food-image {
-  position: absolute;
-
-  &.food-left {
-    left: -50px;
-    bottom: 0;
-    width: 300px;
-
-    @include desktop {
-      left: 0;
-      width: 400px;
-    }
+  @include tablet-up {
+    padding: 18px 36px;
+    font-size: 17px;
   }
 
-  &.food-right {
-    right: -50px;
-    bottom: 0;
-    width: 300px;
-
-    @include desktop {
-      right: 0;
-      width: 400px;
-    }
-  }
-
-  img {
-    width: 100%;
-    height: auto;
+  &:hover {
+    background: $color-primary-dark;
+    color: #ffffff;
   }
 }
 
-.cta-phone-mockup {
-  position: absolute;
-  right: 10%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 200px;
+.cta-btn-secondary {
+  background: white;
+  color: #313f31;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
 
-  @include until-desktop {
-    display: none;
+  @include tablet-up {
+    padding: 18px 36px;
+    font-size: 17px;
   }
 
-  img {
-    width: 100%;
-    height: auto;
+  &:hover {
+    background: $color-primary-lighter;
   }
 }

@@ -96,9 +96,7 @@ $testimonials_data = $testimonials ?: $default_testimonials;
                             </div>
                             <div class="testimonial-content">
                                 <div class="quote-icon">
-                                    <svg width="48" height="38" viewBox="0 0 48 38" fill="none">
-                                        <path d="M0 19.2C0 8.96 5.44 2.08 16.32 0L19.2 4.16C13.12 6.08 10.08 9.6 9.6 14.72H20.16V38H0V19.2ZM27.84 19.2C27.84 8.96 33.28 2.08 44.16 0L47.04 4.16C40.96 6.08 37.92 9.6 37.44 14.72H48V38H27.84V19.2Z" fill="currentColor"/>
-                                    </svg>
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/quote-up.svg" alt="Quote" width="48px" height="48px">
                                 </div>
                                 <h3 class="testimonial-title"><?php echo esc_html($testimonial['text']); ?></h3>
                                 <p class="testimonial-description"><?php echo esc_html($testimonial['description']); ?></p>

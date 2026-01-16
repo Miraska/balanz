@@ -7,8 +7,8 @@
 export function initAppScreens() {
   const showcase = document.querySelector('.app-showcase');
   const phoneScreens = document.querySelectorAll('.phone-screen');
-  const featureButtons = document.querySelectorAll('.app-feature-btn');
-  const featureGroups = document.querySelectorAll('.feature-group');
+  const screenCards = document.querySelectorAll('.screen-cards');
+  const featureButtons = document.querySelectorAll('.feature-card, .feature-badge');
   const prevBtn = document.querySelector('.app-nav-btn.prev-btn');
   const nextBtn = document.querySelector('.app-nav-btn.next-btn');
   
@@ -65,15 +65,14 @@ export function initAppScreens() {
       }
     });
     
-    // Update feature groups
-    featureGroups.forEach(group => {
-      const groupClass = group.classList.contains('screen-1-features') ? 1 :
-                        group.classList.contains('screen-2-features') ? 2 : 3;
+    // Update screen cards
+    screenCards.forEach(cards => {
+      const cardsScreenNum = parseInt(cards.dataset.screenCards);
       
-      if (groupClass === screenNumber) {
-        group.classList.add('active');
+      if (cardsScreenNum === screenNumber) {
+        cards.classList.add('active');
       } else {
-        group.classList.remove('active');
+        cards.classList.remove('active');
       }
     });
     
@@ -144,34 +143,35 @@ export function initAppScreens() {
   // Event Listeners
   
   // Feature button clicks
-  featureButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      const screenNumber = parseInt(button.dataset.screen);
+  // featureButtons.forEach(button => {
+  //   button.addEventListener('click', (e) => {
+  //     const screenNumber = parseInt(button.dataset.screen);
       
-      // Create ripple effect
-      if (button.classList.contains('single')) {
-        createRipple(button, e);
-      }
+  //     // Create ripple effect for badge buttons
+  //     if (button.classList.contains('feature-badge')) {
+  //       createRipple(button, e);
+  //     }
       
-      // Add click feedback animation
-      button.style.transform = 'scale(0.95)';
-      setTimeout(() => {
-        button.style.transform = '';
-      }, 150);
+  //     // Add click feedback animation
+  //     button.style.transform = button.style.transform.includes('translateY') ? 
+  //       button.style.transform.replace(/translateY\([^)]+\)/, 'translateY(-50%) scale(0.95)') : 
+  //       'scale(0.95)';
+  //     setTimeout(() => {
+  //       button.style.transform = '';
+  //     }, 150);
       
-      // Switch screen
-      switchScreen(screenNumber);
+  //     // Switch screen
+  //     switchScreen(screenNumber);
       
-      // Track interaction (for analytics)
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'app_screen_interaction', {
-          'event_category': 'App Screens',
-          'event_label': `Screen ${screenNumber}`,
-          'feature': button.dataset.feature
-        });
-      }
-    });
-  });
+  //     // Track interaction (for analytics)
+  //     if (typeof gtag !== 'undefined') {
+  //       gtag('event', 'app_screen_interaction', {
+  //         'event_category': 'App Screens',
+  //         'event_label': `Screen ${screenNumber}`
+  //       });
+  //     }
+  //   });
+  // });
   
   // Navigation buttons
   if (prevBtn) {

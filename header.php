@@ -17,7 +17,7 @@
             <!-- Logo -->
             <a href="<?php echo home_url('/'); ?>" class="header-logo">
                 <img class="logo-left" src="<?php echo BALANZ_THEME_URI; ?>/assets/images/logo/logo.svg" alt="Balanz Logo">
-                <img class="logo-right" src="<?php echo BALANZ_THEME_URI; ?>/assets/images/logo/logo-02.svg" alt="Balanz Logo">
+                <img class="logo-right" src="<?php echo BALANZ_THEME_URI; ?>/assets/images/logo/logo-02.svg" alt="Balanz">
             </a>
             
             <div class="header-right">
@@ -30,7 +30,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo get_permalink(get_page_by_path('about-us')); ?>" class="nav-link <?php echo is_page('about-us') ? 'is-active' : ''; ?>">
+                        <a href="<?php echo home_url('/about-us/'); ?>" class="nav-link <?php echo is_page('about-us') ? 'is-active' : ''; ?>">
                             About Us
                         </a>
                     </li>
@@ -63,7 +63,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?php echo get_permalink(get_page_by_path('about-us')); ?>" class="mobile-nav-link <?php echo is_page('about-us') ? 'is-active' : ''; ?>">
+                <a href="<?php echo home_url('/about-us/'); ?>" class="mobile-nav-link <?php echo is_page('about-us') ? 'is-active' : ''; ?>">
                     About Us
                 </a>
             </li>

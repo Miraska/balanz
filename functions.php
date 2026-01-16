@@ -44,6 +44,50 @@ function balanz_theme_setup() {
 add_action('after_setup_theme', 'balanz_theme_setup');
 
 /**
+ * Theme Activation - Create required pages and clean up defaults
+ */
+function balanz_theme_activation() {
+    // Delete default "Hello World" post
+    $default_post = get_page_by_path('hello-world', OBJECT, 'post');
+    if ($default_post) {
+        wp_delete_post($default_post->ID, true);
+    }
+    
+    // Delete default "Sample Page"
+    $sample_page = get_page_by_path('sample-page');
+    if ($sample_page) {
+        wp_delete_post($sample_page->ID, true);
+    }
+    
+    // Create About Us page if it doesn't exist
+    $about_page = get_page_by_path('about-us');
+    if (!$about_page) {
+        $about_page_id = wp_insert_post([
+            'post_title'    => 'About Us',
+            'post_name'     => 'about-us',
+            'post_status'   => 'publish',
+            'post_type'     => 'page',
+            'post_author'   => 1,
+            'page_template' => 'page-about-us.php'
+        ]);
+        
+        if ($about_page_id) {
+            error_log('Balanz: About Us page created successfully');
+        }
+    }
+    
+    // Set permalink structure
+    update_option('permalink_structure', '/%postname%/');
+    flush_rewrite_rules();
+    
+    // Delete default comment
+    wp_delete_comment(1, true);
+    
+    error_log('Balanz Theme: Activation completed');
+}
+add_action('after_switch_theme', 'balanz_theme_activation');
+
+/**
  * Enqueue Assets
  */
 function balanz_enqueue_assets() {

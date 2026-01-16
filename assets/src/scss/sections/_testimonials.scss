@@ -4,7 +4,7 @@
 
 .testimonials-section {
   @include section-padding;
-  background-color: #f5f1eb;
+  background-color: $color-white;
   position: relative;
   overflow: hidden;
 }
@@ -12,6 +12,7 @@
 .testimonials-container {
   @include container;
   max-width: 1400px;
+  position: relative;
 }
 
 // ============================================
@@ -22,6 +23,8 @@
   text-align: center;
   margin-bottom: $space-48;
   user-select: none;
+  position: relative;
+  z-index: 1;
 
   @include desktop {
     margin-bottom: $space-64;
@@ -47,31 +50,39 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: $space-24;
+  gap: $space-16;
   margin-bottom: $space-48;
+  position: relative;
+  z-index: 1;
 
   @include desktop {
-    gap: $space-32;
+    gap: $space-24;
     margin-bottom: $space-64;
   }
 }
 
 .testimonial-nav-item {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   border-radius: $radius-full;
   overflow: hidden;
   cursor: pointer;
-  opacity: 0.4;
+  opacity: 0.5;
   transition: all 0.3s ease;
   border: none;
   padding: 0;
   background: none;
   position: relative;
+  transform: scale(0.9);
+
+  @include tablet {
+    width: 56px;
+    height: 56px;
+  }
 
   @include desktop {
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
   }
 
   &::before {
@@ -85,17 +96,18 @@
   }
 
   &:hover {
-    opacity: 0.7;
-    transform: scale(1.05);
+    opacity: 0.8;
+    transform: scale(1);
   }
 
   &.is-active {
     opacity: 1;
-    transform: scale(1.1);
+    outline: 2px dashed $color-secondary;
+    outline-offset: 4px;
 
     &::before {
       background: $color-secondary;
-      inset: -4px;
+      inset: -3px;
     }
   }
 
@@ -109,113 +121,136 @@
 }
 
 // ============================================
-// SLIDER
+// SLIDER - 3D CAROUSEL
 // ============================================
 
 .testimonials-slider {
   position: relative;
   width: 100%;
-  perspective: 1500px;
-  perspective-origin: center center;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-
-  @include desktop {
-    perspective: 2500px;
-  }
+  z-index: 1;
+  padding: $space-20 0;
 }
 
 .testimonials-track {
-  overflow: visible;
-  padding: 0 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+
+  @include tablet {
+    height: 450px;
+  }
 
   @include desktop {
-    padding: 0 100px;
+    height: 480px;
   }
 }
 
 .testimonials-slides {
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  user-select: none;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
 }
 
 .testimonial-slide {
-  flex: 0 0 100%;
-  padding: 0 $space-16;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 800px;
+  transform: translate(-50%, -50%);
   transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
+  opacity: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+
+  @include tablet {
+    width: 85%;
+    max-width: 750px;
+  }
 
   @include desktop {
-    flex: 0 0 70%;
-    padding: 0 $space-32;
+    width: 800px;
   }
 
-  // Default state for non-active cards
-  &:not(.is-active) {
-    .testimonial-card {
-      transform: scale(0.85) rotateY(0deg) translateZ(-100px);
-      opacity: 0.6;
-      filter: blur(1px);
-
-      @include desktop {
-        transform: scale(0.8) rotateY(0deg) translateZ(-150px);
-      }
-
-      &::after {
-        opacity: 0.5;
-      }
-    }
+  // Far left cards (hidden)
+  &.is-far-prev {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateX(-200%);
+    z-index: 0;
   }
 
-  // Previous card (left side)
+  // Previous card (left side) - outer edge (left) narrowed, inner edge (right) normal
   &.is-prev {
-    .testimonial-card {
-      transform: scale(0.85) rotateY(25deg) translateZ(-120px) translateX(40px);
+    opacity: 1;
+    pointer-events: none;
+    z-index: 1;
+    transform-origin: left center;
+    transform: translate(-70%, -50%) translateX(-58%) perspective(1400px)
+      rotateY(-35deg) scale(0.7);
 
-      @include desktop {
-        transform: scale(0.8) rotateY(35deg) translateZ(-180px) translateX(60px);
-      }
-
-      &::after {
-        opacity: 0.65;
-      }
+    @include desktop {
+      transform: translate(-70%, -50%) translateX(-62%) perspective(1400px)
+        rotateY(-40deg) scale(0.7);
     }
-  }
 
-  // Next card (right side)
-  &.is-next {
     .testimonial-card {
-      transform: scale(0.85) rotateY(-25deg) translateZ(-120px)
-        translateX(-40px);
-
-      @include desktop {
-        transform: scale(0.8) rotateY(-35deg) translateZ(-180px)
-          translateX(-60px);
-      }
-
       &::after {
-        opacity: 0.65;
+        opacity: 1;
       }
     }
   }
 
   // Active card (center)
   &.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) translateX(0) rotateY(0deg) scale(1);
+    transform-origin: center center;
     z-index: 10;
 
     .testimonial-card {
-      transform: scale(1) rotateY(0deg) translateZ(0);
-      opacity: 1;
-      filter: blur(0);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 
       &::after {
         opacity: 0;
       }
     }
+  }
+
+  // Next card (right side) - outer edge (right) narrowed, inner edge (left) normal
+  &.is-next {
+    opacity: 1;
+    pointer-events: none;
+    z-index: 1;
+    transform-origin: right center;
+    transform: translate(-30%, -50%) translateX(58%) perspective(1400px)
+      rotateY(35deg) scale(0.7);
+
+    @include desktop {
+      transform: translate(-30%, -50%) translateX(62%) perspective(1400px)
+        rotateY(40deg) scale(0.7);
+    }
+
+    .testimonial-card {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Far right cards (hidden)
+  &.is-far-next {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateX(200%);
+    z-index: 0;
   }
 }
 
@@ -227,20 +262,26 @@
   background-color: $color-white;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   display: grid;
   grid-template-columns: 1fr;
   transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
   position: relative;
   user-select: none;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 
-  @include desktop {
-    grid-template-columns: 380px 1fr;
-    min-height: 500px;
+  @include tablet {
+    grid-template-columns: 260px 1fr;
+    min-height: 380px;
   }
 
-  // Overlay for side cards (brown tint)
+  @include desktop {
+    grid-template-columns: 300px 1fr;
+    min-height: 420px;
+  }
+
+  // Beige overlay for side cards - solid color
   &::after {
     content: "";
     position: absolute;
@@ -248,27 +289,30 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(139, 105, 80, 0.3) 0%,
-      rgba(160, 130, 100, 0.25) 50%,
-      rgba(139, 105, 80, 0.3) 100%
-    );
+    background: #ede7da;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1;
+    z-index: 100;
+    border-radius: 24px;
   }
 }
 
 .testimonial-image {
   position: relative;
-  height: 300px;
+  border-radius: $radius-md;
   overflow: hidden;
   user-select: none;
+  display: none;
+
+  @include tablet {
+    height: auto;
+    display: block;
+  }
 
   @include desktop {
     height: auto;
+    display: block;
   }
 
   img {
@@ -283,7 +327,6 @@
 }
 
 .testimonial-content {
-  padding: $space-40;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -291,69 +334,77 @@
   z-index: 2;
   user-select: none;
 
+  @include tablet {
+    margin-left: $space-40;
+  }
+
   @include desktop {
-    padding: $space-48 $space-64;
+    margin-left: $space-40;
   }
 }
 
 .quote-icon {
   color: $color-secondary-dark;
-  margin-bottom: $space-24;
+  margin-bottom: $space-20;
   display: block;
   line-height: 1;
   user-select: none;
   pointer-events: none;
 
   svg {
-    width: 38px;
-    height: 30px;
+    width: 32px;
+    height: 26px;
 
     @include desktop {
-      width: 48px;
-      height: 38px;
+      width: 40px;
+      height: 32px;
     }
   }
 }
 
 .testimonial-title {
   font-family: $font-heading;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.3;
   color: $color-primary;
-  margin-bottom: $space-16;
+  margin-bottom: $space-12;
   user-select: none;
 
+  @include tablet {
+    font-size: 22px;
+  }
+
   @include desktop {
-    font-size: 32px;
-    margin-bottom: $space-20;
+    font-size: 26px;
+    margin-bottom: $space-16;
   }
 }
 
 .testimonial-description {
-  font-size: $font-size-16;
+  font-size: $font-size-14;
   line-height: 1.6;
   color: $color-gray-600;
-  margin-bottom: $space-32;
+  margin-bottom: $space-24;
   user-select: none;
 
   @include desktop {
-    font-size: $font-size-18;
-    margin-bottom: $space-40;
+    font-size: $font-size-16;
+    margin-bottom: $space-32;
   }
 }
 
 .testimonial-author {
   display: flex;
   align-items: center;
-  gap: $space-16;
+  gap: $space-12;
   margin-top: auto;
   user-select: none;
 }
 
 .author-avatar {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: $radius-full;
   object-fit: cover;
   user-select: none;
@@ -361,32 +412,36 @@
   -webkit-user-drag: none;
 
   @include desktop {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
   }
 }
 
 .author-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   user-select: none;
 }
 
 .author-name {
   font-family: $font-heading;
   font-weight: $font-weight-semibold;
-  font-size: $font-size-16;
+  font-size: $font-size-14;
   color: $color-primary;
   user-select: none;
 
   @include desktop {
-    font-size: $font-size-18;
+    font-size: $font-size-16;
   }
 }
 
 .author-role {
-  font-size: $font-size-14;
+  font-size: $font-size-xs;
   color: $color-gray-500;
   user-select: none;
+
+  @include desktop {
+    font-size: $font-size-14;
+  }
 }

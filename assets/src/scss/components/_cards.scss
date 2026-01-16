@@ -140,10 +140,6 @@
   align-items: flex-start;
   gap: $space-16;
   padding: $space-16 0;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid $color-gray-200;
-  }
 }
 
 .feature-icon {
@@ -226,7 +222,7 @@
   padding: $space-32;
 
   @include desktop {
-    padding: $space-48;
+    padding: $space-24;
   }
 }
 

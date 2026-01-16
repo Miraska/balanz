@@ -15,13 +15,12 @@ import { initAppScreens } from "./modules/app-screens";
 import { initTestimonials } from "./modules/testimonials";
 import { initAccordion } from "./modules/accordion";
 import { initShare } from "./modules/share";
+import { initCTA } from "./modules/cta";
 
 /**
  * Initialize app
  */
 function init() {
-  console.log("🥗 Balanz Theme Loaded");
-
   // Core modules
   initHeader();
   initMobileMenu();
@@ -34,6 +33,7 @@ function init() {
   initTestimonials();
   initAccordion();
   initShare();
+  initCTA();
 }
 
 // DOM Ready
@@ -45,8 +45,6 @@ if (document.readyState === "loading") {
 
 // Window Load
 window.addEventListener("load", () => {
-  console.log("✅ All resources loaded");
-
   // Trigger scroll animations check
   window.dispatchEvent(new Event("scroll"));
 });
