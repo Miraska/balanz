@@ -62,7 +62,7 @@ function balanz_theme_activation() {
     // Create About Us page if it doesn't exist
     $about_page = get_page_by_path('about-us');
     if (!$about_page) {
-        $about_page_id = wp_insert_post([
+        wp_insert_post([
             'post_title'    => 'About Us',
             'post_name'     => 'about-us',
             'post_status'   => 'publish',
@@ -70,10 +70,6 @@ function balanz_theme_activation() {
             'post_author'   => 1,
             'page_template' => 'page-about-us.php'
         ]);
-        
-        if ($about_page_id) {
-            error_log('Balanz: About Us page created successfully');
-        }
     }
     
     // Set permalink structure
@@ -82,8 +78,6 @@ function balanz_theme_activation() {
     
     // Delete default comment
     wp_delete_comment(1, true);
-    
-    error_log('Balanz Theme: Activation completed');
 }
 add_action('after_switch_theme', 'balanz_theme_activation');
 
@@ -164,7 +158,122 @@ if (function_exists('acf_add_options_page')) {
         'menu_title' => 'Social Links',
         'parent_slug' => 'theme-settings',
     ]);
+    
+    // Form Settings
+    acf_add_options_sub_page([
+        'page_title' => 'Form Settings',
+        'menu_title' => 'Form Settings',
+        'parent_slug' => 'theme-settings',
+    ]);
+    
+    // SEO Settings
+    acf_add_options_sub_page([
+        'page_title' => 'SEO Settings',
+        'menu_title' => 'SEO Settings',
+        'parent_slug' => 'theme-settings',
+    ]);
+    
+    // General Content (Header, Footer, etc.)
+    acf_add_options_sub_page([
+        'page_title' => 'General Content',
+        'menu_title' => 'General Content',
+        'parent_slug' => 'theme-settings',
+    ]);
 }
+
+/**
+ * SEO Meta Tags and Open Graph
+ */
+function balanz_seo_meta_tags() {
+    // Get global SEO settings from ACF
+    $site_name = get_bloginfo('name');
+    $default_description = get_field('seo_default_description', 'option') ?: 'Balanz - Smart food for busy people who want to eat well';
+    $default_og_image = get_field('seo_og_image', 'option');
+    
+    // Get page-specific SEO if available
+    $seo_title = '';
+    $seo_description = $default_description;
+    $og_image_url = '';
+    
+    if (is_front_page()) {
+        $seo_title = get_field('seo_home_title', 'option') ?: $site_name;
+        $seo_description = get_field('seo_home_description', 'option') ?: $default_description;
+    } elseif (is_page()) {
+        $page_seo_title = get_field('seo_title');
+        $page_seo_description = get_field('seo_description');
+        
+        $seo_title = $page_seo_title ?: get_the_title() . ' - ' . $site_name;
+        $seo_description = $page_seo_description ?: $default_description;
+    } else {
+        $seo_title = get_the_title() . ' - ' . $site_name;
+    }
+    
+    // OG Image - priority: page specific > global > screenshot
+    $page_og_image = get_field('seo_og_image');
+    if ($page_og_image && isset($page_og_image['url'])) {
+        $og_image_url = $page_og_image['url'];
+    } elseif ($default_og_image && isset($default_og_image['url'])) {
+        $og_image_url = $default_og_image['url'];
+    } else {
+        // Fallback to screenshot.png
+        $og_image_url = BALANZ_THEME_URI . '/screenshot.png';
+    }
+    
+    // Current URL
+    $current_url = home_url(add_query_arg([], $_SERVER['REQUEST_URI'] ?? ''));
+    
+    // Output meta tags
+    ?>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="<?php echo esc_attr($seo_description); ?>">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<?php echo esc_url($current_url); ?>">
+    <meta property="og:title" content="<?php echo esc_attr($seo_title); ?>">
+    <meta property="og:description" content="<?php echo esc_attr($seo_description); ?>">
+    <meta property="og:image" content="<?php echo esc_url($og_image_url); ?>">
+    <meta property="og:site_name" content="<?php echo esc_attr($site_name); ?>">
+    <meta property="og:locale" content="<?php echo esc_attr(get_locale()); ?>">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="<?php echo esc_url($current_url); ?>">
+    <meta name="twitter:title" content="<?php echo esc_attr($seo_title); ?>">
+    <meta name="twitter:description" content="<?php echo esc_attr($seo_description); ?>">
+    <meta name="twitter:image" content="<?php echo esc_url($og_image_url); ?>">
+    
+    <?php
+    // Favicon from ACF or default
+    $favicon = get_field('site_favicon', 'option');
+    if ($favicon && isset($favicon['url'])) {
+        ?>
+        <link rel="icon" type="image/png" href="<?php echo esc_url($favicon['url']); ?>">
+        <link rel="apple-touch-icon" href="<?php echo esc_url($favicon['url']); ?>">
+        <?php
+    }
+}
+add_action('wp_head', 'balanz_seo_meta_tags', 1);
+
+/**
+ * Custom document title
+ */
+function balanz_document_title($title) {
+    if (is_front_page()) {
+        $custom_title = get_field('seo_home_title', 'option');
+        if ($custom_title) {
+            return $custom_title;
+        }
+    } elseif (is_page()) {
+        $page_title = get_field('seo_title');
+        if ($page_title) {
+            return $page_title;
+        }
+    }
+    return $title;
+}
+add_filter('pre_get_document_title', 'balanz_document_title');
 
 /**
  * Performance Optimizations
@@ -232,9 +341,15 @@ function balanz_clean_head() {
 add_action('init', 'balanz_clean_head');
 
 /**
- * Save form submission to file (for Local development)
+ * Save form submission to database/file (backup)
+ * Only saves if WP_DEBUG is enabled or email fails
  */
-function balanz_save_submission_to_file($data) {
+function balanz_save_submission_to_file($data, $force = false) {
+    // Only save in debug mode or when forced (email failed)
+    if (!WP_DEBUG && !$force) {
+        return false;
+    }
+    
     $upload_dir = wp_upload_dir();
     $submissions_file = $upload_dir['basedir'] . '/form-submissions.log';
     
@@ -311,8 +426,13 @@ function balanz_handle_share_form() {
         ], 400);
     }
     
-    // Prepare email
-    $to = 'miraska.007@gmail.com';
+    // Get email from ACF options (configurable by admin)
+    $to = get_field('form_recipient_email', 'option');
+    if (empty($to) || !is_email($to)) {
+        // Fallback to admin email if ACF field not set
+        $to = get_option('admin_email');
+    }
+    
     $subject = 'New message from Balanz website - ' . $name;
     
     // Build email body
@@ -342,42 +462,33 @@ function balanz_handle_share_form() {
         $headers[] = 'Reply-To: ' . $name . ' <' . $contact . '>';
     }
     
-    // Save to file for Local development (always works)
+    // Prepare submission data
     $submission_data = [
         'name' => $name,
         'contact' => $contact,
         'message' => $message,
         'subscribe' => $subscribe
     ];
-    $file_path = balanz_save_submission_to_file($submission_data);
     
-    // Log submission data for debugging
-    error_log('=== Balanz Contact Form Submission ===');
-    error_log('Name: ' . $name);
-    error_log('Contact: ' . $contact);
-    error_log('Message: ' . $message);
-    error_log('Subscribe: ' . ($subscribe ? 'Yes' : 'No'));
-    error_log('Saved to: ' . $file_path);
-    error_log('======================================');
+    // Save to file only in debug mode
+    if (WP_DEBUG) {
+        balanz_save_submission_to_file($submission_data);
+    }
     
-    // Try to send email (works only if mail server is configured)
+    // Try to send email
     $sent = wp_mail($to, $subject, $email_body, $headers);
     
     if ($sent) {
-        // Email sent successfully
-        error_log('✅ Email sent successfully to ' . $to);
-        
         wp_send_json_success([
             'message' => 'Thank you! Your message has been sent successfully.'
         ]);
     } else {
-        // Email failed but data is saved to file
-        error_log('⚠️ wp_mail() failed - but form saved to file');
-        error_log('File location: ' . $file_path);
+        // Email failed - save to file as backup
+        balanz_save_submission_to_file($submission_data, true);
         
-        // Return success anyway since we have the data
+        // Still return success - form data is saved
         wp_send_json_success([
-            'message' => 'Thank you! Your message has been received. (Saved to file - Local Dev)'
+            'message' => 'Thank you! Your message has been received.'
         ]);
     }
 }

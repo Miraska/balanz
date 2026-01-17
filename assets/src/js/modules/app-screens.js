@@ -262,8 +262,4 @@ export function initAppScreens() {
   
   // Initialize with screen 1
   switchScreen(1, false);
-  
-  console.log('✨ App Screens module initialized - Interactive prototype ready!');
-  console.log('📱 Total screens:', totalScreens);
-  console.log('🎯 Features loaded:', featureButtons.length);
 }

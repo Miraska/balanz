@@ -7,6 +7,10 @@
  */
 
 $assets_uri = get_template_directory_uri() . '/assets/images/app-screens';
+
+// ACF Fields
+$title = get_field('app_screens_title') ?: 'Manage your balance in a<br>convenient app';
+$description = get_field('app_screens_description') ?: 'Everything you need to plan, track, and manage your meals<br>— all in one place.';
 ?>
 
 <section class="app-section" id="app-screens">
@@ -15,8 +19,8 @@ $assets_uri = get_template_directory_uri() . '/assets/images/app-screens';
       <div class="app-section-inner">
       
       <header class="app-header">
-        <h2 class="app-title">Manage your balance in a<br>convenient app</h2>
-        <p class="app-description">Everything you need to plan, track, and manage your meals<br>— all in one place.</p>
+        <h2 class="app-title"><?php echo wp_kses_post($title); ?></h2>
+        <p class="app-description"><?php echo wp_kses_post($description); ?></p>
       </header>
       
         <div class="app-showcase" data-active-screen="1">

@@ -34,7 +34,7 @@ $programs = get_field('programs'); // Repeater
                 if ($programs):
                     foreach ($programs as $index => $program): 
                 ?>
-                <div class="program-card animate-child" data-program="<?php echo $index; ?>">
+                <div class="program-card animate-child" data-program="<?php echo esc_attr($index); ?>">
                     <div class="program-kals">
                         <svg class="icon-bolt" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
@@ -65,19 +65,19 @@ $programs = get_field('programs'); // Repeater
                     foreach ($default_programs as $index => $program):
                         $card_class = $program['special'] ? 'program-card program-card-special' : 'program-card';
                 ?>
-                <div class="<?php echo $card_class; ?> animate-child" data-program="<?php echo $index; ?>">
+                <div class="<?php echo esc_attr($card_class); ?> animate-child" data-program="<?php echo esc_attr($index); ?>">
                     <div class="program-kals">
                         <svg class="icon-bolt" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                         </svg>
-                        <span><?php echo $program['kals']; ?></span>
+                        <span><?php echo esc_html($program['kals']); ?></span>
                     </div>
                     <div class="program-image">
-                        <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/program-<?php echo $index + 1; ?>.jpg" 
-                             alt="<?php echo $program['title']; ?>">
+                        <img src="<?php echo esc_url(BALANZ_THEME_URI . '/assets/images/program-' . ($index + 1) . '.jpg'); ?>" 
+                             alt="<?php echo esc_attr($program['title']); ?>">
                     </div>
-                    <h3 class="program-title"><?php echo $program['title']; ?></h3>
-                    <p class="program-description"><?php echo $program['desc']; ?></p>
+                    <h3 class="program-title"><?php echo esc_html($program['title']); ?></h3>
+                    <p class="program-description"><?php echo esc_html($program['desc']); ?></p>
                 </div>
                 <?php 
                     endforeach;
