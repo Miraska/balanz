@@ -1,88 +1,76 @@
 <?php
 /**
- * FAQ Section
+ * FAQ Section - About Page
  * 
  * @package Balanz
  */
 
 $title = get_field('faq_title') ?: 'Frequently Asked Questions';
-$description = get_field('faq_description');
+$description = get_field('faq_description') ?: 'A team of chefs, nutrition specialists, and operators working together every day to deliver balanced, thoughtful, and reliable meals.';
 $image = get_field('faq_image');
 $faqs = get_field('faq_items'); // Repeater
+
+// Default image fallback
+$image_url = $image ? esc_url($image['url']) : get_template_directory_uri() . '/assets/images/about/fqa/bg.jpg';
+
+// Default FAQs
+$default_faqs = [
+    ['q' => 'Will it be varied?', 'a' => 'Yes, the menu changes daily, featuring seasonal products'],
+    ['q' => 'Can I change the program?', 'a' => 'Yes, you can switch between programs at any time through the app or by contacting our support team.'],
+    ['q' => 'How do I cancel the subscription?', 'a' => 'You can cancel your subscription anytime through your account settings or by reaching out to our customer service.'],
+    ['q' => "What if I don't like the dish?", 'a' => 'Let us know and we\'ll make sure to adjust your preferences for future deliveries.'],
+];
+
+$faq_items = $faqs ?: $default_faqs;
 ?>
 
 <section class="faq-section" id="faq">
     <div class="faq-container">
-        <div class="faq-content">
+        <div class="faq-layout">
             
-            <!-- Header & Accordion -->
+            <!-- Left Column: Header & Accordion -->
             <div class="faq-main">
                 <header class="faq-header animate-on-scroll">
                     <h2 class="faq-title"><?php echo esc_html($title); ?></h2>
-                    <?php if ($description): ?>
                     <p class="faq-description"><?php echo esc_html($description); ?></p>
-                    <?php endif; ?>
                 </header>
                 
                 <div class="faq-accordion animate-on-scroll" id="faqAccordion">
                     <?php 
-                    if ($faqs):
-                        foreach ($faqs as $index => $faq):
-                            $number = str_pad($index + 1, 2, '0', STR_PAD_LEFT);
+                    foreach ($faq_items as $index => $faq):
+                        $number = str_pad($index + 1, 2, '0', STR_PAD_LEFT);
+                        $question = isset($faq['question']) ? $faq['question'] : $faq['q'];
+                        $answer = isset($faq['answer']) ? $faq['answer'] : $faq['a'];
+                        $is_first = $index === 0;
                     ?>
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="<?php echo $index === 0 ? 'true' : 'false'; ?>" data-faq="<?php echo $index; ?>">
-                            <span class="question-number"><?php echo $number; ?>.</span>
-                            <span class="question-text"><?php echo esc_html($faq['question']); ?></span>
-                            <span class="question-toggle">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6,9 12,15 18,9"/>
+                    <div class="faq-item <?php echo $is_first ? 'is-active' : ''; ?>">
+                        <button class="faq-question" aria-expanded="<?php echo $is_first ? 'true' : 'false'; ?>" data-faq="<?php echo $index; ?>">
+                            <span class="faq-number"><?php echo $number; ?>.</span>
+                            <div class="faq-question-content">
+                                <span class="faq-question-text"><?php echo esc_html($question); ?></span>
+                                <div class="faq-answer">
+                                    <p><?php echo esc_html($answer); ?></p>
+                                </div>
+                            </div>
+                            <span class="faq-toggle">
+                                <svg class="faq-icon-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                                <svg class="faq-icon-minus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
                                 </svg>
                             </span>
                         </button>
-                        <div class="faq-answer <?php echo $index === 0 ? 'is-open' : ''; ?>">
-                            <p><?php echo esc_html($faq['answer']); ?></p>
-                        </div>
                     </div>
-                    <?php 
-                        endforeach;
-                    else:
-                        $defaults = [
-                            ['q' => 'Will it be tasteless?', 'a' => 'No, absolutely not. All our meals are delicious and satisfying.'],
-                            ['q' => 'Can I change the program?', 'a' => 'Yes, you can change your program at any time.'],
-                            ['q' => 'How do I start the subscription?', 'a' => 'Simply download our app and choose your preferred plan.'],
-                            ['q' => 'What if I don\'t like the dish?', 'a' => 'Contact us and we\'ll make it right.'],
-                        ];
-                        foreach ($defaults as $index => $faq):
-                            $number = str_pad($index + 1, 2, '0', STR_PAD_LEFT);
-                    ?>
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="<?php echo $index === 0 ? 'true' : 'false'; ?>" data-faq="<?php echo $index; ?>">
-                            <span class="question-number"><?php echo $number; ?>.</span>
-                            <span class="question-text"><?php echo $faq['q']; ?></span>
-                            <span class="question-toggle">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6,9 12,15 18,9"/>
-                                </svg>
-                            </span>
-                        </button>
-                        <div class="faq-answer <?php echo $index === 0 ? 'is-open' : ''; ?>">
-                            <p><?php echo $faq['a']; ?></p>
-                        </div>
-                    </div>
-                    <?php 
-                        endforeach;
-                    endif;
-                    ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
             
-            <!-- Image -->
-            <?php if ($image): ?>
+            <!-- Right Column: Image -->
             <div class="faq-image animate-on-scroll">
-                <img src="<?php echo esc_url($image['url']); ?>" alt="">
+                <img src="<?php echo $image_url; ?>" alt="Healthy meal preparation" loading="lazy">
             </div>
-            <?php endif; ?>
             
         </div>
     </div>

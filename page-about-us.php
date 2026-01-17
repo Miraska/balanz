@@ -21,5 +21,11 @@ get_header();
 
 <?php get_template_part('template-parts/about/team'); ?>
 
+<?php get_template_part('template-parts/about/always-in-touch'); ?>
+
+<?php get_template_part('template-parts/about/faq'); ?>
+
+<?php get_template_part('template-parts/about/share'); ?>
+
 <?php
 get_footer();

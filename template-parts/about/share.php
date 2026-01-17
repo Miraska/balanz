@@ -1,52 +1,128 @@
 <?php
 /**
- * Share Section
+ * Share with Balanz Section - Contact Form
  * 
  * @package Balanz
  */
 
 $title = get_field('share_title') ?: 'Share with Balanz';
-$description = get_field('share_description');
+$description = get_field('share_description') ?: 'We listen carefully to understand your needs, habits, and preferences - so we can improve your daily experience.';
+$success_title = get_field('share_success_title') ?: 'Thank you for reaching out!';
+$success_message = get_field('share_success_message') ?: 'Message sent successfully. Thank you for trusting Balanz.';
+
+// Form fields
+$name_label = get_field('share_name_label') ?: 'Full name';
+$name_placeholder = get_field('share_name_placeholder') ?: 'Enter your full name';
+$contact_label = get_field('share_contact_label') ?: 'Phone / Email';
+$contact_placeholder = get_field('share_contact_placeholder') ?: 'Enter your phone number or email';
+$message_label = get_field('share_message_label') ?: 'Your message';
+$message_placeholder = get_field('share_message_placeholder') ?: "Tell us what's important to you in your diet...";
+$checkbox_text = get_field('share_checkbox_text') ?: 'Want to receive balance tips';
+$button_text = get_field('share_button_text') ?: 'Send Message';
+
+$bg_image = get_field('share_background');
+$bg_url = $bg_image ? esc_url($bg_image['url']) : get_template_directory_uri() . '/assets/images/about/share-with-balanz/bg.jpg';
+$icon_url = get_template_directory_uri() . '/assets/images/about/share-with-balanz/icons/chat.svg';
 ?>
 
-<section class="share-section">
-    <div class="share-container">
-        <h2 class="share-title animate-on-scroll"><?php echo esc_html($title); ?></h2>
-        <?php if ($description): ?>
-        <p class="share-description animate-on-scroll"><?php echo esc_html($description); ?></p>
-        <?php endif; ?>
+<section class="swb-section" id="share-with-balanz">
+    <!-- Background Image -->
+    <div class="swb-bg">
+        <img src="<?php echo $bg_url; ?>" alt="" loading="lazy">
+    </div>
+    
+    <div class="swb-container">
+        <!-- Header -->
+        <header class="swb-header animate-on-scroll">
+            <h2 class="swb-title"><?php echo esc_html($title); ?></h2>
+            <p class="swb-description"><?php echo esc_html($description); ?></p>
+        </header>
         
-        <div class="share-form animate-on-scroll">
-            <div class="share-input-group">
-                <input type="text" class="form-input" value="<?php echo esc_url(home_url('/')); ?>" id="shareUrl" readonly>
-                <button class="btn btn-primary btn-copy" id="copyShareUrl" data-copied="Copied!">
-                    Copy link
+        <!-- Form Card -->
+        <div class="swb-card animate-on-scroll">
+            <!-- Contact Form -->
+            <form class="swb-form" id="shareWithBalanzForm" novalidate>
+                <!-- Full Name -->
+                <div class="swb-form-group">
+                    <label class="swb-label" for="swbName"><?php echo esc_html($name_label); ?></label>
+                    <div class="swb-input-wrapper">
+                        <input 
+                            type="text" 
+                            class="swb-input" 
+                            id="swbName" 
+                            name="name" 
+                            placeholder="<?php echo esc_attr($name_placeholder); ?>"
+                            required
+                        >
+                        <button type="button" class="swb-input-clear" aria-label="Clear input">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Phone / Email -->
+                <div class="swb-form-group">
+                    <label class="swb-label" for="swbContact"><?php echo esc_html($contact_label); ?></label>
+                    <div class="swb-input-wrapper">
+                        <input 
+                            type="text" 
+                            class="swb-input" 
+                            id="swbContact" 
+                            name="contact" 
+                            placeholder="<?php echo esc_attr($contact_placeholder); ?>"
+                            required
+                        >
+                        <button type="button" class="swb-input-clear" aria-label="Clear input">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Message -->
+                <div class="swb-form-group">
+                    <label class="swb-label" for="swbMessage"><?php echo esc_html($message_label); ?></label>
+                    <textarea 
+                        class="swb-textarea" 
+                        id="swbMessage" 
+                        name="message" 
+                        placeholder="<?php echo esc_attr($message_placeholder); ?>"
+                        rows="4"
+                    ></textarea>
+                </div>
+                
+                <!-- Checkbox -->
+                <div class="swb-form-group swb-checkbox-group">
+                    <label class="swb-checkbox">
+                        <input type="checkbox" name="subscribe" checked>
+                        <span class="swb-checkbox-box">
+                            <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 5L4.5 8.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                        <span class="swb-checkbox-text"><?php echo esc_html($checkbox_text); ?></span>
+                    </label>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit" class="swb-submit">
+                    <span><?php echo esc_html($button_text); ?></span>
+                    <span class="swb-submit-icon">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/link.svg" alt="" width="24" height="24">
+                    </span>
                 </button>
-            </div>
+            </form>
             
-            <div class="share-social">
-                <span class="share-label">or share it via:</span>
-                
-                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(home_url('/')); ?>" 
-                   target="_blank" rel="noopener" class="social-link" aria-label="Share on Facebook">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                </a>
-                
-                <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(home_url('/')); ?>&text=<?php echo urlencode(get_bloginfo('name')); ?>" 
-                   target="_blank" rel="noopener" class="social-link" aria-label="Share on Twitter">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                </a>
-                
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode(home_url('/')); ?>" 
-                   target="_blank" rel="noopener" class="social-link" aria-label="Share on LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
+            <!-- Success State -->
+            <div class="swb-success" id="swbSuccess">
+                <div class="swb-success-icon">
+                    <img src="<?php echo esc_url($icon_url); ?>" alt="" width="88" height="88">
+                </div>
+                <h3 class="swb-success-title"><?php echo esc_html($success_title); ?></h3>
+                <p class="swb-success-message"><?php echo esc_html($success_message); ?></p>
             </div>
         </div>
     </div>

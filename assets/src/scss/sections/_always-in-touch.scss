@@ -1,0 +1,278 @@
+/**
+ * Always In Touch Section
+ * 
+ * Desktop: Map left (50%), Content right (50%)
+ * Tablet/Mobile: Content first, Map below
+ * 
+ * @package Balanz
+ */
+
+// ============================================
+// SECTION CONTAINER
+// ============================================
+
+.always-in-touch-section {
+  background-color: $color-primary;
+  padding: $space-48 0;
+
+  @include desktop {
+    padding: $space-80 0;
+  }
+}
+
+.always-in-touch-container {
+  @include container;
+}
+
+// ============================================
+// GRID LAYOUT
+// ============================================
+
+.always-in-touch-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-40;
+
+  @include desktop {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-64;
+    align-items: stretch;
+  }
+}
+
+// ============================================
+// MAP COLUMN
+// ============================================
+
+.always-in-touch-map {
+  order: 2; // Map goes second on mobile
+
+  @include desktop {
+    order: 1; // Map goes first on desktop
+  }
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  background-color: $color-gray-200;
+
+  @include tablet-up {
+    height: 400px;
+  }
+
+  @include desktop {
+    height: 100%;
+    min-height: 480px;
+    border-radius: $radius-xl;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+// "Open in Google Maps" Button
+.map-open-btn {
+  position: absolute;
+  top: $space-16;
+  left: $space-16;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-8;
+  padding: $space-12 $space-16;
+  background-color: $color-white;
+  border-radius: $radius-full;
+  font-family: $font-body;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
+  color: $color-gray-800;
+  text-decoration: none;
+  box-shadow: $shadow-md;
+  transition: all $transition-base;
+
+  &:hover {
+    background-color: $color-gray-50;
+    box-shadow: $shadow-lg;
+    color: $color-gray-800;
+  }
+
+  .map-btn-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  span {
+    white-space: nowrap;
+  }
+}
+
+// ============================================
+// CONTENT COLUMN
+// ============================================
+
+.always-in-touch-content {
+  order: 1; // Content goes first on mobile
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include desktop {
+    order: 2; // Content goes second on desktop
+    padding-left: $space-24;
+  }
+}
+
+// ============================================
+// HEADER
+// ============================================
+
+.always-in-touch-header {
+  margin-bottom: $space-32;
+
+  @include desktop {
+    margin-bottom: $space-40;
+  }
+}
+
+.always-in-touch-title {
+  font-family: $font-heading;
+  font-size: $font-size-32;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-tight;
+  color: $color-white;
+  margin: 0 0 $space-16;
+
+  @include desktop {
+    font-size: $font-size-48;
+    margin-bottom: $space-20;
+  }
+}
+
+.always-in-touch-description {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+  color: rgba($color-white, 0.7);
+  margin: 0;
+  max-width: 480px;
+}
+
+// ============================================
+// CONTACT DETAILS
+// ============================================
+
+.always-in-touch-details {
+  display: flex;
+  flex-direction: column;
+  gap: $space-20;
+
+  @include desktop {
+    gap: $space-24;
+  }
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.contact-label {
+  font-family: $font-body;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
+  color: rgba($color-white, 0.6);
+  margin: 0;
+}
+
+.contact-value {
+  font-family: $font-heading;
+  font-size: $font-size-18;
+  font-weight: $font-weight-medium;
+  color: $color-white;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: all $transition-fast;
+
+  &:hover {
+    color: $color-secondary;
+    text-decoration-color: $color-secondary;
+  }
+
+  // Hours variant - no underline
+  &--hours {
+    text-decoration: none;
+
+    &:hover {
+      color: $color-white;
+    }
+  }
+}
+
+// ============================================
+// CONTACT ICONS (WhatsApp & Telegram)
+// ============================================
+
+.contact-icons {
+  display: flex;
+  align-items: center;
+  gap: $space-12;
+  margin-top: $space-4;
+}
+
+.contact-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-full;
+  overflow: hidden;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: $shadow-md;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+// ============================================
+// ANIMATIONS
+// ============================================
+
+.always-in-touch-section {
+  .animate-on-scroll {
+    @include fade-in-up;
+  }
+
+  .always-in-touch-map.animate-on-scroll {
+    transition-delay: 100ms;
+  }
+
+  .always-in-touch-content.animate-on-scroll {
+    transition-delay: 200ms;
+
+    @include desktop {
+      transition-delay: 100ms;
+    }
+  }
+}
