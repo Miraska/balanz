@@ -1,0 +1,344 @@
+/**
+ * How We Work Section - About Page
+ * Pixel-perfect implementation based on Figma design
+ */
+
+// ============================================
+// SECTION WRAPPER
+// ============================================
+
+.hww-section {
+  position: relative;
+  padding: $space-80 $space-16;
+  background-color: $color-secondary-light;
+
+  @include tablet-up {
+    padding: $space-80 $space-16;
+  }
+
+  @include desktop {
+    padding: $space-80 $space-48;
+  }
+}
+
+.hww-wrapper {
+  position: relative;
+  max-width: 1344px;
+  margin: 0 auto;
+  background-color: $color-primary;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  min-height: 580px;
+
+  @include tablet-up {
+    border-radius: $radius-xl;
+    min-height: 620px;
+  }
+
+  @include desktop {
+    border-radius: $radius-2xl;
+    min-height: 680px;
+  }
+}
+
+// ============================================
+// BACKGROUND IMAGE
+// ============================================
+
+.hww-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+
+    @include mobile {
+      object-position: center bottom;
+    }
+  }
+
+  // Gradient overlay for mobile
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      $color-primary 0%,
+      rgba($color-primary, 0.9) 40%,
+      rgba($color-primary, 0.4) 70%,
+      transparent 100%
+    );
+    z-index: 1;
+
+    @include tablet-up {
+      background: linear-gradient(
+        to right,
+        $color-primary 0%,
+        rgba($color-primary, 0.8) 20%,
+        rgba($color-primary, 0.2) 50%,
+        transparent 70%
+      );
+    }
+
+    @include desktop {
+      background: linear-gradient(
+        to right,
+        $color-primary 0%,
+        rgba($color-primary, 0.7) 15%,
+        rgba($color-primary, 0.1) 40%,
+        transparent 60%
+      );
+    }
+  }
+}
+
+// ============================================
+// CONTENT CONTAINER
+// ============================================
+
+.hww-container {
+  position: relative;
+  z-index: 3;
+  padding: $space-64 $space-24;
+  min-height: 938px;
+  display: flex;
+  flex-direction: column;
+
+  @include tablet-up {
+    padding: $space-40 $space-32;
+    padding-top: $space-64;
+    min-height: 772px;
+  }
+
+  @include desktop {
+    padding: $space-48 $space-64;
+    min-height: 800px;
+  }
+}
+
+.hww-content {
+  width: 100%;
+  max-width: 100%;
+
+  @include tablet-up {
+    max-width: 360px;
+  }
+
+  @include desktop {
+    max-width: 360px;
+  }
+}
+
+// ============================================
+// HEADER (Title + Subtitle)
+// ============================================
+
+.hww-header {
+  margin-bottom: $space-24;
+  text-align: center;
+
+  @include tablet-up {
+    margin-bottom: $space-28;
+  }
+
+  @include desktop {
+    margin-bottom: $space-32;
+  }
+}
+
+.hww-title {
+  font-family: $font-heading;
+  font-size: $font-size-32;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-white;
+  margin: 0 0 $space-12;
+
+  @include tablet-up {
+    font-size: $font-size-40;
+    margin-bottom: $space-16;
+  }
+
+  @include desktop {
+    font-size: $font-size-48;
+    margin-bottom: $space-16;
+  }
+}
+
+.hww-subtitle {
+  font-family: $font-body;
+  font-size: $font-size-14;
+  font-weight: $font-weight-regular;
+  line-height: 1.5;
+  color: $color-white;
+  margin: 0;
+  opacity: 0.9;
+
+  @include tablet-up {
+    font-size: $font-size-14;
+    line-height: 1.6;
+  }
+
+  @include desktop {
+    font-size: $font-size-16;
+    line-height: 1.6;
+  }
+}
+
+// ============================================
+// STEPS CARDS
+// ============================================
+
+.hww-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
+  width: 100%;
+}
+
+.hww-step {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+
+  // Stagger animation delays
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) {
+      .hww-step__card {
+        transition-delay: #{($i - 1) * 100}ms;
+      }
+    }
+  }
+}
+
+.hww-step__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: $color-secondary-lighter;
+  border-radius: $radius-md;
+  padding: $space-12 $space-32;
+  text-align: center;
+  transition: transform $transition-base, box-shadow $transition-base;
+
+  @include tablet-up {
+    padding: $space-12 $space-28;
+  }
+
+  @include desktop {
+    padding: $space-12 $space-28;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.hww-step__icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: $space-8;
+  object-fit: contain;
+
+  @include tablet-up {
+    width: 28px;
+    height: 28px;
+    margin-bottom: $space-8;
+  }
+
+  @include desktop {
+    width: 36px;
+    height: 36px;
+    margin-bottom: $space-12;
+  }
+}
+
+.hww-step__text {
+  font-family: $font-heading;
+  font-size: $font-size-16;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-800;
+  line-height: 1.3;
+
+  @include tablet-up {
+    font-size: $font-size-14;
+  }
+
+  @include desktop {
+    font-size: $font-size-18;
+  }
+}
+
+// ============================================
+// ARROWS BETWEEN CARDS
+// ============================================
+
+.hww-step__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-4 0;
+
+  @include tablet-up {
+    padding: $space-4 0;
+  }
+
+  @include desktop {
+    padding: $space-8 0;
+  }
+}
+
+.hww-step__arrow-icon {
+  width: 12px;
+  height: 25px;
+  object-fit: contain;
+}
+
+// ============================================
+// ANIMATIONS
+// ============================================
+
+.hww-header {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity $transition-slow, transform $transition-slow;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hww-step__card {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity $transition-base, transform $transition-base;
+
+  .is-visible & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hww-step__arrow {
+  opacity: 0;
+  transition: opacity $transition-base;
+  transition-delay: 100ms;
+
+  .is-visible & {
+    opacity: 1;
+  }
+}

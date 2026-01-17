@@ -1,5 +1,5 @@
 /**
- * How It Works Module
+ * Values in Action Module
  * - Auto-play steps every 6000ms ONLY when section is visible
  * - Click to select step (resets timer)
  * - Image changes with step
@@ -7,14 +7,14 @@
  * - Uses IntersectionObserver for visibility detection
  */
 
-export function initHowItWorks() {
-  const stepsContainer = document.getElementById("hiwSteps");
-  const imageContainer = document.getElementById("hiwImage");
-  const section = document.getElementById("how-it-works");
+export function initValuesInAction() {
+  const stepsContainer = document.getElementById("viaSteps");
+  const imageContainer = document.getElementById("viaImage");
+  const section = document.getElementById("values-in-action");
 
   if (!stepsContainer || !imageContainer || !section) return;
 
-  const steps = stepsContainer.querySelectorAll(".hiw-step");
+  const steps = stepsContainer.querySelectorAll(".via-step");
   const images = imageContainer.querySelectorAll("img");
 
   if (!steps.length) return;

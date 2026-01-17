@@ -41,7 +41,7 @@ h2, .h2 {
 h3, .h3 {
   @include heading-32;
   color: $color-primary;
-  margin-bottom: $space-16;
+  margin-bottom: $space-8;
 }
 
 h4, .h4 {

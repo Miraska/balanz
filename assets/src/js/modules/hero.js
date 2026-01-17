@@ -1,5 +1,6 @@
 /**
- * Hero Section - Marquee Effect for Program Cards
+ * Hero Section - Infinite Marquee Effect for Program Cards
+ * Uses CSS transform with duplicated content for seamless infinite scroll
  */
 
 export function initHeroMarquee() {
@@ -7,65 +8,111 @@ export function initHeroMarquee() {
   
   if (!programsGrid) return;
 
-  // Function to duplicate cards for seamless marquee
-  function duplicateCards() {
-    // Duplicate for mobile & tablet view (until desktop breakpoint at 900px)
-    if (window.innerWidth <= 900) {
-      // Check if cards are already duplicated
-      if (programsGrid.dataset.duplicated === "true") return;
+  const MOBILE_BREAKPOINT = 900;
+  let isInitialized = false;
 
-      // Get only original cards (without clones)
-      const cards = Array.from(programsGrid.querySelectorAll(".program-card"));
-      
-      // Duplicate cards twice for smooth infinite scroll
-      cards.forEach((card) => {
-        const clone1 = card.cloneNode(true);
-        const clone2 = card.cloneNode(true);
-        programsGrid.appendChild(clone1);
-        programsGrid.appendChild(clone2);
-      });
+  /**
+   * Create marquee wrapper structure for seamless infinite scroll
+   * Structure: .programs-grid > .marquee-track > [original cards + cloned cards]
+   */
+  function setupMarquee() {
+    if (window.innerWidth > MOBILE_BREAKPOINT) {
+      cleanupMarquee();
+      return;
+    }
 
-      programsGrid.dataset.duplicated = "true";
-    } else {
-      // Remove duplicated cards for desktop view
-      if (programsGrid.dataset.duplicated === "true") {
-        const cards = Array.from(programsGrid.children);
-        const originalCount = cards.length / 3;
-        
-        // Remove cloned cards
-        cards.slice(originalCount).forEach((card) => card.remove());
-        
-        programsGrid.dataset.duplicated = "false";
+    if (isInitialized) return;
+
+    // Get original cards
+    const originalCards = Array.from(programsGrid.querySelectorAll(".program-card"));
+    if (!originalCards.length) return;
+
+    // Create marquee track wrapper
+    const marqueeTrack = document.createElement("div");
+    marqueeTrack.className = "marquee-track";
+
+    // Move original cards to track
+    originalCards.forEach(card => {
+      marqueeTrack.appendChild(card);
+    });
+
+    // Clone all cards once for seamless loop
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.classList.add("is-clone");
+      clone.setAttribute("aria-hidden", "true");
+      marqueeTrack.appendChild(clone);
+    });
+
+    // Append track to grid
+    programsGrid.appendChild(marqueeTrack);
+    programsGrid.classList.add("marquee-active");
+
+    isInitialized = true;
+  }
+
+  /**
+   * Remove marquee structure and restore original layout for desktop
+   */
+  function cleanupMarquee() {
+    if (!isInitialized) return;
+
+    const marqueeTrack = programsGrid.querySelector(".marquee-track");
+    if (!marqueeTrack) return;
+
+    // Get only original cards (not clones)
+    const originalCards = marqueeTrack.querySelectorAll(".program-card:not(.is-clone)");
+
+    // Move originals back to grid
+    originalCards.forEach(card => {
+      programsGrid.appendChild(card);
+    });
+
+    // Remove track and clones
+    marqueeTrack.remove();
+    programsGrid.classList.remove("marquee-active");
+
+    isInitialized = false;
+  }
+
+  /**
+   * Handle hover pause/resume
+   */
+  function setupHoverPause() {
+    programsGrid.addEventListener("mouseenter", () => {
+      if (window.innerWidth <= MOBILE_BREAKPOINT) {
+        const track = programsGrid.querySelector(".marquee-track");
+        if (track) track.style.animationPlayState = "paused";
       }
-    }
+    });
+
+    programsGrid.addEventListener("mouseleave", () => {
+      if (window.innerWidth <= MOBILE_BREAKPOINT) {
+        const track = programsGrid.querySelector(".marquee-track");
+        if (track) track.style.animationPlayState = "running";
+      }
+    });
   }
 
-  // Pause animation on hover for better UX
-  function handleHover() {
-    if (window.innerWidth <= 900) {
-      programsGrid.addEventListener("mouseenter", () => {
-        programsGrid.style.animationPlayState = "paused";
-      });
-
-      programsGrid.addEventListener("mouseleave", () => {
-        programsGrid.style.animationPlayState = "running";
-      });
-    }
+  // Initialize
+  function init() {
+    setupMarquee();
+    setupHoverPause();
   }
 
-  // Initialize with slight delay to ensure DOM is ready
-  setTimeout(() => {
-    duplicateCards();
-    handleHover();
-  }, 100);
-
-  // Handle resize
+  // Handle resize with debounce
   let resizeTimer;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      duplicateCards();
-      handleHover();
-    }, 250);
+      if (window.innerWidth > MOBILE_BREAKPOINT) {
+        cleanupMarquee();
+      } else {
+        setupMarquee();
+      }
+    }, 200);
   });
+
+  // Init with slight delay for DOM readiness
+  setTimeout(init, 50);
 }

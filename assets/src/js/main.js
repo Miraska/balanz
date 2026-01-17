@@ -16,6 +16,9 @@ import { initTestimonials } from "./modules/testimonials";
 import { initAccordion } from "./modules/accordion";
 import { initShare } from "./modules/share";
 import { initCTA } from "./modules/cta";
+import { initPhilosophyVideo } from "./modules/philosophy-video";
+import { initValuesInAction } from "./modules/values-in-action";
+import { initTeam } from "./modules/team";
 
 /**
  * Initialize app
@@ -34,6 +37,9 @@ function init() {
   initAccordion();
   initShare();
   initCTA();
+  initPhilosophyVideo();
+  initValuesInAction();
+  initTeam();
 }
 
 // DOM Ready

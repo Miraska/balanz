@@ -5,20 +5,19 @@
  * @package Balanz
  */
 
-$title = get_field('about_hero_title') ?: 'We believe in balance, not extremes';
-$image = get_field('about_hero_image');
+$title = get_field('about_hero_title') ?: 'We believe in balance,<br>not extremes';
 ?>
 
-<section class="about-hero">
-    <div class="about-hero-container">
-        <div class="about-hero-content animate-on-scroll">
-            <h1 class="about-hero-title"><?php echo esc_html($title); ?></h1>
+<section class="about-hero-section" id="about-hero">
+    <!-- Background Image -->
+    <div class="about-hero-bg">
+        <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/about/hero/bg.jpg" alt="About Balanz">
+        
+        <!-- Content Over Background -->
+        <div class="about-hero-container">
+            <div class="about-hero-content">
+                <h1 class="about-hero-title animate-on-scroll"><?php echo $title ?></h1>
+            </div>
         </div>
     </div>
-    
-    <?php if ($image): ?>
-    <div class="about-hero-image">
-        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-    </div>
-    <?php endif; ?>
 </section>

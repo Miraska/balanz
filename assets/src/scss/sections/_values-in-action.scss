@@ -1,19 +1,21 @@
 /**
- * How It Works Section
+ * Values in Action Section
+ * 
+ * Desktop: Left steps list + Right image (pixel-perfect from design)
+ * Mobile/Tablet: Single column with images inside cards (like how-it-works)
  */
 
-.hiw-section {
+.via-section {
   @include section-padding;
   background-color: $color-white;
 
   // Prevent layout shifts inside this section from affecting content below
-  // This isolates the section's layout changes
-  @include until-desktop {
-    contain: layout style;
-  }
+  // @include until-desktop {
+  //   contain: layout style;
+  // }
 }
 
-.hiw-container {
+.via-container {
   @include container;
 }
 
@@ -21,7 +23,7 @@
 // SECTION HEADER
 // ============================================
 
-.hiw-header {
+.via-header {
   display: flex;
   flex-direction: column;
   gap: $space-16;
@@ -31,142 +33,145 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: $space-64;
+    margin-bottom: $space-48;
   }
 }
 
-.hiw-title {
+.via-title {
   @include heading-52;
   flex-shrink: 0;
 }
 
-.hiw-description {
-  max-width: 460px;
+.via-description {
+  max-width: 320px;
   color: $color-gray-600;
-  font-size: $font-size-16;
+  font-size: $font-size-14;
   line-height: 1.6;
 
   @include desktop {
     text-align: left;
+    padding-top: $space-8;
   }
 }
 
 // ============================================
-// STEPS LAYOUT
+// CONTENT LAYOUT
 // ============================================
 
-.hiw-content {
+.via-content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: $space-48;
+  gap: $space-32;
 
   @include desktop {
-    grid-template-columns: 42% 1fr;
-    gap: $space-64;
-    align-items: stretch;
-    min-height: 668px;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-48;
+    align-items: stretch; // Растягиваем оба элемента на одинаковую высоту
   }
 }
 
 // ============================================
-// STEPS LIST (Right side on desktop - 2x2 grid)
+// STEPS LIST (Left side on desktop - single column)
 // ============================================
 
-.hiw-steps {
-  display: grid;
-  gap: $space-16;
-  order: 2;
+.via-steps {
+  display: flex;
+  flex-direction: column;
+  gap: $space-24;
+  order: 1;
 
-  // Mobile & Tablet: Single column
-  grid-template-columns: 1fr;
-
-  // Desktop: 2x2 grid
   @include desktop {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: $space-24;
-    order: 2;
+    max-width: 642px;
+    order: 1;
   }
 }
 
-.hiw-step {
+.via-step {
   padding: $space-24;
   border-radius: $radius-sm;
   cursor: pointer;
   background-color: $color-white;
-  border: 1px solid $color-gray-200;
+  border: 1px solid $color-gray-300;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: flex-start;
+  gap: $space-16;
   width: 100%;
 
   // Fast transition for background/border - immediate visual feedback
-  transition: 
-    background-color 0.2s ease,
-    border-color 0.2s ease,
+  transition: background-color 0.2s ease, border-color 0.2s ease,
     box-shadow 0.2s ease;
 
   @include desktop {
-    padding: $space-24;
-    max-width: 357px;
-    height: 100%;
-    justify-content: space-between;
+    flex-direction: row;
+    padding: $space-16 $space-24;
+    flex-wrap: nowrap;
+    align-items: flex-start;
   }
 
   &:hover:not(.is-active) {
-    border-color: $color-gray-300;
     background-color: $color-gray-50;
   }
 
   &.is-active {
     background-color: $color-secondary-dark;
-    border-color: $color-gray-500;
+    border: 1px solid $color-gray-500;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 }
 
-.hiw-step-number {
+.via-step-number {
   font-family: $font-heading;
-  font-size: 48px;
+  font-size: 36px;
   font-style: normal;
   font-weight: $font-weight-medium;
   color: $color-gray-300;
   line-height: 1;
   flex-shrink: 0;
-  margin-bottom: $space-16;
+  min-width: 56px;
 
   // Fast color transition - immediate visual feedback
   transition: color 0.15s ease;
 
-  .hiw-step.is-active & {
+  @include desktop {
+    font-size: 42px;
+    min-width: 64px;
+  }
+
+  .via-step.is-active & {
     font-style: italic;
     color: $color-black;
   }
 }
 
-.hiw-step-content {
+.via-step-content {
   display: flex;
   flex-direction: column;
-  gap: $space-12;
+  gap: $space-4;
+  flex: 1;
+  padding-top: $space-4;
 }
 
-.hiw-step-title {
+.via-step-title {
   font-family: $font-heading;
-  font-size: $font-size-20;
-  font-weight: $font-weight-medium;
+  font-size: $font-size-16;
+  font-weight: $font-weight-semibold;
   color: $color-gray-400;
-  margin-bottom: $space-12;
-  line-height: 1.2;
+  line-height: 1.3;
 
   // Fast color transition - immediate visual feedback
   transition: color 0.15s ease;
 
-  .hiw-step.is-active & {
+  @include desktop {
+    font-size: $font-size-18;
+  }
+
+  .via-step.is-active & {
     color: $color-gray-800;
   }
 }
 
-.hiw-step-description {
+.via-step-description {
   font-size: $font-size-14;
   color: $color-gray-400;
   line-height: 1.5;
@@ -175,19 +180,8 @@
   // Fast color transition - text changes immediately
   transition: color 0.15s ease;
 
-  .hiw-step.is-active & {
+  .via-step.is-active & {
     color: $color-gray-700;
-  }
-
-  // Line clamp only on desktop where cards don't expand
-  @include desktop {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-
-    .hiw-step.is-active & {
-      -webkit-line-clamp: unset;
-    }
   }
 }
 
@@ -195,7 +189,7 @@
 // STEP IMAGE INSIDE CARD (Mobile/Tablet only)
 // ============================================
 
-.hiw-step-image-mobile {
+.via-step-image-mobile {
   width: 100%;
   border-radius: $radius-md;
   overflow: hidden;
@@ -210,94 +204,86 @@
   // Mobile/Tablet: smooth height transition
   @include until-desktop {
     // Default collapsed state
+    height: 0;
     max-height: 0;
     margin-top: 0;
     opacity: 0;
     border-width: 0;
-    
+    flex-basis: 100%;
+
     // Smooth transitions for expand/collapse
-    transition: 
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
       max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
       margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      border-width 0.2s ease;
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-width 0.2s ease;
 
     // Expanded state when card is active
-    .hiw-step.is-active & {
-      max-height: 580px;
-      margin-top: $space-20;
+    .via-step.is-active & {
+      height: 200px; // Фиксированная высота для мобильных
+      max-height: 200px;
       opacity: 1;
       border-width: 4px;
     }
   }
 
-  img {
-    width: fit-content;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    
-    @include tablet {
-      margin-bottom: -140px;
+  // Tablet: bigger height
+  @include tablet {
+    .via-step.is-active & {
+      height: 300px;
+      max-height: 300px;
     }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
   }
 }
 
 // ============================================
-// STEP IMAGE (Left side on desktop)
+// STEP IMAGE (Right side on desktop)
 // ============================================
 
-.hiw-image-container {
-  position: relative;
+.via-image-container {
   display: none; // Hidden on mobile/tablet
-  justify-content: center;
-  height: 100%;
-  order: 1;
 
   @include desktop {
     display: flex; // Show on desktop
-    order: 1;
-    justify-content: flex-start;
+    order: 2;
   }
 }
 
-.hiw-image-wrapper {
-  position: relative;
+.via-image-wrapper {
   width: 100%;
   height: 100%;
-  min-height: 668px;
-
-  @include desktop {
-    max-width: 477px;
-  }
+  display: flex;
 }
 
-.hiw-image {
+.via-image {
   position: relative;
   border: 4px solid $color-secondary;
   border-radius: $radius-xl;
   overflow: hidden;
   background-color: $color-white;
+  width: 100%;
+  flex: 1; // Растягиваемся на всю доступную высоту
 
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     position: absolute;
     top: 0;
     left: 0;
+    object-fit: cover;
     opacity: 0;
 
     // Smooth fade transition with slight scale for depth
-    transition: 
-      opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
       transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     transform: scale(1.02);
-
-    &:first-child {
-      position: relative;
-    }
 
     &.is-active {
       opacity: 1;

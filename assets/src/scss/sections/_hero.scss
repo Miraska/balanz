@@ -123,17 +123,23 @@
   gap: $space-24;
   justify-content: center;
 
-  // Mobile & Tablet: marquee effect - cards in a row with animation
+  // Mobile & Tablet: container for marquee
   @include until-tablet {
-    flex-wrap: nowrap;
-    gap: $space-32;
-    justify-content: flex-start;
-    animation: marquee 15000ms linear infinite;
-    width: max-content;
+    display: block;
+    width: 100%;
+    overflow: visible;
 
     // Reset vertical offsets for marquee
     .program-card {
       top: 0 !important;
+      flex-shrink: 0;
+    }
+  }
+
+  // When marquee is active (JS adds this class)
+  &.marquee-active {
+    @include until-tablet {
+      display: block;
     }
   }
 
@@ -179,23 +185,36 @@
   }
 }
 
-// Marquee animation
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
+// Marquee track - created by JS, contains original + cloned cards
+// Uses margin instead of gap for perfect 50% calculation
+.marquee-track {
+  display: flex;
+  width: max-content;
+  // Use will-change for smoother animation
+  will-change: transform;
+  animation: marqueeScroll 25s linear infinite;
+
+  // Pause on hover
+  &:hover {
+    animation-play-state: paused;
   }
-  100% {
-    // Сдвигаем на ширину всех 4 оригинальных карточек + gap между ними
-    // 254px (ширина карточки) * 4 + 32px (gap) * 3 = 1016px + 96px = 1112px
-    // Карточки дублируются JavaScript, поэтому сдвигаем на 1/3 общей ширины
-    transform: translateX(-1112px);
+
+  // Each card has margin-right, so total width = n * (cardWidth + margin)
+  // This makes 50% translation land exactly at clone start
+  .program-card {
+    flex-shrink: 0;
+    margin-right: $space-32;
   }
 }
 
-// Mobile & Tablet: pause animation on hover
-@include until-tablet {
-  .programs-grid:hover {
-    animation-play-state: paused;
+// Seamless infinite marquee animation
+// With margin on each card, 50% lands exactly where clones start
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 

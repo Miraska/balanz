@@ -47,8 +47,8 @@
     padding $transition-base ease;
 
   @include tablet-up {
-    padding: 20px $space-32;
-    max-width: 700px;
+    padding: $space-12 $space-24;
+    max-width: 800px;
   }
 
   @include desktop {
@@ -59,8 +59,6 @@
   .site-header.is-scrolled & {
     max-width: 1280px;
     box-shadow: $shadow-header;
-    // чуть увеличим радиус и подпополним padding для акцента (не ломает позиционирование)
-    border-radius: $radius-xl;
   }
 }
 

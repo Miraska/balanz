@@ -43,21 +43,47 @@
 }
 
 // ============================================
-// AVATAR NAVIGATION
+// AVATAR NAVIGATION SLIDER
 // ============================================
 
-.testimonials-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: $space-16;
-  margin-bottom: $space-48;
+.testimonials-nav-wrapper {
   position: relative;
-  z-index: 1;
+  margin-bottom: $space-48;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
 
   @include desktop {
-    gap: $space-24;
     margin-bottom: $space-64;
+    max-width: 800px;
+  }
+}
+
+.testimonials-nav {
+  position: relative;
+  z-index: 1;
+  padding: $space-8 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-x;
+}
+
+.testimonials-nav-track {
+  display: flex;
+  align-items: center;
+  gap: $space-16;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  
+  @include desktop {
+    justify-content: center;
+    gap: $space-24;
+  }
+
+  // Disable transition during dragging (will be handled by JS)
+  &.is-dragging {
+    transition: none;
   }
 }
 
@@ -74,6 +100,7 @@
   background: none;
   position: relative;
   transform: scale(0.9);
+  flex-shrink: 0;
 
   @include tablet {
     width: 56px;
@@ -305,12 +332,7 @@
   user-select: none;
   display: none;
 
-  @include tablet {
-    height: auto;
-    display: block;
-  }
-
-  @include desktop {
+  @media (min-width: 661px) {
     height: auto;
     display: block;
   }

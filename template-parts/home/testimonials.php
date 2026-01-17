@@ -65,20 +65,24 @@ $testimonials_data = $testimonials ?: $default_testimonials;
             <h2 class="testimonials-title"><?php echo esc_html($title); ?></h2>
         </header>
         
-        <!-- Avatar Navigation -->
-        <div class="testimonials-nav">
-            <?php 
-            $middle_index = floor(count($testimonials_data) / 2);
-            foreach ($testimonials_data as $index => $testimonial):
-                $avatar_url = is_array($testimonial['avatar']) ? $testimonial['avatar']['url'] : $testimonial['avatar'];
-            ?>
-            <button class="testimonial-nav-item <?php echo $index === $middle_index ? 'is-active' : ''; ?>" 
-                    data-nav="<?php echo $index; ?>"
-                    aria-label="View testimonial <?php echo $index + 1; ?>">
-                <img src="<?php echo esc_url($avatar_url); ?>" 
-                     alt="<?php echo esc_attr($testimonial['name']); ?>">
-            </button>
-            <?php endforeach; ?>
+        <!-- Avatar Navigation Slider -->
+        <div class="testimonials-nav-wrapper">
+            <div class="testimonials-nav">
+                <div class="testimonials-nav-track">
+                    <?php 
+                    $middle_index = floor(count($testimonials_data) / 2);
+                    foreach ($testimonials_data as $index => $testimonial):
+                        $avatar_url = is_array($testimonial['avatar']) ? $testimonial['avatar']['url'] : $testimonial['avatar'];
+                    ?>
+                    <button class="testimonial-nav-item <?php echo $index === $middle_index ? 'is-active' : ''; ?>" 
+                            data-nav="<?php echo $index; ?>"
+                            aria-label="View testimonial <?php echo $index + 1; ?>">
+                        <img src="<?php echo esc_url($avatar_url); ?>" 
+                             alt="<?php echo esc_attr($testimonial['name']); ?>">
+                    </button>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
         
         <!-- Slider -->

@@ -21,8 +21,8 @@
 }
 
 .footer-inner {
-  @include container;
-  max-width: 1320px;
+  max-width: 1344px;
+  margin: 0 auto;
   background: $color-primary-light;
   border-radius: $radius-lg;
   padding: 40px 20px;

@@ -1,0 +1,490 @@
+/**
+ * Team Section - Card Slider
+ * 
+ * 3 фиксированные карточки на своих позициях:
+ * - .team-card--active: Передняя (активная)
+ * - .team-card--back-1: 1-я сзади
+ * - .team-card--back-2: 2-я сзади (только desktop)
+ * 
+ * Карточки НЕ двигаются, меняется только их контент
+ */
+
+.team-section {
+  padding: $space-64 0;
+  background-color: $color-white;
+  overflow: hidden;
+
+  @include desktop {
+    padding: $space-80 0;
+  }
+}
+
+.team-container {
+  @include container;
+  max-width: 1200px;
+}
+
+.team-header {
+  text-align: center;
+  margin-bottom: $space-64;
+}
+
+.team-title {
+  @include heading-52;
+  color: $color-primary;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $space-16;
+
+  @include desktop {
+    font-size: 48px;
+  }
+}
+
+.team-description {
+  font-size: $font-size-16;
+  line-height: 1.6;
+  color: $color-gray-500;
+  max-width: 600px;
+  margin: 0 auto;
+
+  @include desktop {
+    font-size: $font-size-18;
+  }
+}
+
+// ============================================
+// SLIDER
+// ============================================
+
+.team-slider {
+  position: relative;
+  width: 100%;
+  margin-bottom: $space-48;
+}
+
+.team-cards {
+  position: relative;
+  // Высота задаётся через JS на основе самой высокой карточки
+
+  @include desktop {
+    // Desktop: место сверху для задних карточек (65px выпирание + запас)
+    padding-top: 80px;
+  }
+}
+
+// ============================================
+// CARD - Базовые стили
+// ============================================
+
+.team-card {
+  position: absolute;
+  width: calc(100% - 32px);
+  max-width: 720px;
+
+  // Центрирование
+  left: 50%;
+
+  // Снизу контейнера
+  bottom: 0;
+
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+// ============================================
+// CARD POSITIONS - Фиксированные позиции
+// ============================================
+
+// Активная карточка (спереди)
+.team-card--active {
+  z-index: 30;
+  transform: translateX(-50%) translateY(0) scale(1);
+  border: 4px solid $color-secondary;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  cursor: default;
+
+  .team-card-inner::after {
+    opacity: 0;
+  }
+}
+
+// 1-я карточка сзади
+.team-card--back-1 {
+  z-index: 20;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+  // Mobile: выпирает СНИЗУ
+  transform: translateX(-50%) translateY(28px) scale(0.95);
+
+  // Tablet: выпирает ПО БОКАМ (шире, но ниже по высоте)
+  @include tablet {
+    transform: translateX(-50%) translateY(0) scaleX(1.05) scaleY(0.92);
+  }
+
+  // Desktop: выпирает СВЕРХУ
+  @include desktop {
+    transform: translateX(-50%) translateY(-35px) scale(0.95);
+  }
+
+  .team-card-inner::after {
+    opacity: 1;
+  }
+
+  &:hover {
+    .team-card-inner::after {
+      opacity: 0.4;
+    }
+  }
+}
+
+// 2-я карточка сзади (только desktop)
+.team-card--back-2 {
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  // Mobile/Tablet: скрыта
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(50px) scale(0.9);
+
+  // Desktop: видна
+  @include desktop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(-65px) scale(0.9);
+  }
+
+  .team-card-inner::after {
+    opacity: 1;
+  }
+
+  &:hover {
+    .team-card-inner::after {
+      opacity: 0.4;
+    }
+  }
+}
+
+// ============================================
+// CARD ANIMATION - Анимация смены контента
+// ============================================
+
+.team-card--active {
+  .team-card-inner {
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+
+  // Состояние при смене контента - fade out + небольшое смещение вниз
+  &.is-changing {
+    .team-card-inner {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+}
+
+.team-card--back-1,
+.team-card--back-2 {
+  .team-card-inner {
+    transition: opacity 0.15s ease-out;
+  }
+
+  &.is-changing {
+    .team-card-inner {
+      opacity: 0.5;
+    }
+  }
+}
+
+// ============================================
+// CARD INNER
+// ============================================
+
+.team-card-inner {
+  background-color: $color-white;
+  position: relative;
+  overflow: hidden;
+
+  // CSS Grid
+  display: grid;
+  gap: $space-16;
+
+  // Mobile: одна колонка (всё в столбик)
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+
+  // Tablet+: две колонки для avatar+header, quote на всю ширину
+  @include tablet-up {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: $space-24;
+  }
+
+  @include desktop {
+    gap: $space-32;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba($color-white, 0.7);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    border-radius: inherit;
+  }
+}
+
+// ============================================
+// AVATAR
+// ============================================
+
+.team-card-avatar {
+  // Mobile: первый ряд, центрирование
+  grid-row: 1;
+  grid-column: 1;
+  justify-self: center;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: $radius-full;
+  overflow: hidden;
+
+  @include tablet-up {
+    // Tablet+: первый ряд, первая колонка
+    justify-self: start;
+    width: 200px;
+    height: 200px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// ============================================
+// CONTENT
+// ============================================
+
+.team-card-content {
+  // display: contents позволяет дочерним элементам стать прямыми grid-детьми
+  display: contents;
+}
+
+.team-card-header {
+  // Mobile: второй ряд, центрирование
+  grid-row: 2;
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  @include tablet-up {
+    // Tablet+: первый ряд, вторая колонка
+    grid-row: 1;
+    grid-column: 2;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.team-card-name {
+  font-family: $font-heading;
+  font-size: $font-size-20;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  margin-bottom: $space-4;
+
+  @include desktop {
+    font-size: $font-size-24;
+  }
+}
+
+.team-card-role {
+  font-size: $font-size-14;
+  color: $color-gray-500;
+
+  @include desktop {
+    font-size: $font-size-16;
+  }
+}
+
+.team-card-social {
+  display: flex;
+  align-items: center;
+  gap: $space-8;
+  justify-content: center;
+  margin-top: $space-8;
+
+  @include tablet-up {
+    justify-content: flex-start;
+  }
+
+  @include desktop {
+    margin-top: $space-12;
+  }
+}
+
+.team-social-link {
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-full;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.team-card-quote {
+  // Mobile: третий ряд
+  grid-row: 3;
+  grid-column: 1;
+  padding-top: $space-16;
+  margin-top: $space-8;
+
+  @include tablet-up {
+    // Tablet+: второй ряд, на всю ширину
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+
+  @include desktop {
+    padding-top: $space-24;
+    margin-top: $space-8;
+  }
+}
+
+.quote-text {
+  font-family: $font-heading;
+  font-size: $font-size-16;
+  font-weight: $font-weight-semibold;
+  line-height: 1.4;
+  color: $color-primary;
+  margin-bottom: $space-8;
+  text-align: left;
+
+
+  @include tablet-up {
+    text-align: left;
+  }
+
+  @include desktop {
+    font-size: $font-size-18;
+    margin-bottom: $space-12;
+  }
+}
+
+.quote-bio {
+  font-size: $font-size-14;
+  line-height: 1.5;
+  color: $color-gray-500;
+  text-align: left;
+
+
+  @include tablet-up {
+    text-align: left;
+  }
+
+  @include desktop {
+    font-size: $font-size-16;
+  }
+}
+
+// ============================================
+// NAVIGATION - Scrollable Avatar Slider
+// ============================================
+
+.team-nav-wrapper {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+
+  @include desktop {
+    max-width: 800px;
+  }
+}
+
+.team-nav {
+  position: relative;
+  padding: $space-8 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-x;
+  cursor: grab;
+
+  &.is-grabbing {
+    cursor: grabbing;
+  }
+}
+
+.team-nav-track {
+  display: flex;
+  align-items: center;
+  gap: $space-16;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+
+  @include tablet {
+    justify-content: center;
+  }
+
+  @include desktop {
+    justify-content: center;
+    gap: $space-24;
+  }
+
+  &.is-dragging {
+    transition: none;
+  }
+}
+
+.team-nav-item {
+  width: 64px;
+  height: 64px;
+  border-radius: $radius-full;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.5;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0;
+  background: none;
+  flex-shrink: 0;
+  position: relative;
+
+  &:hover {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  &.is-active {
+    opacity: 1;
+    transform: scale(1);
+    outline: 2px dashed $color-secondary;
+    outline-offset: 4px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: $radius-full;
+  }
+}
