@@ -1,0 +1,29 @@
+{
+    "key": "group_form_settings",
+    "title": "Form Settings",
+    "fields": [
+        {
+            "key": "field_form_recipient_email",
+            "label": "Recipient Email",
+            "name": "form_recipient_email",
+            "type": "email",
+            "instructions": "Email address to receive form submissions from 'Share with Balanz' form",
+            "placeholder": "admin@balanz.app"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-form-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

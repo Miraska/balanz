@@ -1,0 +1,47 @@
+{
+    "key": "group_page_seo",
+    "title": "Page SEO",
+    "fields": [
+        {
+            "key": "field_page_seo_title",
+            "label": "SEO Title",
+            "name": "seo_title",
+            "type": "text",
+            "instructions": "Custom SEO title for this page (leave empty to use page title)",
+            "placeholder": "Custom page title for search engines"
+        },
+        {
+            "key": "field_page_seo_description",
+            "label": "SEO Description",
+            "name": "seo_description",
+            "type": "textarea",
+            "instructions": "Meta description for search engines (150-160 characters recommended)",
+            "rows": 3,
+            "maxlength": 160
+        },
+        {
+            "key": "field_page_seo_og_image",
+            "label": "OG Image",
+            "name": "seo_og_image",
+            "type": "image",
+            "instructions": "Custom Open Graph image for social sharing (1200x630px recommended)",
+            "return_format": "array",
+            "preview_size": "medium"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 100,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

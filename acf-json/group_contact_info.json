@@ -1,0 +1,45 @@
+{
+    "key": "group_contact_info",
+    "title": "Contact Info",
+    "fields": [
+        {
+            "key": "field_contact_email",
+            "label": "Contact Email",
+            "name": "contact_email",
+            "type": "email",
+            "instructions": "Main contact email address",
+            "placeholder": "hello@balanz.app"
+        },
+        {
+            "key": "field_contact_phone",
+            "label": "Contact Phone",
+            "name": "contact_phone",
+            "type": "text",
+            "instructions": "Main contact phone number",
+            "placeholder": "+1 234 567 8900"
+        },
+        {
+            "key": "field_contact_address",
+            "label": "Address",
+            "name": "contact_address",
+            "type": "textarea",
+            "instructions": "Physical address",
+            "rows": 3
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-contact-info"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

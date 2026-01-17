@@ -52,3 +52,7 @@ assets/dist/
 .env
 .DS_Store
 Thumbs.db
+
+# Keep ACF JSON files
+!acf-json/
+!acf-json/*.json
