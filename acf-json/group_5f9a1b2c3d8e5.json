@@ -3,19 +3,12 @@
     "title": "Contact Info",
     "fields": [
         {
-            "key": "field_contact_tab_basic",
-            "label": "Basic Info",
-            "name": "",
-            "type": "tab",
-            "placement": "top"
-        },
-        {
             "key": "field_5f9a1b2c3d8e6",
             "label": "Contact Email",
             "name": "contact_email",
             "aria-label": "",
             "type": "email",
-            "instructions": "Main contact email address",
+            "instructions": "Main contact email (shown on About page)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -32,7 +25,7 @@
             "name": "contact_phone",
             "aria-label": "",
             "type": "text",
-            "instructions": "Main contact phone number",
+            "instructions": "Main contact phone number (shown on About page)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -49,7 +42,7 @@
             "name": "contact_address",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "Physical address",
+            "instructions": "Physical address (shown on About page)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -67,11 +60,11 @@
             "name": "contact_hours",
             "aria-label": "",
             "type": "text",
-            "instructions": "Support service hours",
+            "instructions": "Support service hours (shown on About page)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -79,36 +72,12 @@
             "placeholder": "08:00 am - 06:00 pm"
         },
         {
-            "key": "field_contact_hours_note",
-            "label": "Hours Note (optional)",
-            "name": "contact_hours_note",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Additional note (e.g., 'Mon-Fri')",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "Mon-Fri"
-        },
-        {
-            "key": "field_contact_tab_messengers",
-            "label": "Messengers",
-            "name": "",
-            "type": "tab",
-            "placement": "top"
-        },
-        {
             "key": "field_contact_whatsapp",
             "label": "WhatsApp Contact Link",
             "name": "contact_whatsapp",
             "aria-label": "",
             "type": "url",
-            "instructions": "Direct WhatsApp chat link (e.g., https://wa.me/1234567890)",
+            "instructions": "Direct WhatsApp chat link (shown on About page)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -117,7 +86,7 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "https://wa.me/..."
+            "placeholder": "https://wa.me/1234567890"
         },
         {
             "key": "field_contact_telegram",
@@ -125,7 +94,7 @@
             "name": "contact_telegram",
             "aria-label": "",
             "type": "url",
-            "instructions": "Direct Telegram chat link (e.g., https://t.me/username)",
+            "instructions": "Direct Telegram chat link (shown on About page)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -134,31 +103,7 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "https://t.me/..."
-        },
-        {
-            "key": "field_contact_viber",
-            "label": "Viber Contact Link",
-            "name": "contact_viber",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "Viber chat link",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "viber://chat?number=..."
-        },
-        {
-            "key": "field_contact_tab_map",
-            "label": "Map Settings",
-            "name": "",
-            "type": "tab",
-            "placement": "top"
+            "placeholder": "https://t.me/username"
         },
         {
             "key": "field_contact_map_link",
@@ -166,7 +111,7 @@
             "name": "contact_map_link",
             "aria-label": "",
             "type": "url",
-            "instructions": "Link to open location in Google Maps",
+            "instructions": "Link to open location in Google Maps (click on map opens this)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -183,7 +128,7 @@
             "name": "contact_map_embed_url",
             "aria-label": "",
             "type": "url",
-            "instructions": "Get this from Google Maps: Share → Embed a map → Copy the src URL from the iframe code",
+            "instructions": "Get from Google Maps: Share → Embed a map → Copy src URL from iframe",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -196,11 +141,11 @@
         },
         {
             "key": "field_contact_map_image",
-            "label": "Map Image (Optional)",
+            "label": "Map Image (Fallback)",
             "name": "contact_map_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "Static map image as fallback (if you prefer image over embed)",
+            "instructions": "Static map image if embed doesn't work",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -211,81 +156,6 @@
             "return_format": "array",
             "preview_size": "medium",
             "mime_types": "jpg,jpeg,png,webp"
-        },
-        {
-            "key": "field_contact_tab_additional",
-            "label": "Additional",
-            "name": "",
-            "type": "tab",
-            "placement": "top"
-        },
-        {
-            "key": "field_contact_secondary_phone",
-            "label": "Secondary Phone",
-            "name": "contact_secondary_phone",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Alternative phone number",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "+1 234 567 8901"
-        },
-        {
-            "key": "field_contact_secondary_email",
-            "label": "Secondary Email",
-            "name": "contact_secondary_email",
-            "aria-label": "",
-            "type": "email",
-            "instructions": "Alternative email (e.g., support@...)",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "support@balanz.app"
-        },
-        {
-            "key": "field_contact_company_name",
-            "label": "Company Legal Name",
-            "name": "contact_company_name",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Legal company name for footer/documents",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "Balanz LLC"
-        },
-        {
-            "key": "field_contact_tax_id",
-            "label": "Tax ID / Registration Number",
-            "name": "contact_tax_id",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Company registration or tax ID number",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": ""
         }
     ],
     "location": [
@@ -304,7 +174,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Contact information, messengers, and map settings",
+    "description": "Contact information shown on About page",
     "show_in_rest": 0,
-    "modified": 1737244800
+    "modified": 1737331200
 }

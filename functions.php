@@ -193,8 +193,15 @@ add_filter('acf/settings/load_json', function ($paths) {
 
 /**
  * ACF Options Pages
+ * Note: Requires ACF Pro for Options Pages functionality
+ * Using acf/init hook to ensure ACF is fully loaded
  */
-if (function_exists('acf_add_options_page')) {
+function balanz_acf_options_pages() {
+    // Check if ACF Pro is installed (free version doesn't have this function)
+    if (!function_exists('acf_add_options_page')) {
+        return;
+    }
+    
     // Main Settings Page
     acf_add_options_page([
         'page_title' => 'Theme Settings',
@@ -205,42 +212,42 @@ if (function_exists('acf_add_options_page')) {
         'position' => 60,
         'redirect' => false
     ]);
-    
+
     // App Links
     acf_add_options_sub_page([
         'page_title' => 'App Links',
         'menu_title' => 'App Links',
         'parent_slug' => 'theme-settings',
     ]);
-    
+
     // Contact Info
     acf_add_options_sub_page([
         'page_title' => 'Contact Info',
         'menu_title' => 'Contact Info',
         'parent_slug' => 'theme-settings',
     ]);
-    
+
     // Social Links
     acf_add_options_sub_page([
         'page_title' => 'Social Links',
         'menu_title' => 'Social Links',
         'parent_slug' => 'theme-settings',
     ]);
-    
+
     // Form Settings
     acf_add_options_sub_page([
         'page_title' => 'Form Settings',
         'menu_title' => 'Form Settings',
         'parent_slug' => 'theme-settings',
     ]);
-    
+
     // SEO Settings
     acf_add_options_sub_page([
         'page_title' => 'SEO Settings',
         'menu_title' => 'SEO Settings',
         'parent_slug' => 'theme-settings',
     ]);
-    
+
     // General Content (Header, Footer, etc.)
     acf_add_options_sub_page([
         'page_title' => 'General Content',
@@ -248,6 +255,7 @@ if (function_exists('acf_add_options_page')) {
         'parent_slug' => 'theme-settings',
     ]);
 }
+add_action('acf/init', 'balanz_acf_options_pages');
 
 /**
  * SEO Meta Tags and Open Graph
@@ -988,22 +996,6 @@ function balanz_render_submissions_page() {
 // ADMIN CLEANUP & CLIENT-FRIENDLY IMPROVEMENTS
 // ============================================================================
 
-/**
- * Check if ACF PRO is installed and show admin notice if not
- */
-function balanz_check_acf_requirement() {
-    if (!function_exists('acf_add_options_page')) {
-        add_action('admin_notices', function() {
-            $class = 'notice notice-error';
-            $message = sprintf(
-                '<strong>Balanz Theme:</strong> This theme requires <a href="%s" target="_blank">Advanced Custom Fields PRO</a> plugin to manage content. Please install and activate it.',
-                'https://www.advancedcustomfields.com/pro/'
-            );
-            printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $message);
-        });
-    }
-}
-add_action('admin_init', 'balanz_check_acf_requirement');
 
 /**
  * Remove unnecessary admin menu items for cleaner experience

@@ -8,8 +8,6 @@
 $title = get_field('why_title') ?: 'Why This Matters';
 $subtitle = get_field('why_subtitle');
 $image = get_field('why_image');
-$badge_label = get_field('why_badge_label');
-$badge_value = get_field('why_badge_value');
 $benefits = get_field('why_benefits'); // Repeater
 
 // Food card images

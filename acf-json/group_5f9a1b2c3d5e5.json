@@ -8,7 +8,7 @@
             "name": "facebook_link",
             "aria-label": "",
             "type": "url",
-            "instructions": "Link to Facebook page",
+            "instructions": "Link to Facebook page (shown in footer)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -25,7 +25,7 @@
             "name": "instagram_link",
             "aria-label": "",
             "type": "url",
-            "instructions": "Link to Instagram profile",
+            "instructions": "Link to Instagram profile (shown in footer)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -42,7 +42,7 @@
             "name": "linkedin_link",
             "aria-label": "",
             "type": "url",
-            "instructions": "Link to LinkedIn page",
+            "instructions": "Link to LinkedIn page (shown in footer)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -59,7 +59,7 @@
             "name": "twitter_link",
             "aria-label": "",
             "type": "url",
-            "instructions": "Link to X (Twitter) profile",
+            "instructions": "Link to X (Twitter) profile (shown in footer)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -69,108 +69,6 @@
             },
             "default_value": "",
             "placeholder": "https://x.com/..."
-        },
-        {
-            "key": "field_social_whatsapp",
-            "label": "WhatsApp",
-            "name": "whatsapp_link",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "WhatsApp contact link (e.g., https://wa.me/1234567890)",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "https://wa.me/..."
-        },
-        {
-            "key": "field_social_telegram",
-            "label": "Telegram",
-            "name": "telegram_link",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "Telegram channel or contact link (e.g., https://t.me/username)",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "https://t.me/..."
-        },
-        {
-            "key": "field_social_youtube",
-            "label": "YouTube",
-            "name": "youtube_link",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "Link to YouTube channel",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "https://youtube.com/..."
-        },
-        {
-            "key": "field_social_tiktok",
-            "label": "TikTok",
-            "name": "tiktok_link",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "Link to TikTok profile",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "https://tiktok.com/..."
-        },
-        {
-            "key": "field_social_vk",
-            "label": "VKontakte (VK)",
-            "name": "vk_link",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "Link to VKontakte page",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "https://vk.com/..."
-        },
-        {
-            "key": "field_social_pinterest",
-            "label": "Pinterest",
-            "name": "pinterest_link",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "Link to Pinterest profile",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "https://pinterest.com/..."
         }
     ],
     "location": [
@@ -189,7 +87,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Links to all social media profiles",
+    "description": "Social media links displayed in the footer",
     "show_in_rest": 0,
-    "modified": 1737244800
+    "modified": 1737331200
 }

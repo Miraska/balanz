@@ -43,10 +43,10 @@
         },
         {
             "key": "field_philosophy_video",
-            "label": "Philosophy Video",
+            "label": "Video File (MP4)",
             "name": "philosophy_video",
             "type": "file",
-            "instructions": "Upload MP4 video file (recommended: 1080p, max 50MB)",
+            "instructions": "Upload MP4 video file (recommended: 1080p, max 50MB). Leave empty if using YouTube/Vimeo URL below.",
             "return_format": "array",
             "mime_types": "mp4,webm,mov"
         },
@@ -55,16 +55,17 @@
             "label": "Or Video URL (YouTube/Vimeo)",
             "name": "philosophy_video_url",
             "type": "url",
-            "instructions": "Alternative: paste YouTube or Vimeo embed URL"
+            "instructions": "Alternative: paste YouTube or Vimeo embed URL (if no video file uploaded)"
         },
         {
             "key": "field_philosophy_poster",
-            "label": "Video Poster Image",
+            "label": "Video Poster/Cover Image",
             "name": "philosophy_poster",
             "type": "image",
-            "instructions": "Thumbnail shown before video plays (recommended: 1280x720px)",
+            "instructions": "Thumbnail shown before video plays. If no video - this image will be displayed.",
             "return_format": "array",
-            "preview_size": "medium"
+            "preview_size": "medium",
+            "mime_types": "jpg,jpeg,png,webp"
         },
         {
             "key": "field_philosophy_quote",
@@ -395,77 +396,68 @@
             "preview_size": "medium"
         },
         {
-            "key": "field_share_form_fields",
-            "label": "Form Field Labels",
-            "name": "",
-            "type": "group",
-            "layout": "block",
-            "sub_fields": [
-                {
-                    "key": "field_share_name_label",
-                    "label": "Name Field Label",
-                    "name": "share_name_label",
-                    "type": "text",
-                    "default_value": "Full name",
-                    "wrapper": { "width": "50" }
-                },
-                {
-                    "key": "field_share_name_placeholder",
-                    "label": "Name Field Placeholder",
-                    "name": "share_name_placeholder",
-                    "type": "text",
-                    "default_value": "Enter your full name",
-                    "wrapper": { "width": "50" }
-                },
-                {
-                    "key": "field_share_contact_label",
-                    "label": "Contact Field Label",
-                    "name": "share_contact_label",
-                    "type": "text",
-                    "default_value": "Phone / Email",
-                    "wrapper": { "width": "50" }
-                },
-                {
-                    "key": "field_share_contact_placeholder",
-                    "label": "Contact Field Placeholder",
-                    "name": "share_contact_placeholder",
-                    "type": "text",
-                    "default_value": "Enter your phone number or email",
-                    "wrapper": { "width": "50" }
-                },
-                {
-                    "key": "field_share_message_label",
-                    "label": "Message Field Label",
-                    "name": "share_message_label",
-                    "type": "text",
-                    "default_value": "Your message",
-                    "wrapper": { "width": "50" }
-                },
-                {
-                    "key": "field_share_message_placeholder",
-                    "label": "Message Field Placeholder",
-                    "name": "share_message_placeholder",
-                    "type": "text",
-                    "default_value": "Tell us what's important to you in your diet...",
-                    "wrapper": { "width": "50" }
-                },
-                {
-                    "key": "field_share_checkbox_text",
-                    "label": "Checkbox Text",
-                    "name": "share_checkbox_text",
-                    "type": "text",
-                    "default_value": "Want to receive balance tips",
-                    "wrapper": { "width": "50" }
-                },
-                {
-                    "key": "field_share_button_text",
-                    "label": "Submit Button Text",
-                    "name": "share_button_text",
-                    "type": "text",
-                    "default_value": "Send Message",
-                    "wrapper": { "width": "50" }
-                }
-            ]
+            "key": "field_share_name_label",
+            "label": "Name Field Label",
+            "name": "share_name_label",
+            "type": "text",
+            "default_value": "Full name",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_share_name_placeholder",
+            "label": "Name Field Placeholder",
+            "name": "share_name_placeholder",
+            "type": "text",
+            "default_value": "Enter your full name",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_share_contact_label",
+            "label": "Contact Field Label",
+            "name": "share_contact_label",
+            "type": "text",
+            "default_value": "Phone / Email",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_share_contact_placeholder",
+            "label": "Contact Field Placeholder",
+            "name": "share_contact_placeholder",
+            "type": "text",
+            "default_value": "Enter your phone number or email",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_share_message_label",
+            "label": "Message Field Label",
+            "name": "share_message_label",
+            "type": "text",
+            "default_value": "Your message",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_share_message_placeholder",
+            "label": "Message Field Placeholder",
+            "name": "share_message_placeholder",
+            "type": "text",
+            "default_value": "Tell us what's important to you in your diet...",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_share_checkbox_text",
+            "label": "Checkbox Text",
+            "name": "share_checkbox_text",
+            "type": "text",
+            "default_value": "Want to receive balance tips",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_share_button_text",
+            "label": "Submit Button Text",
+            "name": "share_button_text",
+            "type": "text",
+            "default_value": "Send Message",
+            "wrapper": { "width": "50" }
         },
         {
             "key": "field_share_success_title",
@@ -530,5 +522,5 @@
     "active": true,
     "description": "Edit all content for the About Us page sections",
     "show_in_rest": 0,
-    "modified": 1737244800
+    "modified": 1737331200
 }
