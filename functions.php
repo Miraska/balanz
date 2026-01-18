@@ -504,23 +504,78 @@ function balanz_handle_share_form() {
         $to = get_option('admin_email');
     }
     
-    $subject = 'New message from Balanz website - ' . $name;
+    $subject = 'Balanz: New message from ' . $name;
     
-    // Build email body
-    $email_body = "You have received a new message from the Balanz website.\n\n";
-    $email_body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
-    $email_body .= "👤 Name: " . $name . "\n\n";
-    $email_body .= "📧 Contact: " . $contact . "\n\n";
+    // Build HTML email body (reduces spam score vs plain text)
+    $email_body = '
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0; padding:0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 20px;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden;">
+                    <!-- Header -->
+                    <tr>
+                        <td style="background-color: #1a1a1a; padding: 30px; text-align: center;">
+                            <h1 style="color: #ffffff; margin: 0; font-size: 24px;">New Contact Form Submission</h1>
+                        </td>
+                    </tr>
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 30px;">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                                        <strong style="color: #666;">Name:</strong><br>
+                                        <span style="color: #333; font-size: 16px;">' . esc_html($name) . '</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                                        <strong style="color: #666;">Contact:</strong><br>
+                                        <span style="color: #333; font-size: 16px;">' . esc_html($contact) . '</span>
+                                    </td>
+                                </tr>';
     
     if (!empty($message)) {
-        $email_body .= "💬 Message:\n" . $message . "\n\n";
+        $email_body .= '
+                                <tr>
+                                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                                        <strong style="color: #666;">Message:</strong><br>
+                                        <span style="color: #333; font-size: 16px;">' . nl2br(esc_html($message)) . '</span>
+                                    </td>
+                                </tr>';
     }
     
-    $email_body .= "📬 Subscribe to tips: " . ($subscribe ? 'Yes' : 'No') . "\n\n";
-    $email_body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
-    $email_body .= "Sent from: " . home_url() . "\n";
-    $email_body .= "Date: " . date_i18n('F j, Y \a\t g:i a') . "\n";
-    $email_body .= "IP: " . balanz_get_client_ip() . "\n";
+    $email_body .= '
+                                <tr>
+                                    <td style="padding: 10px 0;">
+                                        <strong style="color: #666;">Subscribe to tips:</strong><br>
+                                        <span style="color: #333; font-size: 16px;">' . ($subscribe ? 'Yes' : 'No') . '</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f9f9f9; padding: 20px; text-align: center; font-size: 12px; color: #999;">
+                            Sent from ' . esc_url(home_url()) . '<br>
+                            ' . date_i18n('F j, Y \a\t g:i a') . '<br>
+                            IP: ' . balanz_get_client_ip() . '
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>';
     
     // Get SMTP From settings (important: must match SMTP credentials domain!)
     $smtp_from = get_field('smtp_from_email', 'option');
@@ -540,10 +595,11 @@ function balanz_handle_share_form() {
         }
     }
     
-    // Email headers
+    // Email headers (HTML format reduces spam score)
     $headers = [
-        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Type: text/html; charset=UTF-8',
         'From: ' . $from_name . ' <' . $from_email . '>',
+        'X-Mailer: Balanz WordPress Theme',
     ];
     
     // Add reply-to if contact is email (so admin can reply directly)
