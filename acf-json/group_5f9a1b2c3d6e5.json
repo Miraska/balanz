@@ -1,14 +1,25 @@
 {
-    "key": "group_form_settings",
+    "key": "group_5f9a1b2c3d6e5",
     "title": "Form Settings",
     "fields": [
         {
-            "key": "field_form_recipient_email",
+            "key": "field_5f9a1b2c3d6e6",
             "label": "Recipient Email",
             "name": "form_recipient_email",
+            "aria-label": "",
             "type": "email",
             "instructions": "Email address to receive form submissions from 'Share with Balanz' form",
-            "placeholder": "admin@balanz.app"
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "admin@balanz.app",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -25,5 +36,9 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "active": true
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1705528800
 }

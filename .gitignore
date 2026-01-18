@@ -48,7 +48,6 @@ wp-config.php
 #/wp-content/themes
 
 node_modules/
-assets/dist/
 .env
 .DS_Store
 Thumbs.db
@@ -56,3 +55,7 @@ Thumbs.db
 # Keep ACF JSON files
 !acf-json/
 !acf-json/*.json
+
+# Keep compiled assets for production
+!assets/dist/
+!assets/dist/**/*

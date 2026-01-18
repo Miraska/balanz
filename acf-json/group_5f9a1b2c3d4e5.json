@@ -1,0 +1,217 @@
+{
+    "key": "group_5f9a1b2c3d4e5",
+    "title": "General Content",
+    "fields": [
+        {
+            "key": "field_5f9a1b2c3d4e6",
+            "label": "Site Logo (Main)",
+            "name": "site_logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Main logo for header (default: logo.svg)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_5f9a1b2c3d4e7",
+            "label": "Site Logo (Secondary)",
+            "name": "site_logo_secondary",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Secondary logo for header (default: logo-02.svg)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_5f9a1b2c3d4e8",
+            "label": "Footer Logo",
+            "name": "footer_logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Logo for footer",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_5f9a1b2c3d4e9",
+            "label": "Navigation: Home Text",
+            "name": "nav_home_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Home",
+            "maxlength": "",
+            "placeholder": "Home",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5f9a1b2c3d4ea",
+            "label": "Navigation: About Text",
+            "name": "nav_about_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "About Us",
+            "maxlength": "",
+            "placeholder": "About Us",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5f9a1b2c3d4eb",
+            "label": "Download Button Text",
+            "name": "download_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Download App",
+            "maxlength": "",
+            "placeholder": "Download App",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5f9a1b2c3d4ec",
+            "label": "Download Button Link",
+            "name": "download_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Link for the download button in header",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://"
+        },
+        {
+            "key": "field_5f9a1b2c3d4ed",
+            "label": "Footer Tagline",
+            "name": "footer_tagline",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Smart food for busy people who want to eat well",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5f9a1b2c3d4ee",
+            "label": "Footer Copyright Text",
+            "name": "footer_copyright",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": "br"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-general-content"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1705528800
+}

@@ -1,21 +1,39 @@
 {
-    "key": "group_app_links",
+    "key": "group_5f9a1b2c3d4f5",
     "title": "App Links",
     "fields": [
         {
-            "key": "field_app_store_link",
+            "key": "field_5f9a1b2c3d4f6",
             "label": "App Store Link",
             "name": "app_store_link",
+            "aria-label": "",
             "type": "url",
             "instructions": "Link to download app from Apple App Store",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
             "placeholder": "https://apps.apple.com/..."
         },
         {
-            "key": "field_google_play_link",
+            "key": "field_5f9a1b2c3d4f7",
             "label": "Google Play Link",
             "name": "google_play_link",
+            "aria-label": "",
             "type": "url",
             "instructions": "Link to download app from Google Play Store",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
             "placeholder": "https://play.google.com/..."
         }
     ],
@@ -33,5 +51,9 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "active": true
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1705528800
 }

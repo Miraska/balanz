@@ -1,0 +1,93 @@
+{
+    "key": "group_5f9a1b2c3d5e5",
+    "title": "Social Links",
+    "fields": [
+        {
+            "key": "field_5f9a1b2c3d5e6",
+            "label": "Facebook",
+            "name": "facebook_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Link to Facebook page",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://facebook.com/..."
+        },
+        {
+            "key": "field_5f9a1b2c3d5e7",
+            "label": "Instagram",
+            "name": "instagram_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Link to Instagram profile",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://instagram.com/..."
+        },
+        {
+            "key": "field_5f9a1b2c3d5e8",
+            "label": "LinkedIn",
+            "name": "linkedin_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Link to LinkedIn page",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://linkedin.com/..."
+        },
+        {
+            "key": "field_5f9a1b2c3d5e9",
+            "label": "X (Twitter)",
+            "name": "twitter_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Link to X (Twitter) profile",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://x.com/..."
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-social-links"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1705528800
+}
