@@ -1,0 +1,162 @@
+{
+    "key": "group_5f9a1b2c3d9e5",
+    "title": "SMTP Settings (Email Configuration)",
+    "fields": [
+        {
+            "key": "field_5f9a1b2c3d9e6",
+            "label": "SMTP Host",
+            "name": "smtp_host",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "SMTP server address (e.g., smtp.timeweb.ru or smtp.gmail.com)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "smtp.timeweb.ru",
+            "maxlength": "",
+            "placeholder": "smtp.timeweb.ru",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5f9a1b2c3d9e7",
+            "label": "SMTP Port",
+            "name": "smtp_port",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "587 for TLS, 465 for SSL",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 587,
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "587",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5f9a1b2c3d9e8",
+            "label": "SMTP Username",
+            "name": "smtp_username",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "Your email address for SMTP authentication",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "noreply@yourdomain.com",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5f9a1b2c3d9e9",
+            "label": "SMTP Password",
+            "name": "smtp_password",
+            "aria-label": "",
+            "type": "password",
+            "instructions": "Password for SMTP authentication",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placeholder": "••••••••",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5f9a1b2c3d9ea",
+            "label": "From Email",
+            "name": "smtp_from_email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "Email address that appears as sender (must be from your domain)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "noreply@yourdomain.com",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5f9a1b2c3d9eb",
+            "label": "From Name",
+            "name": "smtp_from_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Name that appears as sender",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Balanz",
+            "maxlength": "",
+            "placeholder": "Balanz",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5f9a1b2c3d9ec",
+            "label": "Test Email",
+            "name": "smtp_test_email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "Send test email to this address to verify SMTP settings work",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "your-email@example.com",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-form-settings"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Configure SMTP settings for reliable email delivery. Required for most shared hosting providers like Timeweb.",
+    "show_in_rest": 0,
+    "modified": 1705528800
+}

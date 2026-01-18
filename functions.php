@@ -369,6 +369,41 @@ function balanz_save_submission_to_file($data, $force = false) {
 }
 
 /**
+ * Configure SMTP for email sending
+ * Alternative: use WP Mail SMTP plugin instead
+ */
+function balanz_configure_smtp($phpmailer) {
+    // Only configure if not already using SMTP plugin
+    if (defined('WPMS_ON') || defined('WP_MAIL_SMTP_VERSION')) {
+        return;
+    }
+    
+    // Get SMTP settings from options (you can configure in Theme Settings)
+    $smtp_host = get_field('smtp_host', 'option');
+    $smtp_port = get_field('smtp_port', 'option') ?: 587;
+    $smtp_user = get_field('smtp_username', 'option');
+    $smtp_pass = get_field('smtp_password', 'option');
+    $smtp_from = get_field('smtp_from_email', 'option');
+    $smtp_from_name = get_field('smtp_from_name', 'option') ?: get_bloginfo('name');
+    
+    // If SMTP not configured in options, skip
+    if (!$smtp_host || !$smtp_user || !$smtp_pass) {
+        return;
+    }
+    
+    $phpmailer->isSMTP();
+    $phpmailer->Host = $smtp_host;
+    $phpmailer->SMTPAuth = true;
+    $phpmailer->Port = $smtp_port;
+    $phpmailer->Username = $smtp_user;
+    $phpmailer->Password = $smtp_pass;
+    $phpmailer->SMTPSecure = $smtp_port == 465 ? 'ssl' : 'tls';
+    $phpmailer->From = $smtp_from ?: $smtp_user;
+    $phpmailer->FromName = $smtp_from_name;
+}
+add_action('phpmailer_init', 'balanz_configure_smtp');
+
+/**
  * Share with Balanz - Contact Form AJAX Handler
  */
 function balanz_handle_share_form() {
@@ -475,25 +510,92 @@ function balanz_handle_share_form() {
         balanz_save_submission_to_file($submission_data);
     }
     
+    // Save to file/database first (always, as backup)
+    $log_file = balanz_save_submission_to_file($submission_data, true);
+    
     // Try to send email
     $sent = wp_mail($to, $subject, $email_body, $headers);
     
+    // Get last error if mail failed
+    $mail_error = error_get_last();
+    
     if ($sent) {
+        // Log successful send
+        if (WP_DEBUG) {
+            error_log('Balanz Form: Email sent successfully to ' . $to);
+        }
+        
         wp_send_json_success([
             'message' => 'Thank you! Your message has been sent successfully.'
         ]);
     } else {
-        // Email failed - save to file as backup
-        balanz_save_submission_to_file($submission_data, true);
+        // Log failure
+        if (WP_DEBUG) {
+            error_log('Balanz Form: Email failed to send. Error: ' . ($mail_error['message'] ?? 'Unknown'));
+            error_log('Balanz Form: Saved to file: ' . $log_file);
+        }
         
-        // Still return success - form data is saved
+        // Still return success - form data is saved to file
+        // Admin can check submissions in WordPress admin
         wp_send_json_success([
-            'message' => 'Thank you! Your message has been received.'
+            'message' => 'Thank you! Your message has been received.',
+            'debug' => WP_DEBUG ? [
+                'email_sent' => false,
+                'saved_to' => $log_file,
+                'recipient' => $to,
+                'error' => $mail_error['message'] ?? 'Email sending failed'
+            ] : null
         ]);
     }
 }
 add_action('wp_ajax_balanz_share_form', 'balanz_handle_share_form');
 add_action('wp_ajax_nopriv_balanz_share_form', 'balanz_handle_share_form');
+
+/**
+ * Test SMTP Settings - Send test email
+ */
+function balanz_send_test_email() {
+    // Check admin permission
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+    
+    $test_email = get_field('smtp_test_email', 'option');
+    if (!$test_email || !is_email($test_email)) {
+        return;
+    }
+    
+    $subject = 'Test Email from Balanz Theme';
+    $message = "This is a test email to verify your SMTP settings are working correctly.\n\n";
+    $message .= "If you received this email, your SMTP configuration is successful!\n\n";
+    $message .= "Sent from: " . home_url() . "\n";
+    $message .= "Time: " . date('Y-m-d H:i:s');
+    
+    $sent = wp_mail($test_email, $subject, $message);
+    
+    if ($sent) {
+        add_settings_error(
+            'smtp_test',
+            'smtp_test_success',
+            'Test email sent successfully to ' . $test_email . '. Check your inbox!',
+            'success'
+        );
+    } else {
+        add_settings_error(
+            'smtp_test',
+            'smtp_test_error',
+            'Failed to send test email. Please check your SMTP settings.',
+            'error'
+        );
+    }
+}
+
+// Send test email when SMTP settings are saved
+add_action('acf/save_post', function($post_id) {
+    if ($post_id === 'options' && isset($_POST['acf']['field_5f9a1b2c3d9ec'])) {
+        balanz_send_test_email();
+    }
+});
 
 /**
  * Get client IP address

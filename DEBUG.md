@@ -5,12 +5,15 @@
 ### 1. Откройте консоль разработчика (F12)
 
 ### 2. Проверьте, что `balanzData` передан:
+
 В консоли напишите:
+
 ```javascript
-console.log(window.balanzData)
+console.log(window.balanzData);
 ```
 
 **Должно вывести:**
+
 ```javascript
 {
   ajaxUrl: "/wp-admin/admin-ajax.php",
@@ -20,6 +23,7 @@ console.log(window.balanzData)
 ```
 
 ### 3. Проверьте ошибки при отправке формы:
+
 - Откройте вкладку **Network** (Сеть)
 - Заполните форму и нажмите отправить
 - Найдите запрос `admin-ajax.php`
@@ -32,12 +36,14 @@ console.log(window.balanzData)
 ## Возможные проблемы:
 
 ### ❌ Если `balanzData` = undefined
+
 **Проблема:** JavaScript не подключен или `wp_localize_script` не работает
 
 **Решение:** Проверьте, что в `<head>` страницы есть:
+
 ```html
 <script>
-var balanzData = {"ajaxUrl":"...","nonce":"...","themeUrl":"..."};
+  var balanzData = { ajaxUrl: "...", nonce: "...", themeUrl: "..." };
 </script>
 ```
 
@@ -46,9 +52,11 @@ var balanzData = {"ajaxUrl":"...","nonce":"...","themeUrl":"..."};
 ---
 
 ### ❌ Если Status = 400 (Bad Request)
+
 **Проблема:** Nonce невалиден или данные формы неправильные
 
-**Решение:** 
+**Решение:**
+
 - Очистите кэш
 - Обновите страницу (Ctrl+F5)
 - Попробуйте снова
@@ -56,24 +64,29 @@ var balanzData = {"ajaxUrl":"...","nonce":"...","themeUrl":"..."};
 ---
 
 ### ❌ Если Status = 403 (Forbidden)
+
 **Проблема:** Nonce проверка провалилась
 
 **Решение:**
+
 - Проверьте, что в настройках WordPress включены cookies
 - Попробуйте в режиме инкогнито
 
 ---
 
 ### ❌ Если Status = 0 (Network Error)
+
 **Проблема:** Сетевая ошибка, AJAX URL неправильный
 
 **Решение:**
+
 - Проверьте, что AJAX URL правильный
 - Проверьте .htaccess файл
 
 ---
 
 ### ❌ Если Response = {"success":false}
+
 **Проблема:** Серверная валидация не прошла
 
 **Решение:** Посмотрите `result.data.errors` в консоли — там будет описание ошибки
@@ -85,24 +98,25 @@ var balanzData = {"ajaxUrl":"...","nonce":"...","themeUrl":"..."};
 Вставьте в консоль браузера:
 
 ```javascript
-fetch('/wp-admin/admin-ajax.php', {
-  method: 'POST',
-  headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+fetch("/wp-admin/admin-ajax.php", {
+  method: "POST",
+  headers: { "Content-Type": "application/x-www-form-urlencoded" },
   body: new URLSearchParams({
-    action: 'balanz_share_form',
+    action: "balanz_share_form",
     nonce: window.balanzData.nonce,
-    name: 'Test User',
-    contact: 'test@example.com',
-    message: 'Test message',
-    subscribe: 'false'
-  })
+    name: "Test User",
+    contact: "test@example.com",
+    message: "Test message",
+    subscribe: "false",
+  }),
 })
-.then(r => r.json())
-.then(data => console.log('Result:', data))
-.catch(err => console.error('Error:', err));
+  .then((r) => r.json())
+  .then((data) => console.log("Result:", data))
+  .catch((err) => console.error("Error:", err));
 ```
 
 **Должно вернуть:**
+
 ```javascript
 {success: true, data: {message: "Thank you! Your message has been sent successfully."}}
 ```
