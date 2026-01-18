@@ -375,6 +375,9 @@ function balanz_save_submission_to_file($data, $force = false) {
 function balanz_configure_smtp($phpmailer) {
     // Only configure if not already using SMTP plugin
     if (defined('WPMS_ON') || defined('WP_MAIL_SMTP_VERSION')) {
+        if (WP_DEBUG) {
+            error_log('Balanz SMTP: Skipped - using WP Mail SMTP plugin');
+        }
         return;
     }
     
@@ -386,22 +389,55 @@ function balanz_configure_smtp($phpmailer) {
     $smtp_from = get_field('smtp_from_email', 'option');
     $smtp_from_name = get_field('smtp_from_name', 'option') ?: get_bloginfo('name');
     
-    // If SMTP not configured in options, skip
+    // If SMTP not configured in options, log warning and skip
     if (!$smtp_host || !$smtp_user || !$smtp_pass) {
+        if (WP_DEBUG) {
+            error_log('Balanz SMTP: NOT CONFIGURED! Go to Theme Settings → Form Settings');
+            error_log('Balanz SMTP: Host=' . ($smtp_host ?: 'EMPTY') . ', User=' . ($smtp_user ?: 'EMPTY') . ', Pass=' . ($smtp_pass ? 'SET' : 'EMPTY'));
+        }
         return;
+    }
+    
+    // Enable debug in WP_DEBUG mode
+    if (WP_DEBUG) {
+        $phpmailer->SMTPDebug = 2;
+        $phpmailer->Debugoutput = function($str, $level) {
+            error_log("PHPMailer [$level]: $str");
+        };
     }
     
     $phpmailer->isSMTP();
     $phpmailer->Host = $smtp_host;
     $phpmailer->SMTPAuth = true;
-    $phpmailer->Port = $smtp_port;
+    $phpmailer->Port = intval($smtp_port);
     $phpmailer->Username = $smtp_user;
     $phpmailer->Password = $smtp_pass;
-    $phpmailer->SMTPSecure = $smtp_port == 465 ? 'ssl' : 'tls';
+    $phpmailer->SMTPSecure = intval($smtp_port) == 465 ? PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS : PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
     $phpmailer->From = $smtp_from ?: $smtp_user;
     $phpmailer->FromName = $smtp_from_name;
+    
+    if (WP_DEBUG) {
+        error_log("Balanz SMTP: Configured - Host=$smtp_host, Port=$smtp_port, User=$smtp_user, From=" . ($smtp_from ?: $smtp_user));
+    }
 }
 add_action('phpmailer_init', 'balanz_configure_smtp');
+
+/**
+ * Log email failures for debugging
+ */
+function balanz_log_mail_failure($wp_error) {
+    if (WP_DEBUG && is_wp_error($wp_error)) {
+        error_log('=== WP_MAIL FAILED ===');
+        error_log('Error Code: ' . $wp_error->get_error_code());
+        error_log('Error Message: ' . $wp_error->get_error_message());
+        $error_data = $wp_error->get_error_data();
+        if ($error_data) {
+            error_log('Error Data: ' . print_r($error_data, true));
+        }
+        error_log('======================');
+    }
+}
+add_action('wp_mail_failed', 'balanz_log_mail_failure');
 
 /**
  * Share with Balanz - Contact Form AJAX Handler
@@ -486,15 +522,37 @@ function balanz_handle_share_form() {
     $email_body .= "Date: " . date_i18n('F j, Y \a\t g:i a') . "\n";
     $email_body .= "IP: " . balanz_get_client_ip() . "\n";
     
+    // Get SMTP From settings (important: must match SMTP credentials domain!)
+    $smtp_from = get_field('smtp_from_email', 'option');
+    $smtp_from_name = get_field('smtp_from_name', 'option') ?: 'Balanz';
+    
+    // Use SMTP From if configured, otherwise fallback to site domain
+    if ($smtp_from && is_email($smtp_from)) {
+        $from_email = $smtp_from;
+        $from_name = $smtp_from_name;
+    } else {
+        // Fallback - but this likely won't work without SMTP!
+        $from_email = 'noreply@' . parse_url(home_url(), PHP_URL_HOST);
+        $from_name = 'Balanz Website';
+        
+        if (WP_DEBUG) {
+            error_log('Balanz Form: WARNING - No SMTP From email configured! Using fallback: ' . $from_email);
+        }
+    }
+    
     // Email headers
     $headers = [
         'Content-Type: text/plain; charset=UTF-8',
-        'From: Balanz Website <noreply@' . parse_url(home_url(), PHP_URL_HOST) . '>',
+        'From: ' . $from_name . ' <' . $from_email . '>',
     ];
     
-    // Add reply-to if contact is email
+    // Add reply-to if contact is email (so admin can reply directly)
     if (filter_var($contact, FILTER_VALIDATE_EMAIL)) {
         $headers[] = 'Reply-To: ' . $name . ' <' . $contact . '>';
+    }
+    
+    if (WP_DEBUG) {
+        error_log('Balanz Form: Sending to=' . $to . ', from=' . $from_email);
     }
     
     // Prepare submission data
