@@ -10,7 +10,6 @@
 get_header();
 ?>
 
-<!-- About Hero Section -->
 <?php get_template_part('template-parts/about/hero'); ?>
 
 <?php get_template_part('template-parts/about/philosophy'); ?>

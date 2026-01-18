@@ -47,10 +47,8 @@ $screen_3_url = $screen_3 ? $screen_3['url'] : $assets_uri . '/phone-03.png';
             </div>
             
             <!-- Screen 1 Cards 
-                 Доступные классы для позиций:
-                 - left-top, left-bottom (слева)
-                 - right-top, right-bottom (справа)
-                 Позиции настраиваются в _app-screens.scss
+                 - left-top, left-bottom
+                 - right-top, right-bottom
             -->
             <div class="screen-cards active" data-screen-cards="1">
                 <button class="feature-card left-top" data-screen="1">

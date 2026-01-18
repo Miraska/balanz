@@ -66,7 +66,6 @@ get_header();
 </article>
 
 <style>
-    /* Typography styles for page content */
     .entry-content h2 {
         font-size: 28px;
         font-weight: 600;
