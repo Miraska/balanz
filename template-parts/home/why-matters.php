@@ -11,6 +11,12 @@ $image = get_field('why_image');
 $badge_label = get_field('why_badge_label');
 $badge_value = get_field('why_badge_value');
 $benefits = get_field('why_benefits'); // Repeater
+
+// Food card images
+$food_card_1 = get_field('why_food_card_1');
+$food_card_2 = get_field('why_food_card_2');
+$food_card_1_url = $food_card_1 ? $food_card_1['url'] : BALANZ_THEME_URI . '/assets/images/why-this-matters/food-card-01.png';
+$food_card_2_url = $food_card_2 ? $food_card_2['url'] : BALANZ_THEME_URI . '/assets/images/why-this-matters/food-card-02.png';
 ?>
 
 <section class="why-section" id="why-matters">
@@ -30,11 +36,11 @@ $benefits = get_field('why_benefits'); // Repeater
                 <!-- Food Cards -->
                 <div class="food-cards-wrapper">
                     <div class="food-card food-card-1">
-                        <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/why-this-matters/food-card-01.png" alt="Japanese Rice">
+                        <img src="<?php echo esc_url($food_card_1_url); ?>" alt="Food Card 1">
                     </div>
                     
                     <div class="food-card food-card-2">
-                        <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/why-this-matters/food-card-02.png" alt="Greek Yogurt">
+                        <img src="<?php echo esc_url($food_card_2_url); ?>" alt="Food Card 2">
                     </div>
                 </div>
             </div>

@@ -9,12 +9,15 @@
 $title = get_field('hero_title') ?: 'What is Balanz';
 $description = get_field('hero_description') ?: 'Balanz is a smart food service designed for busy people — helping you eat well, stay balanced, and live with more ease every day.';
 $programs = get_field('programs'); // Repeater
+$background = get_field('hero_background');
+$button_text = get_field('hero_button_text') ?: 'Download App';
+$bg_url = $background ? $background['url'] : BALANZ_THEME_URI . '/assets/images/hero-bg.jpg';
 ?>
 
 <section class="hero-section" id="hero">
     <!-- Background Image + Content Over Background -->
     <div class="hero-bg">
-        <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/hero-bg.jpg" alt="">
+        <img src="<?php echo esc_url($bg_url); ?>" alt="">
         
         <!-- Content Over Background -->
         <div class="hero-container">
@@ -89,7 +92,7 @@ $programs = get_field('programs'); // Repeater
         <!-- Hero CTA -->
         <div class="hero-cta">
             <a href="<?php echo esc_url(get_field('download_link', 'option') ?: '#'); ?>" class="btn btn-primary btn-download">
-                Download App
+                <?php echo esc_html($button_text); ?>
             </a>
         </div>
         

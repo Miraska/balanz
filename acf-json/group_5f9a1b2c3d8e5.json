@@ -3,6 +3,13 @@
     "title": "Contact Info",
     "fields": [
         {
+            "key": "field_contact_tab_basic",
+            "label": "Basic Info",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
             "key": "field_5f9a1b2c3d8e6",
             "label": "Contact Email",
             "name": "contact_email",
@@ -12,14 +19,12 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "hello@balanz.app",
-            "prepend": "",
-            "append": ""
+            "placeholder": "hello@balanz.app"
         },
         {
             "key": "field_5f9a1b2c3d8e7",
@@ -31,15 +36,12 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
-            "placeholder": "+1 234 567 8900",
-            "prepend": "",
-            "append": ""
+            "placeholder": "+1 234 567 8900"
         },
         {
             "key": "field_5f9a1b2c3d8e8",
@@ -56,10 +58,234 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
-            "rows": 3,
-            "placeholder": "",
-            "new_lines": ""
+            "rows": 2,
+            "placeholder": "2464 Royal Ln. Mesa, New Jersey 45463"
+        },
+        {
+            "key": "field_contact_hours",
+            "label": "Working Hours",
+            "name": "contact_hours",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Support service hours",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "08:00 am - 06:00 pm",
+            "placeholder": "08:00 am - 06:00 pm"
+        },
+        {
+            "key": "field_contact_hours_note",
+            "label": "Hours Note (optional)",
+            "name": "contact_hours_note",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Additional note (e.g., 'Mon-Fri')",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Mon-Fri"
+        },
+        {
+            "key": "field_contact_tab_messengers",
+            "label": "Messengers",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_contact_whatsapp",
+            "label": "WhatsApp Contact Link",
+            "name": "contact_whatsapp",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Direct WhatsApp chat link (e.g., https://wa.me/1234567890)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://wa.me/..."
+        },
+        {
+            "key": "field_contact_telegram",
+            "label": "Telegram Contact Link",
+            "name": "contact_telegram",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Direct Telegram chat link (e.g., https://t.me/username)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://t.me/..."
+        },
+        {
+            "key": "field_contact_viber",
+            "label": "Viber Contact Link",
+            "name": "contact_viber",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Viber chat link",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "viber://chat?number=..."
+        },
+        {
+            "key": "field_contact_tab_map",
+            "label": "Map Settings",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_contact_map_link",
+            "label": "Google Maps Link",
+            "name": "contact_map_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Link to open location in Google Maps",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://www.google.com/maps/place/..."
+        },
+        {
+            "key": "field_contact_map_embed_url",
+            "label": "Google Maps Embed URL",
+            "name": "contact_map_embed_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Get this from Google Maps: Share → Embed a map → Copy the src URL from the iframe code",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://www.google.com/maps/embed?pb=..."
+        },
+        {
+            "key": "field_contact_map_image",
+            "label": "Map Image (Optional)",
+            "name": "contact_map_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Static map image as fallback (if you prefer image over embed)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "mime_types": "jpg,jpeg,png,webp"
+        },
+        {
+            "key": "field_contact_tab_additional",
+            "label": "Additional",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_contact_secondary_phone",
+            "label": "Secondary Phone",
+            "name": "contact_secondary_phone",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Alternative phone number",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "+1 234 567 8901"
+        },
+        {
+            "key": "field_contact_secondary_email",
+            "label": "Secondary Email",
+            "name": "contact_secondary_email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "Alternative email (e.g., support@...)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "support@balanz.app"
+        },
+        {
+            "key": "field_contact_company_name",
+            "label": "Company Legal Name",
+            "name": "contact_company_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Legal company name for footer/documents",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Balanz LLC"
+        },
+        {
+            "key": "field_contact_tax_id",
+            "label": "Tax ID / Registration Number",
+            "name": "contact_tax_id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Company registration or tax ID number",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
         }
     ],
     "location": [
@@ -78,7 +304,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "",
+    "description": "Contact information, messengers, and map settings",
     "show_in_rest": 0,
-    "modified": 1705528800
+    "modified": 1737244800
 }

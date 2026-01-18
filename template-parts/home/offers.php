@@ -11,6 +11,12 @@ $rational_title = get_field('rational_title') ?: 'Rational Benefits';
 $rational_benefits = get_field('rational_benefits'); // Repeater
 $emotional_title = get_field('emotional_title') ?: 'Emotional Benefit';
 $emotional_benefits = get_field('emotional_benefits'); // Repeater
+
+// Food images
+$food_image_1 = get_field('offers_image_1');
+$food_image_2 = get_field('offers_image_2');
+$food_1_url = $food_image_1 ? $food_image_1['url'] : get_template_directory_uri() . '/assets/images/what-this-offers/food-01.jpg';
+$food_2_url = $food_image_2 ? $food_image_2['url'] : get_template_directory_uri() . '/assets/images/what-this-offers/food-02.jpg';
 ?>
 
 <section class="offers-section" id="offers">
@@ -65,12 +71,12 @@ $emotional_benefits = get_field('emotional_benefits'); // Repeater
 
             <!-- Food Image 1 -->
             <div class="offers-card offers-card-image animate-on-scroll">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/what-this-offers/food-01.jpg" alt="Delicious balanced meal" class="offers-image">
+                <img src="<?php echo esc_url($food_1_url); ?>" alt="Delicious balanced meal" class="offers-image">
             </div>
 
             <!-- Food Image 2 -->
             <div class="offers-card offers-card-image animate-on-scroll">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/what-this-offers/food-02.jpg" alt="Healthy meal preparation" class="offers-image">
+                <img src="<?php echo esc_url($food_2_url); ?>" alt="Healthy meal preparation" class="offers-image">
             </div>
             
             <!-- Emotional Benefits Card -->

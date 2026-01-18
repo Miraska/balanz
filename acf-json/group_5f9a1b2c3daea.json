@@ -1,0 +1,90 @@
+{
+    "key": "group_5f9a1b2c3daea",
+    "title": "Page SEO Settings",
+    "fields": [
+        {
+            "key": "field_5f9a1b2c3daeb",
+            "label": "SEO Title",
+            "name": "seo_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Custom SEO title for this page (leave empty to use default)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 70,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5f9a1b2c3daec",
+            "label": "SEO Description",
+            "name": "seo_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Custom SEO description for this page (leave empty to use default). Recommended: 120-160 characters",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 160,
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_5f9a1b2c3daed",
+            "label": "Open Graph Image",
+            "name": "seo_og_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Custom Open Graph image for social sharing (leave empty to use default). Recommended size: 1200x630px",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png",
+            "preview_size": "medium"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Configure SEO meta tags and Open Graph settings for this page",
+    "show_in_rest": 0,
+    "modified": 1737239000
+}

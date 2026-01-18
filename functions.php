@@ -183,76 +183,189 @@ if (function_exists('acf_add_options_page')) {
 
 /**
  * SEO Meta Tags and Open Graph
+ * Priority: ACF fields > WordPress settings > hardcoded fallbacks
  */
 function balanz_seo_meta_tags() {
-    // Get global SEO settings from ACF
-    $site_name = get_bloginfo('name');
-    $default_description = get_field('seo_default_description', 'option') ?: 'Balanz - Smart food for busy people who want to eat well';
-    $default_og_image = get_field('seo_og_image', 'option');
+    // Debug marker - if you see this in View Source, function is running
+    echo "\n<!-- BALANZ_OG_START -->\n";
     
-    // Get page-specific SEO if available
-    $seo_title = '';
-    $seo_description = $default_description;
+    // Get WordPress standard settings
+    $site_name = get_bloginfo('name') ?: 'Balanz';
+    $site_tagline = get_bloginfo('description');
+    $site_url = home_url('/');
+    
+    // Hardcoded fallbacks (only if nothing else is set)
+    $fallback_title = 'Balanz - Smart Food for Busy People';
+    $fallback_description = 'Balanz is a smart food service designed for busy people — helping you eat well, stay balanced, and live with more ease every day.';
+    
+    // Check if ACF is active
+    $acf_active = function_exists('get_field');
+    
+    // Initialize with WordPress settings (middle priority)
+    $seo_title = $site_name;
+    $seo_description = $site_tagline ?: $fallback_description;
+    $twitter_username = '';
+    
+    // Try ACF global settings (higher priority than WP settings)
+    if ($acf_active) {
+        $acf_description = get_field('seo_default_description', 'option');
+        if ($acf_description) {
+            $seo_description = $acf_description;
+        }
+        $twitter_username = get_field('seo_twitter_username', 'option') ?: '';
+    }
+    
+    // OG Image defaults
     $og_image_url = '';
+    $og_image_width = 1200;
+    $og_image_height = 630;
+    $og_image_alt = $site_name;
     
+    // Page-specific SEO
     if (is_front_page()) {
-        $seo_title = get_field('seo_home_title', 'option') ?: $site_name;
-        $seo_description = get_field('seo_home_description', 'option') ?: $default_description;
+        // Home page - try ACF first, then WP settings, then fallback
+        if ($acf_active) {
+            $acf_title = get_field('seo_home_title', 'option');
+            $acf_desc = get_field('seo_home_description', 'option');
+            if ($acf_title) {
+                $seo_title = $acf_title;
+            } elseif ($site_tagline) {
+                $seo_title = $site_name . ' - ' . $site_tagline;
+            } else {
+                $seo_title = $site_name ?: $fallback_title;
+            }
+            if ($acf_desc) {
+                $seo_description = $acf_desc;
+            }
+        } else {
+            // No ACF - use WP settings
+            if ($site_tagline) {
+                $seo_title = $site_name . ' - ' . $site_tagline;
+            } else {
+                $seo_title = $site_name ?: $fallback_title;
+            }
+        }
     } elseif (is_page()) {
-        $page_seo_title = get_field('seo_title');
-        $page_seo_description = get_field('seo_description');
+        // Other pages
+        $page_title = get_the_title();
+        $seo_title = $page_title ? $page_title . ' - ' . $site_name : $site_name;
         
-        $seo_title = $page_seo_title ?: get_the_title() . ' - ' . $site_name;
-        $seo_description = $page_seo_description ?: $default_description;
+        if ($acf_active) {
+            $page_seo_title = get_field('seo_title');
+            $page_seo_description = get_field('seo_description');
+            if ($page_seo_title) $seo_title = $page_seo_title;
+            if ($page_seo_description) $seo_description = $page_seo_description;
+        }
     } else {
-        $seo_title = get_the_title() . ' - ' . $site_name;
+        $post_title = get_the_title();
+        $seo_title = $post_title ? $post_title . ' - ' . $site_name : $site_name;
     }
     
-    // OG Image - priority: page specific > global > screenshot
-    $page_og_image = get_field('seo_og_image');
-    if ($page_og_image && isset($page_og_image['url'])) {
-        $og_image_url = $page_og_image['url'];
-    } elseif ($default_og_image && isset($default_og_image['url'])) {
-        $og_image_url = $default_og_image['url'];
-    } else {
-        // Fallback to screenshot.png
-        $og_image_url = BALANZ_THEME_URI . '/screenshot.png';
+    // OG Image - priority: page ACF > global ACF > theme fallback > screenshot
+    $og_image_found = false;
+    
+    if ($acf_active) {
+        // Try page-specific OG image first
+        $page_og_image = get_field('seo_og_image');
+        if ($page_og_image && isset($page_og_image['url']) && !empty($page_og_image['url'])) {
+            $og_image_url = $page_og_image['url'];
+            $og_image_width = isset($page_og_image['width']) ? $page_og_image['width'] : 1200;
+            $og_image_height = isset($page_og_image['height']) ? $page_og_image['height'] : 630;
+            $og_image_alt = isset($page_og_image['alt']) && $page_og_image['alt'] ? $page_og_image['alt'] : $seo_title;
+            $og_image_found = true;
+        }
+        
+        // Try global OG image from Theme Settings > SEO Settings
+        if (!$og_image_found) {
+            $default_og_image_acf = get_field('seo_og_image', 'option');
+            if ($default_og_image_acf && isset($default_og_image_acf['url']) && !empty($default_og_image_acf['url'])) {
+                $og_image_url = $default_og_image_acf['url'];
+                $og_image_width = isset($default_og_image_acf['width']) ? $default_og_image_acf['width'] : 1200;
+                $og_image_height = isset($default_og_image_acf['height']) ? $default_og_image_acf['height'] : 630;
+                $og_image_alt = isset($default_og_image_acf['alt']) && $default_og_image_acf['alt'] ? $default_og_image_acf['alt'] : $site_name;
+                $og_image_found = true;
+            }
+        }
     }
     
-    // Current URL
-    $current_url = home_url(add_query_arg([], $_SERVER['REQUEST_URI'] ?? ''));
+    // Fallback to theme images (only if ACF image not set)
+    if (!$og_image_found || empty($og_image_url)) {
+        // Check if og-image.jpg exists in theme
+        $og_image_path = BALANZ_THEME_DIR . '/assets/images/og-image.jpg';
+        if (file_exists($og_image_path)) {
+            $og_image_url = BALANZ_THEME_URI . '/assets/images/og-image.jpg';
+        } else {
+            // Final fallback to screenshot.png
+            $og_image_url = BALANZ_THEME_URI . '/screenshot.png';
+        }
+        $og_image_alt = $site_name . ' Preview';
+    }
+    
+    // Current URL (clean)
+    $current_url = is_front_page() ? $site_url : get_permalink();
+    if (!$current_url) {
+        $current_url = home_url(add_query_arg([], $_SERVER['REQUEST_URI'] ?? ''));
+    }
+    
+    // Ensure all values are not empty
+    $seo_title = $seo_title ?: $fallback_title;
+    $seo_description = $seo_description ?: $fallback_description;
     
     // Output meta tags
     ?>
     
-    <!-- SEO Meta Tags -->
+    <!-- Balanz SEO Meta Tags -->
     <meta name="description" content="<?php echo esc_attr($seo_description); ?>">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph / Facebook / Telegram / VK -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?php echo esc_url($current_url); ?>">
     <meta property="og:title" content="<?php echo esc_attr($seo_title); ?>">
     <meta property="og:description" content="<?php echo esc_attr($seo_description); ?>">
     <meta property="og:image" content="<?php echo esc_url($og_image_url); ?>">
+    <meta property="og:image:secure_url" content="<?php echo esc_url($og_image_url); ?>">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="<?php echo esc_attr($og_image_width); ?>">
+    <meta property="og:image:height" content="<?php echo esc_attr($og_image_height); ?>">
+    <meta property="og:image:alt" content="<?php echo esc_attr($og_image_alt); ?>">
     <meta property="og:site_name" content="<?php echo esc_attr($site_name); ?>">
-    <meta property="og:locale" content="<?php echo esc_attr(get_locale()); ?>">
+    <meta property="og:locale" content="<?php echo esc_attr(str_replace('-', '_', get_locale())); ?>">
     
-    <!-- Twitter -->
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="<?php echo esc_url($current_url); ?>">
     <meta name="twitter:title" content="<?php echo esc_attr($seo_title); ?>">
     <meta name="twitter:description" content="<?php echo esc_attr($seo_description); ?>">
     <meta name="twitter:image" content="<?php echo esc_url($og_image_url); ?>">
+    <meta name="twitter:image:alt" content="<?php echo esc_attr($og_image_alt); ?>">
+    <?php if ($twitter_username): ?>
+    <meta name="twitter:site" content="@<?php echo esc_attr($twitter_username); ?>">
+    <meta name="twitter:creator" content="@<?php echo esc_attr($twitter_username); ?>">
+    <?php endif; ?>
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" href="<?php echo esc_url($current_url); ?>">
     
     <?php
-    // Favicon from ACF or default
-    $favicon = get_field('site_favicon', 'option');
-    if ($favicon && isset($favicon['url'])) {
+    // Favicon
+    $favicon_url = '';
+    if ($acf_active) {
+        $favicon = get_field('site_favicon', 'option');
+        if ($favicon && isset($favicon['url'])) {
+            $favicon_url = $favicon['url'];
+        }
+    }
+    
+    if ($favicon_url) {
         ?>
-        <link rel="icon" type="image/png" href="<?php echo esc_url($favicon['url']); ?>">
-        <link rel="apple-touch-icon" href="<?php echo esc_url($favicon['url']); ?>">
+        <link rel="icon" type="image/png" href="<?php echo esc_url($favicon_url); ?>">
+        <link rel="apple-touch-icon" href="<?php echo esc_url($favicon_url); ?>">
+        <link rel="shortcut icon" href="<?php echo esc_url($favicon_url); ?>">
         <?php
     }
+    
+    echo "<!-- BALANZ_OG_END -->\n";
 }
 add_action('wp_head', 'balanz_seo_meta_tags', 1);
 

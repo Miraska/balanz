@@ -155,6 +155,31 @@
             "placeholder": "https://"
         },
         {
+            "key": "field_5f9a1b2c3d4ez",
+            "label": "Site Favicon",
+            "name": "site_favicon",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Favicon for website (recommended: 512x512px PNG or ICO)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "png,ico",
+            "preview_size": "thumbnail"
+        },
+        {
             "key": "field_5f9a1b2c3d4ed",
             "label": "Footer Tagline",
             "name": "footer_tagline",

@@ -29,7 +29,8 @@ $default_steps = [
 ];
 
 $steps = get_field('hww_steps') ?: $default_steps;
-$bg_image = get_template_directory_uri() . '/assets/images/about/how-we-work/bg.jpg';
+$background = get_field('hww_background');
+$bg_image = $background ? $background['url'] : get_template_directory_uri() . '/assets/images/about/how-we-work/bg.jpg';
 $arrow_icon = get_template_directory_uri() . '/assets/images/about/how-we-work/icons/arrow.svg';
 ?>
 

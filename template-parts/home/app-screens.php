@@ -11,6 +11,14 @@ $assets_uri = get_template_directory_uri() . '/assets/images/app-screens';
 // ACF Fields
 $title = get_field('app_screens_title') ?: 'Manage your balance in a<br>convenient app';
 $description = get_field('app_screens_description') ?: 'Everything you need to plan, track, and manage your meals<br>— all in one place.';
+
+// Custom app screenshots
+$screen_1 = get_field('app_screen_1');
+$screen_2 = get_field('app_screen_2');
+$screen_3 = get_field('app_screen_3');
+$screen_1_url = $screen_1 ? $screen_1['url'] : $assets_uri . '/phone-01.png';
+$screen_2_url = $screen_2 ? $screen_2['url'] : $assets_uri . '/phone-02.png';
+$screen_3_url = $screen_3 ? $screen_3['url'] : $assets_uri . '/phone-03.png';
 ?>
 
 <section class="app-section" id="app-screens">
@@ -28,13 +36,13 @@ $description = get_field('app_screens_description') ?: 'Everything you need to p
             <!-- Phone Mockup -->
             <div class="app-phone">
                 <div class="phone-screen active" data-screen="1">
-                    <img src="<?php echo $assets_uri; ?>/phone-01.png" alt="Build your menu screen" loading="lazy">
+                    <img src="<?php echo esc_url($screen_1_url); ?>" alt="Build your menu screen" loading="lazy">
                 </div>
                 <div class="phone-screen" data-screen="2">
-                    <img src="<?php echo $assets_uri; ?>/phone-02.png" alt="Browse categories screen" loading="lazy">
+                    <img src="<?php echo esc_url($screen_2_url); ?>" alt="Browse categories screen" loading="lazy">
                 </div>
                 <div class="phone-screen" data-screen="3">
-                    <img src="<?php echo $assets_uri; ?>/phone-03.png" alt="Order tracking screen" loading="lazy">
+                    <img src="<?php echo esc_url($screen_3_url); ?>" alt="Order tracking screen" loading="lazy">
                 </div>
             </div>
             

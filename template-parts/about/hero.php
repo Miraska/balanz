@@ -6,12 +6,14 @@
  */
 
 $title = get_field('about_hero_title') ?: 'We believe in balance,<br>not extremes';
+$background = get_field('about_hero_background');
+$bg_url = $background ? $background['url'] : BALANZ_THEME_URI . '/assets/images/about/hero/bg.jpg';
 ?>
 
 <section class="about-hero-section" id="about-hero">
     <!-- Background Image -->
     <div class="about-hero-bg">
-        <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/about/hero/bg.jpg" alt="About Balanz">
+        <img src="<?php echo esc_url($bg_url); ?>" alt="About Balanz">
         
         <!-- Content Over Background -->
         <div class="about-hero-container">

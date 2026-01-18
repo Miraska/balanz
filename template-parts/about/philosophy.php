@@ -7,9 +7,11 @@
 
 $title = get_field('philosophy_title') ?: 'Our Philosophy';
 $video = get_field('philosophy_video');
+$video_url = get_field('philosophy_video_url'); // YouTube/Vimeo URL
 $video_poster = get_field('philosophy_poster');
-$quote = get_field('philosophy_quote') ?: "“We don't believe in extremes. Neither in endless diets nor in unchecked snacking. We believe in rhythm, balance, and ease...”";
-$decorative_text = "balanced • No choice stress • just eat & go • stay balanced • No choice stress • just eat & go • stay balanced • No choice stress • just eat & go • stay balanced • No choice stress • just eat & go • stay ";
+$quote = get_field('philosophy_quote') ?: '"We don\'t believe in extremes. Neither in endless diets nor in unchecked snacking. We believe in rhythm, balance, and ease..."';
+$decorative_text = get_field('philosophy_decorative_text') ?: 'balanced • No choice stress • just eat & go • stay ';
+$decorative_text = $decorative_text . $decorative_text . $decorative_text . $decorative_text; // Repeat for continuous scroll
 ?>
 
 <section class="philosophy-section">
@@ -18,8 +20,9 @@ $decorative_text = "balanced • No choice stress • just eat & go • stay bal
         
         <div class="philosophy-video-wrapper animate-on-scroll">
             <!-- Video container with custom player -->
-            <div class="philosophy-video" id="philosophyVideoContainer">
+            <div class="philosophy-video" id="philosophyVideoContainer" <?php if ($video_url): ?>data-video-url="<?php echo esc_attr($video_url); ?>"<?php endif; ?>>
                 <?php if ($video): ?>
+                <!-- Uploaded video file -->
                 <video 
                     id="philosophyVideo"
                     poster="<?php echo $video_poster ? esc_url($video_poster['url']) : ''; ?>" 
@@ -28,6 +31,15 @@ $decorative_text = "balanced • No choice stress • just eat & go • stay bal
                 >
                     <source src="<?php echo esc_url($video['url']); ?>" type="video/mp4">
                 </video>
+                <?php elseif ($video_url): ?>
+                <!-- External video (YouTube/Vimeo) - will be loaded via JS -->
+                <div class="video-embed-placeholder" id="videoEmbedPlaceholder">
+                    <?php if ($video_poster): ?>
+                    <img src="<?php echo esc_url($video_poster['url']); ?>" alt="<?php echo esc_attr($title); ?>" class="video-poster">
+                    <?php else: ?>
+                    <img src="<?php echo BALANZ_THEME_URI; ?>/assets/images/about/our-philosophy/cover.jpg" alt="Our Philosophy" class="video-poster">
+                    <?php endif; ?>
+                </div>
                 <?php elseif ($video_poster): ?>
                 <img src="<?php echo esc_url($video_poster['url']); ?>" alt="<?php echo esc_attr($title); ?>" class="video-poster">
                 <?php else: ?>
@@ -61,7 +73,7 @@ $decorative_text = "balanced • No choice stress • just eat & go • stay bal
             <text class="wave-text" fill="#ffffff" dominant-baseline="middle" alignment-baseline="middle">
                 <textPath href="#waveTextPath" startOffset="0%">
                     <animate attributeName="startOffset" from="0%" to="50%" dur="20s" repeatCount="indefinite"/>
-                    <?php echo esc_html($decorative_text . $decorative_text); ?>
+                    <?php echo esc_html($decorative_text); ?>
                 </textPath>
             </text>
         </svg>

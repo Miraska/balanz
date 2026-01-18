@@ -86,6 +86,26 @@
             "rows": 3,
             "placeholder": "Balanz is a smart food service designed for busy people...",
             "new_lines": ""
+        },
+        {
+            "key": "field_5f9a1b2c3d7ea",
+            "label": "Twitter Username",
+            "name": "seo_twitter_username",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Your Twitter/X username (without @)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "balanzfood",
+            "prepend": "@",
+            "append": ""
         }
     ],
     "location": [

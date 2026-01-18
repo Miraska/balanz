@@ -1,0 +1,534 @@
+{
+    "key": "group_about_page_content",
+    "title": "About Page Content",
+    "fields": [
+        {
+            "key": "field_about_tab_hero",
+            "label": "Hero Section",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_about_hero_title",
+            "label": "Hero Title",
+            "name": "about_hero_title",
+            "type": "text",
+            "instructions": "You can use <br> for line breaks",
+            "default_value": "We believe in balance,<br>not extremes"
+        },
+        {
+            "key": "field_about_hero_background",
+            "label": "Hero Background Image",
+            "name": "about_hero_background",
+            "type": "image",
+            "instructions": "Background image for About hero section (recommended: 1920x1080px)",
+            "return_format": "array",
+            "preview_size": "medium",
+            "mime_types": "jpg,jpeg,png,webp"
+        },
+        {
+            "key": "field_about_tab_philosophy",
+            "label": "Our Philosophy",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_philosophy_title",
+            "label": "Section Title",
+            "name": "philosophy_title",
+            "type": "text",
+            "default_value": "Our Philosophy"
+        },
+        {
+            "key": "field_philosophy_video",
+            "label": "Philosophy Video",
+            "name": "philosophy_video",
+            "type": "file",
+            "instructions": "Upload MP4 video file (recommended: 1080p, max 50MB)",
+            "return_format": "array",
+            "mime_types": "mp4,webm,mov"
+        },
+        {
+            "key": "field_philosophy_video_url",
+            "label": "Or Video URL (YouTube/Vimeo)",
+            "name": "philosophy_video_url",
+            "type": "url",
+            "instructions": "Alternative: paste YouTube or Vimeo embed URL"
+        },
+        {
+            "key": "field_philosophy_poster",
+            "label": "Video Poster Image",
+            "name": "philosophy_poster",
+            "type": "image",
+            "instructions": "Thumbnail shown before video plays (recommended: 1280x720px)",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_philosophy_quote",
+            "label": "Philosophy Quote",
+            "name": "philosophy_quote",
+            "type": "textarea",
+            "default_value": "\"We don't believe in extremes. Neither in endless diets nor in unchecked snacking. We believe in rhythm, balance, and ease...\"",
+            "rows": 3
+        },
+        {
+            "key": "field_philosophy_decorative_text",
+            "label": "Decorative Band Text",
+            "name": "philosophy_decorative_text",
+            "type": "text",
+            "instructions": "Text that scrolls on the decorative wavy band",
+            "default_value": "balanced • No choice stress • just eat & go • stay "
+        },
+        {
+            "key": "field_about_tab_values",
+            "label": "Values in Action",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_via_title",
+            "label": "Section Title",
+            "name": "via_title",
+            "type": "text",
+            "default_value": "Values in Action"
+        },
+        {
+            "key": "field_via_description",
+            "label": "Section Description",
+            "name": "via_description",
+            "type": "textarea",
+            "default_value": "Each Balanz value is reflected in how we select ingredients, design menus, and deliver meals every day.",
+            "rows": 2
+        },
+        {
+            "key": "field_via_steps",
+            "label": "Values/Steps",
+            "name": "via_steps",
+            "type": "repeater",
+            "instructions": "Add your company values (6 recommended)",
+            "min": 0,
+            "max": 8,
+            "layout": "block",
+            "button_label": "Add Value",
+            "sub_fields": [
+                {
+                    "key": "field_via_step_title",
+                    "label": "Value Title",
+                    "name": "title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_via_step_description",
+                    "label": "Value Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 2
+                },
+                {
+                    "key": "field_via_step_image",
+                    "label": "Value Image",
+                    "name": "image",
+                    "type": "image",
+                    "instructions": "Image shown when this value is active",
+                    "return_format": "array",
+                    "preview_size": "medium"
+                }
+            ]
+        },
+        {
+            "key": "field_about_tab_hww",
+            "label": "How We Work",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_hww_title",
+            "label": "Section Title",
+            "name": "hww_title",
+            "type": "text",
+            "default_value": "How We Work"
+        },
+        {
+            "key": "field_hww_subtitle",
+            "label": "Section Subtitle",
+            "name": "hww_subtitle",
+            "type": "textarea",
+            "default_value": "From choosing your goal to enjoying fresh meals - Balanz takes care of the details so you don't have to.",
+            "rows": 2
+        },
+        {
+            "key": "field_hww_background",
+            "label": "Background Image",
+            "name": "hww_background",
+            "type": "image",
+            "instructions": "Background image for this section",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_hww_steps",
+            "label": "Work Process Steps",
+            "name": "hww_steps",
+            "type": "repeater",
+            "instructions": "Add process steps (4 recommended)",
+            "min": 0,
+            "max": 6,
+            "layout": "block",
+            "button_label": "Add Step",
+            "sub_fields": [
+                {
+                    "key": "field_hww_step_icon",
+                    "label": "Step Icon",
+                    "name": "icon",
+                    "type": "image",
+                    "instructions": "Icon for this step (SVG recommended)",
+                    "return_format": "array",
+                    "preview_size": "thumbnail",
+                    "mime_types": "svg,png"
+                },
+                {
+                    "key": "field_hww_step_text",
+                    "label": "Step Text",
+                    "name": "text",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "key": "field_about_tab_team",
+            "label": "Team",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_team_title",
+            "label": "Section Title",
+            "name": "team_title",
+            "type": "text",
+            "default_value": "The People Behind Balanz"
+        },
+        {
+            "key": "field_team_description",
+            "label": "Section Description",
+            "name": "team_description",
+            "type": "textarea",
+            "default_value": "A team of chefs, nutrition specialists, and operators working together every day to deliver balanced, thoughtful, and reliable meals.",
+            "rows": 2
+        },
+        {
+            "key": "field_team_members",
+            "label": "Team Members",
+            "name": "team_members",
+            "type": "repeater",
+            "instructions": "Add team members (5 recommended)",
+            "min": 0,
+            "max": 12,
+            "layout": "block",
+            "button_label": "Add Team Member",
+            "sub_fields": [
+                {
+                    "key": "field_team_member_name",
+                    "label": "Name",
+                    "name": "name",
+                    "type": "text",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_team_member_role",
+                    "label": "Role/Position",
+                    "name": "role",
+                    "type": "text",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_team_member_avatar",
+                    "label": "Photo",
+                    "name": "avatar",
+                    "type": "image",
+                    "instructions": "Team member photo (square, min 400x400px)",
+                    "return_format": "array",
+                    "preview_size": "thumbnail"
+                },
+                {
+                    "key": "field_team_member_quote",
+                    "label": "Quote",
+                    "name": "quote",
+                    "type": "text",
+                    "instructions": "Short quote or motto"
+                },
+                {
+                    "key": "field_team_member_bio",
+                    "label": "Bio",
+                    "name": "bio",
+                    "type": "textarea",
+                    "instructions": "Short biography",
+                    "rows": 3
+                },
+                {
+                    "key": "field_team_member_social",
+                    "label": "Social Links",
+                    "name": "social",
+                    "type": "repeater",
+                    "min": 0,
+                    "max": 5,
+                    "layout": "table",
+                    "button_label": "Add Social Link",
+                    "sub_fields": [
+                        {
+                            "key": "field_team_social_type",
+                            "label": "Type",
+                            "name": "type",
+                            "type": "select",
+                            "choices": {
+                                "whatsapp": "WhatsApp",
+                                "telegram": "Telegram",
+                                "linkedin": "LinkedIn",
+                                "instagram": "Instagram",
+                                "facebook": "Facebook",
+                                "twitter": "X (Twitter)"
+                            },
+                            "wrapper": { "width": "30" }
+                        },
+                        {
+                            "key": "field_team_social_url",
+                            "label": "URL",
+                            "name": "url",
+                            "type": "url",
+                            "wrapper": { "width": "70" }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_about_tab_faq",
+            "label": "FAQ",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_faq_title",
+            "label": "Section Title",
+            "name": "faq_title",
+            "type": "text",
+            "default_value": "Frequently Asked Questions"
+        },
+        {
+            "key": "field_faq_description",
+            "label": "Section Description",
+            "name": "faq_description",
+            "type": "textarea",
+            "default_value": "A team of chefs, nutrition specialists, and operators working together every day to deliver balanced, thoughtful, and reliable meals.",
+            "rows": 2
+        },
+        {
+            "key": "field_faq_image",
+            "label": "FAQ Image",
+            "name": "faq_image",
+            "type": "image",
+            "instructions": "Image displayed next to FAQ accordion",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_faq_items",
+            "label": "FAQ Items",
+            "name": "faq_items",
+            "type": "repeater",
+            "instructions": "Add frequently asked questions",
+            "min": 0,
+            "max": 15,
+            "layout": "block",
+            "button_label": "Add FAQ",
+            "sub_fields": [
+                {
+                    "key": "field_faq_question",
+                    "label": "Question",
+                    "name": "question",
+                    "type": "text"
+                },
+                {
+                    "key": "field_faq_answer",
+                    "label": "Answer",
+                    "name": "answer",
+                    "type": "textarea",
+                    "rows": 3
+                }
+            ]
+        },
+        {
+            "key": "field_about_tab_share",
+            "label": "Share/Contact Form",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_share_title",
+            "label": "Section Title",
+            "name": "share_title",
+            "type": "text",
+            "default_value": "Share with Balanz"
+        },
+        {
+            "key": "field_share_description",
+            "label": "Section Description",
+            "name": "share_description",
+            "type": "textarea",
+            "default_value": "We listen carefully to understand your needs, habits, and preferences - so we can improve your daily experience.",
+            "rows": 2
+        },
+        {
+            "key": "field_share_background",
+            "label": "Background Image",
+            "name": "share_background",
+            "type": "image",
+            "instructions": "Background image for contact form section",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_share_form_fields",
+            "label": "Form Field Labels",
+            "name": "",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_share_name_label",
+                    "label": "Name Field Label",
+                    "name": "share_name_label",
+                    "type": "text",
+                    "default_value": "Full name",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_share_name_placeholder",
+                    "label": "Name Field Placeholder",
+                    "name": "share_name_placeholder",
+                    "type": "text",
+                    "default_value": "Enter your full name",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_share_contact_label",
+                    "label": "Contact Field Label",
+                    "name": "share_contact_label",
+                    "type": "text",
+                    "default_value": "Phone / Email",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_share_contact_placeholder",
+                    "label": "Contact Field Placeholder",
+                    "name": "share_contact_placeholder",
+                    "type": "text",
+                    "default_value": "Enter your phone number or email",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_share_message_label",
+                    "label": "Message Field Label",
+                    "name": "share_message_label",
+                    "type": "text",
+                    "default_value": "Your message",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_share_message_placeholder",
+                    "label": "Message Field Placeholder",
+                    "name": "share_message_placeholder",
+                    "type": "text",
+                    "default_value": "Tell us what's important to you in your diet...",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_share_checkbox_text",
+                    "label": "Checkbox Text",
+                    "name": "share_checkbox_text",
+                    "type": "text",
+                    "default_value": "Want to receive balance tips",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_share_button_text",
+                    "label": "Submit Button Text",
+                    "name": "share_button_text",
+                    "type": "text",
+                    "default_value": "Send Message",
+                    "wrapper": { "width": "50" }
+                }
+            ]
+        },
+        {
+            "key": "field_share_success_title",
+            "label": "Success Title",
+            "name": "share_success_title",
+            "type": "text",
+            "default_value": "Thank you for reaching out!"
+        },
+        {
+            "key": "field_share_success_message",
+            "label": "Success Message",
+            "name": "share_success_message",
+            "type": "textarea",
+            "default_value": "Message sent successfully. Thank you for trusting Balanz.",
+            "rows": 2
+        },
+        {
+            "key": "field_about_tab_contact",
+            "label": "Always In Touch",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_always_in_touch_title",
+            "label": "Section Title",
+            "name": "always_in_touch_title",
+            "type": "text",
+            "default_value": "We're always in touch"
+        },
+        {
+            "key": "field_always_in_touch_description",
+            "label": "Section Description",
+            "name": "always_in_touch_description",
+            "type": "textarea",
+            "default_value": "From choosing your goal to enjoying fresh meals — Balanz takes care of the details so you don't have to.",
+            "rows": 2
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-about-us.php"
+            }
+        ],
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "about-us"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Edit all content for the About Us page sections",
+    "show_in_rest": 0,
+    "modified": 1737244800
+}

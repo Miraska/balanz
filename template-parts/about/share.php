@@ -21,7 +21,7 @@ $checkbox_text = get_field('share_checkbox_text') ?: 'Want to receive balance ti
 $button_text = get_field('share_button_text') ?: 'Send Message';
 
 $bg_image = get_field('share_background');
-$bg_url = $bg_image ? esc_url($bg_image['url']) : get_template_directory_uri() . '/assets/images/about/share-with-balanz/bg.jpg';
+$bg_url = $bg_image && isset($bg_image['url']) ? $bg_image['url'] : get_template_directory_uri() . '/assets/images/about/share-with-balanz/bg.jpg';
 $icon_url = get_template_directory_uri() . '/assets/images/about/share-with-balanz/icons/chat.svg';
 ?>
 

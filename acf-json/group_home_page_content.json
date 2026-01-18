@@ -1,0 +1,548 @@
+{
+    "key": "group_home_page_content",
+    "title": "Home Page Content",
+    "fields": [
+        {
+            "key": "field_home_tab_hero",
+            "label": "Hero Section",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_hero_title",
+            "label": "Hero Title",
+            "name": "hero_title",
+            "type": "text",
+            "instructions": "Main headline for hero section",
+            "default_value": "What is Balanz",
+            "placeholder": "What is Balanz"
+        },
+        {
+            "key": "field_hero_description",
+            "label": "Hero Description",
+            "name": "hero_description",
+            "type": "textarea",
+            "instructions": "Description text below the title",
+            "default_value": "Balanz is a smart food service designed for busy people — helping you eat well, stay balanced, and live with more ease every day.",
+            "rows": 3
+        },
+        {
+            "key": "field_hero_background",
+            "label": "Hero Background Image",
+            "name": "hero_background",
+            "type": "image",
+            "instructions": "Background image for hero section (recommended: 1920x1080px)",
+            "return_format": "array",
+            "preview_size": "medium",
+            "mime_types": "jpg,jpeg,png,webp"
+        },
+        {
+            "key": "field_hero_button_text",
+            "label": "Hero Button Text",
+            "name": "hero_button_text",
+            "type": "text",
+            "default_value": "Download App",
+            "placeholder": "Download App"
+        },
+        {
+            "key": "field_programs",
+            "label": "Programs",
+            "name": "programs",
+            "type": "repeater",
+            "instructions": "Add meal programs (4 recommended)",
+            "min": 0,
+            "max": 6,
+            "layout": "block",
+            "button_label": "Add Program",
+            "sub_fields": [
+                {
+                    "key": "field_program_title",
+                    "label": "Program Title",
+                    "name": "title",
+                    "type": "text",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_program_calories",
+                    "label": "Calories",
+                    "name": "calories",
+                    "type": "text",
+                    "instructions": "e.g. '1400 - 1600 Kals'",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_program_subtitle",
+                    "label": "Subtitle",
+                    "name": "subtitle",
+                    "type": "text",
+                    "instructions": "e.g. 'For Figure'"
+                },
+                {
+                    "key": "field_program_image",
+                    "label": "Program Image",
+                    "name": "image",
+                    "type": "image",
+                    "return_format": "array",
+                    "preview_size": "thumbnail",
+                    "mime_types": "jpg,jpeg,png,webp"
+                }
+            ]
+        },
+        {
+            "key": "field_home_tab_hiw",
+            "label": "How It Works",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_hiw_title",
+            "label": "Section Title",
+            "name": "hiw_title",
+            "type": "text",
+            "default_value": "How it Works"
+        },
+        {
+            "key": "field_hiw_description",
+            "label": "Section Description",
+            "name": "hiw_description",
+            "type": "textarea",
+            "default_value": "From choosing your goal to enjoying fresh meals — Balanz takes care of the details so you don't have to.",
+            "rows": 2
+        },
+        {
+            "key": "field_hiw_steps",
+            "label": "Steps",
+            "name": "hiw_steps",
+            "type": "repeater",
+            "instructions": "Add steps explaining how it works (4 recommended)",
+            "min": 0,
+            "max": 6,
+            "layout": "block",
+            "button_label": "Add Step",
+            "sub_fields": [
+                {
+                    "key": "field_hiw_step_title",
+                    "label": "Step Title",
+                    "name": "title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_hiw_step_description",
+                    "label": "Step Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3
+                },
+                {
+                    "key": "field_hiw_step_image",
+                    "label": "Step Image",
+                    "name": "image",
+                    "type": "image",
+                    "instructions": "Image shown when this step is active",
+                    "return_format": "array",
+                    "preview_size": "medium"
+                }
+            ]
+        },
+        {
+            "key": "field_home_tab_offers",
+            "label": "What This Offers",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_offers_title",
+            "label": "Section Title",
+            "name": "offers_title",
+            "type": "text",
+            "default_value": "What This Offers"
+        },
+        {
+            "key": "field_offers_subtitle",
+            "label": "Section Subtitle",
+            "name": "offers_subtitle",
+            "type": "textarea",
+            "default_value": "a thoughtful balance of nourishment, convenience, and emotional ease — designed to support your body and mind every day.",
+            "rows": 2
+        },
+        {
+            "key": "field_offers_image_1",
+            "label": "Food Image 1",
+            "name": "offers_image_1",
+            "type": "image",
+            "instructions": "First food image in the grid",
+            "return_format": "array",
+            "preview_size": "medium",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_offers_image_2",
+            "label": "Food Image 2",
+            "name": "offers_image_2",
+            "type": "image",
+            "instructions": "Second food image in the grid",
+            "return_format": "array",
+            "preview_size": "medium",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_rational_title",
+            "label": "Rational Benefits Title",
+            "name": "rational_title",
+            "type": "text",
+            "default_value": "Rational Benefits"
+        },
+        {
+            "key": "field_rational_benefits",
+            "label": "Rational Benefits List",
+            "name": "rational_benefits",
+            "type": "repeater",
+            "min": 0,
+            "max": 6,
+            "layout": "table",
+            "button_label": "Add Benefit",
+            "sub_fields": [
+                {
+                    "key": "field_rational_benefit_text",
+                    "label": "Benefit Text",
+                    "name": "text",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "key": "field_emotional_title",
+            "label": "Emotional Benefits Title",
+            "name": "emotional_title",
+            "type": "text",
+            "default_value": "Emotional Benefit"
+        },
+        {
+            "key": "field_emotional_benefits",
+            "label": "Emotional Benefits List",
+            "name": "emotional_benefits",
+            "type": "repeater",
+            "min": 0,
+            "max": 6,
+            "layout": "table",
+            "button_label": "Add Benefit",
+            "sub_fields": [
+                {
+                    "key": "field_emotional_benefit_text",
+                    "label": "Benefit Text",
+                    "name": "text",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "key": "field_home_tab_why",
+            "label": "Why This Matters",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_why_title",
+            "label": "Section Title",
+            "name": "why_title",
+            "type": "text",
+            "default_value": "Why This Matters"
+        },
+        {
+            "key": "field_why_subtitle",
+            "label": "Section Subtitle",
+            "name": "why_subtitle",
+            "type": "textarea",
+            "default_value": "A simpler way to eat well, without stress or constant decisions.",
+            "rows": 2
+        },
+        {
+            "key": "field_why_image",
+            "label": "Main Image",
+            "name": "why_image",
+            "type": "image",
+            "instructions": "Main image for this section",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_why_food_card_1",
+            "label": "Food Card 1",
+            "name": "why_food_card_1",
+            "type": "image",
+            "instructions": "Small floating food card image",
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_why_food_card_2",
+            "label": "Food Card 2",
+            "name": "why_food_card_2",
+            "type": "image",
+            "instructions": "Small floating food card image",
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_why_benefits",
+            "label": "Benefits List",
+            "name": "why_benefits",
+            "type": "repeater",
+            "min": 0,
+            "max": 6,
+            "layout": "table",
+            "button_label": "Add Benefit",
+            "sub_fields": [
+                {
+                    "key": "field_why_benefit_text",
+                    "label": "Benefit Text",
+                    "name": "text",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "key": "field_home_tab_testimonials",
+            "label": "Testimonials",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_testimonials_title",
+            "label": "Section Title",
+            "name": "testimonials_title",
+            "type": "text",
+            "default_value": "Real talk from out clients"
+        },
+        {
+            "key": "field_testimonials",
+            "label": "Testimonials",
+            "name": "testimonials",
+            "type": "repeater",
+            "instructions": "Add customer testimonials (5 recommended)",
+            "min": 0,
+            "max": 10,
+            "layout": "block",
+            "button_label": "Add Testimonial",
+            "sub_fields": [
+                {
+                    "key": "field_testimonial_text",
+                    "label": "Quote Title",
+                    "name": "text",
+                    "type": "text",
+                    "instructions": "Short headline quote"
+                },
+                {
+                    "key": "field_testimonial_description",
+                    "label": "Full Review",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3
+                },
+                {
+                    "key": "field_testimonial_name",
+                    "label": "Customer Name",
+                    "name": "name",
+                    "type": "text",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_testimonial_role",
+                    "label": "Customer Role/Title",
+                    "name": "role",
+                    "type": "text",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_testimonial_avatar",
+                    "label": "Avatar",
+                    "name": "avatar",
+                    "type": "image",
+                    "instructions": "Customer photo (square, min 200x200px)",
+                    "return_format": "array",
+                    "preview_size": "thumbnail",
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_testimonial_image",
+                    "label": "Background Image",
+                    "name": "image",
+                    "type": "image",
+                    "instructions": "Large background image for the card",
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "wrapper": { "width": "50" }
+                }
+            ]
+        },
+        {
+            "key": "field_home_tab_cta",
+            "label": "CTA Section",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_cta_title",
+            "label": "CTA Title",
+            "name": "cta_title",
+            "type": "text",
+            "default_value": "Start your journey to balance today"
+        },
+        {
+            "key": "field_cta_subtitle",
+            "label": "CTA Subtitle",
+            "name": "cta_subtitle",
+            "type": "text",
+            "default_value": "Try the first week with a 20% discount"
+        },
+        {
+            "key": "field_cta_background",
+            "label": "CTA Background Image",
+            "name": "cta_background",
+            "type": "image",
+            "instructions": "Background image for CTA section",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_cta_btn_primary",
+            "label": "Primary Button Text",
+            "name": "cta_btn_primary",
+            "type": "text",
+            "default_value": "Choose Program",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_cta_btn_primary_link",
+            "label": "Primary Button Link",
+            "name": "cta_btn_primary_link",
+            "type": "url",
+            "instructions": "Leave empty to use default download link",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_cta_btn_secondary",
+            "label": "Secondary Button Text",
+            "name": "cta_btn_secondary",
+            "type": "text",
+            "default_value": "Ask a Question",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_cta_btn_secondary_link",
+            "label": "Secondary Button Link",
+            "name": "cta_btn_secondary_link",
+            "type": "url",
+            "instructions": "Leave empty to link to contact section",
+            "wrapper": { "width": "50" }
+        },
+        {
+            "key": "field_cta_phone_1",
+            "label": "Phone Image 1",
+            "name": "cta_phone_1",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "wrapper": { "width": "33" }
+        },
+        {
+            "key": "field_cta_phone_2",
+            "label": "Phone Image 2",
+            "name": "cta_phone_2",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "wrapper": { "width": "33" }
+        },
+        {
+            "key": "field_cta_phone_3",
+            "label": "Phone Image 3",
+            "name": "cta_phone_3",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "wrapper": { "width": "33" }
+        },
+        {
+            "key": "field_home_tab_app",
+            "label": "App Screens",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_app_screens_title",
+            "label": "Section Title",
+            "name": "app_screens_title",
+            "type": "text",
+            "instructions": "You can use <br> for line breaks",
+            "default_value": "Manage your balance in a<br>convenient app"
+        },
+        {
+            "key": "field_app_screens_description",
+            "label": "Section Description",
+            "name": "app_screens_description",
+            "type": "textarea",
+            "instructions": "You can use <br> for line breaks",
+            "default_value": "Everything you need to plan, track, and manage your meals<br>— all in one place.",
+            "rows": 2
+        },
+        {
+            "key": "field_app_screen_1",
+            "label": "App Screen 1",
+            "name": "app_screen_1",
+            "type": "image",
+            "instructions": "Phone screenshot 1",
+            "return_format": "array",
+            "preview_size": "medium",
+            "wrapper": { "width": "33" }
+        },
+        {
+            "key": "field_app_screen_2",
+            "label": "App Screen 2",
+            "name": "app_screen_2",
+            "type": "image",
+            "instructions": "Phone screenshot 2",
+            "return_format": "array",
+            "preview_size": "medium",
+            "wrapper": { "width": "33" }
+        },
+        {
+            "key": "field_app_screen_3",
+            "label": "App Screen 3",
+            "name": "app_screen_3",
+            "type": "image",
+            "instructions": "Phone screenshot 3",
+            "return_format": "array",
+            "preview_size": "medium",
+            "wrapper": { "width": "33" }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Edit all content for the Home page sections",
+    "show_in_rest": 0,
+    "modified": 1737244800
+}
