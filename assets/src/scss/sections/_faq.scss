@@ -218,7 +218,9 @@
   opacity: 0;
   overflow: hidden;
   margin-top: 0;
-  transition: max-height $transition-base, opacity $transition-base,
+  transition:
+    max-height $transition-base,
+    opacity $transition-base,
     margin $transition-base;
 
   p {
@@ -259,7 +261,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: opacity $transition-base, transform $transition-base;
+    transition:
+      opacity $transition-base,
+      transform $transition-base;
   }
 }
 
@@ -280,12 +284,12 @@
   border-radius: $radius-lg;
   overflow: hidden;
   height: 200px;
-  
+
   @include tablet-up {
     height: 386px;
     border-radius: $radius-xl;
   }
-  
+
   @include desktop {
     height: 736px;
     border-radius: 20px;

@@ -26,7 +26,7 @@
   position: relative;
   max-width: 1344px;
   margin: 0 auto;
-  border-radius: $radius-2xl;
+  border-radius: $radius-xl;
   overflow: hidden;
   z-index: 0;
 
@@ -123,11 +123,14 @@
   gap: $space-24;
   justify-content: center;
 
-  // Mobile & Tablet: container for marquee
+  // Mobile & Tablet: hide until marquee is ready to prevent layout jump
   @include until-tablet {
     display: block;
     width: 100%;
     overflow: visible;
+    min-height: 300px; // Reserve space to prevent content jump
+    opacity: 0; // Hidden until JS initializes marquee
+    transition: opacity 0.5s ease;
 
     // Reset vertical offsets for marquee
     .program-card {
@@ -136,10 +139,11 @@
     }
   }
 
-  // When marquee is active (JS adds this class)
+  // When marquee is active (JS adds this class) - show cards
   &.marquee-active {
     @include until-tablet {
-      display: block;
+      opacity: 1;
+      min-height: auto;
     }
   }
 

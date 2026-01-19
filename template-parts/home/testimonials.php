@@ -91,6 +91,7 @@ $testimonials_data = $testimonials ?: $default_testimonials;
                 <div class="testimonials-slides">
                     <?php foreach ($testimonials_data as $index => $testimonial): 
                         $image_url = is_array($testimonial['image']) ? $testimonial['image']['url'] : $testimonial['image'];
+                        $slide_avatar_url = is_array($testimonial['avatar']) ? $testimonial['avatar']['url'] : $testimonial['avatar'];
                     ?>
                     <div class="testimonial-slide" data-slide="<?php echo $index; ?>">
                         <div class="testimonial-card">
@@ -106,7 +107,7 @@ $testimonials_data = $testimonials ?: $default_testimonials;
                                 <p class="testimonial-description"><?php echo esc_html($testimonial['description']); ?></p>
                                 
                                 <div class="testimonial-author">
-                                    <img src="<?php echo esc_url($avatar_url); ?>" 
+                                    <img src="<?php echo esc_url($slide_avatar_url); ?>" 
                                          alt="<?php echo esc_attr($testimonial['name']); ?>" 
                                          class="author-avatar">
                                     <div class="author-info">

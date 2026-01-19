@@ -120,7 +120,6 @@
   }
 }
 
-
 @mixin section-padding {
   padding-top: $space-64;
   padding-bottom: $space-64;
@@ -214,7 +213,9 @@
 }
 
 @mixin card-hover {
-  transition: transform $transition-base, box-shadow $transition-base;
+  transition:
+    transform $transition-base,
+    box-shadow $transition-base;
 
   &:hover {
     transform: translateY(-4px);
@@ -229,7 +230,9 @@
 @mixin fade-in-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity $transition-slow, transform $transition-slow;
+  transition:
+    opacity $transition-slow,
+    transform $transition-slow;
 
   &.is-visible {
     opacity: 1;

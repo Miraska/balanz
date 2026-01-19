@@ -13,7 +13,7 @@ $bg_url = $background ? $background['url'] : BALANZ_THEME_URI . '/assets/images/
 <section class="about-hero-section" id="about-hero">
     <!-- Background Image -->
     <div class="about-hero-bg">
-        <img src="<?php echo esc_url($bg_url); ?>" alt="About Balanz">
+        <img src="<?php echo esc_url($bg_url); ?>" alt="About Balanz" loading="eager" fetchpriority="high" decoding="async">
         
         <!-- Content Over Background -->
         <div class="about-hero-container">

@@ -50,7 +50,7 @@ export function initHowItWorks() {
   // Start autoplay only if section is visible and not hovering
   function startAutoplay() {
     if (autoplayInterval) clearInterval(autoplayInterval);
-    
+
     // Only autoplay when section is visible and user is not hovering
     if (isSectionVisible && !isHovering) {
       autoplayInterval = setInterval(nextStep, INTERVAL_TIME);
@@ -77,7 +77,7 @@ export function initHowItWorks() {
       (entries) => {
         entries.forEach((entry) => {
           isSectionVisible = entry.isIntersecting;
-          
+
           if (isSectionVisible) {
             // Section came into view - start autoplay
             startAutoplay();
@@ -91,7 +91,7 @@ export function initHowItWorks() {
         // Trigger when at least 30% of section is visible
         threshold: 0.3,
         // Add some margin to trigger slightly before fully in view
-        rootMargin: "0px"
+        rootMargin: "0px",
       }
     );
 

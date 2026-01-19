@@ -231,7 +231,9 @@
   border-radius: $radius-md;
   padding: $space-12 $space-32;
   text-align: center;
-  transition: transform $transition-base, box-shadow $transition-base;
+  transition:
+    transform $transition-base,
+    box-shadow $transition-base;
 
   @include tablet-up {
     padding: $space-12 $space-28;
@@ -314,7 +316,9 @@
 .hww-header {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity $transition-slow, transform $transition-slow;
+  transition:
+    opacity $transition-slow,
+    transform $transition-slow;
 
   &.is-visible {
     opacity: 1;
@@ -325,7 +329,9 @@
 .hww-step__card {
   opacity: 0;
   transform: translateY(15px);
-  transition: opacity $transition-base, transform $transition-base;
+  transition:
+    opacity $transition-base,
+    transform $transition-base;
 
   .is-visible & {
     opacity: 1;

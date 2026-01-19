@@ -94,33 +94,73 @@
 // GAP UTILITIES
 // ============================================
 
-.gap-8 { gap: $space-8; }
-.gap-16 { gap: $space-16; }
-.gap-24 { gap: $space-24; }
-.gap-32 { gap: $space-32; }
-.gap-48 { gap: $space-48; }
-.gap-64 { gap: $space-64; }
+.gap-8 {
+  gap: $space-8;
+}
+.gap-16 {
+  gap: $space-16;
+}
+.gap-24 {
+  gap: $space-24;
+}
+.gap-32 {
+  gap: $space-32;
+}
+.gap-48 {
+  gap: $space-48;
+}
+.gap-64 {
+  gap: $space-64;
+}
 
 // ============================================
 // SPACING UTILITIES
 // ============================================
 
 // Margin
-.mt-8 { margin-top: $space-8; }
-.mt-16 { margin-top: $space-16; }
-.mt-24 { margin-top: $space-24; }
-.mt-32 { margin-top: $space-32; }
-.mt-48 { margin-top: $space-48; }
-.mt-64 { margin-top: $space-64; }
-.mt-80 { margin-top: $space-80; }
+.mt-8 {
+  margin-top: $space-8;
+}
+.mt-16 {
+  margin-top: $space-16;
+}
+.mt-24 {
+  margin-top: $space-24;
+}
+.mt-32 {
+  margin-top: $space-32;
+}
+.mt-48 {
+  margin-top: $space-48;
+}
+.mt-64 {
+  margin-top: $space-64;
+}
+.mt-80 {
+  margin-top: $space-80;
+}
 
-.mb-8 { margin-bottom: $space-8; }
-.mb-16 { margin-bottom: $space-16; }
-.mb-24 { margin-bottom: $space-24; }
-.mb-32 { margin-bottom: $space-32; }
-.mb-48 { margin-bottom: $space-48; }
-.mb-64 { margin-bottom: $space-64; }
-.mb-80 { margin-bottom: $space-80; }
+.mb-8 {
+  margin-bottom: $space-8;
+}
+.mb-16 {
+  margin-bottom: $space-16;
+}
+.mb-24 {
+  margin-bottom: $space-24;
+}
+.mb-32 {
+  margin-bottom: $space-32;
+}
+.mb-48 {
+  margin-bottom: $space-48;
+}
+.mb-64 {
+  margin-bottom: $space-64;
+}
+.mb-80 {
+  margin-bottom: $space-80;
+}
 
 .mx-auto {
   margin-left: auto;
@@ -128,24 +168,32 @@
 }
 
 // Padding
-.p-16 { padding: $space-16; }
-.p-24 { padding: $space-24; }
-.p-32 { padding: $space-32; }
-.p-48 { padding: $space-48; }
-
-.py-64 { 
-  padding-top: $space-64; 
-  padding-bottom: $space-64; 
+.p-16 {
+  padding: $space-16;
+}
+.p-24 {
+  padding: $space-24;
+}
+.p-32 {
+  padding: $space-32;
+}
+.p-48 {
+  padding: $space-48;
 }
 
-.py-80 { 
-  padding-top: $space-80; 
-  padding-bottom: $space-80; 
+.py-64 {
+  padding-top: $space-64;
+  padding-bottom: $space-64;
 }
 
-.py-120 { 
-  padding-top: $space-120; 
-  padding-bottom: $space-120; 
+.py-80 {
+  padding-top: $space-80;
+  padding-bottom: $space-80;
+}
+
+.py-120 {
+  padding-top: $space-120;
+  padding-bottom: $space-120;
 }
 
 // ============================================
@@ -200,21 +248,41 @@
 // BORDER RADIUS
 // ============================================
 
-.rounded-sm { border-radius: $radius-sm; }
-.rounded-md { border-radius: $radius-md; }
-.rounded-lg { border-radius: $radius-lg; }
-.rounded-xl { border-radius: $radius-xl; }
-.rounded-full { border-radius: $radius-full; }
+.rounded-sm {
+  border-radius: $radius-sm;
+}
+.rounded-md {
+  border-radius: $radius-md;
+}
+.rounded-lg {
+  border-radius: $radius-lg;
+}
+.rounded-xl {
+  border-radius: $radius-xl;
+}
+.rounded-full {
+  border-radius: $radius-full;
+}
 
 // ============================================
 // BACKGROUNDS
 // ============================================
 
-.bg-primary { background-color: $color-primary; }
-.bg-secondary { background-color: $color-secondary; }
-.bg-secondary-light { background-color: $color-secondary-light; }
-.bg-secondary-lighter { background-color: $color-secondary-lighter; }
-.bg-white { background-color: $color-white; }
+.bg-primary {
+  background-color: $color-primary;
+}
+.bg-secondary {
+  background-color: $color-secondary;
+}
+.bg-secondary-light {
+  background-color: $color-secondary-light;
+}
+.bg-secondary-lighter {
+  background-color: $color-secondary-lighter;
+}
+.bg-white {
+  background-color: $color-white;
+}
 
 // ============================================
 // VISIBILITY
@@ -245,7 +313,7 @@
 
 .show-mobile {
   display: none !important;
-  
+
   @include mobile {
     display: block !important;
   }
@@ -253,7 +321,7 @@
 
 .show-tablet-down {
   display: none !important;
-  
+
   @include until-tablet {
     display: block !important;
   }

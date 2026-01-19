@@ -12,7 +12,7 @@ export function initHeader() {
   if (!header) return;
 
   const STICKY_TOP = 20; // фиксированная позиция от верха экрана
-  const HEADER_OFFSET = 24; // отступ от верха hero-bg
+  const HEADER_OFFSET = 14; // отступ от верха hero-bg (уменьшено для более высокого положения)
 
   // Если нет hero-bg (не главная страница) - фиксированный header
   if (!heroBg) {

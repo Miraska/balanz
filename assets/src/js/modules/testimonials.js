@@ -15,9 +15,7 @@ export function initTestimonials() {
 
   const slidesContainer = slider.querySelector(".testimonials-slides");
   const slides = Array.from(slider.querySelectorAll(".testimonial-slide"));
-  const navItems = Array.from(
-    document.querySelectorAll(".testimonial-nav-item")
-  );
+  const navItems = Array.from(document.querySelectorAll(".testimonial-nav-item"));
   const navTrack = document.querySelector(".testimonials-nav-track");
   const navWrapper = document.querySelector(".testimonials-nav");
 
@@ -39,7 +37,7 @@ export function initTestimonials() {
 
   // Touch/Mouse handling for avatar slider swipe
   let avatarTouchStartX = 0;
-  let avatarTouchEndX = 0;
+  const avatarTouchEndX = 0;
   let isAvatarDragging = false;
   let avatarStartOffset = 0;
 
@@ -152,7 +150,7 @@ export function initTestimonials() {
 
     const wrapperWidth = navWrapper.offsetWidth;
     const activeItem = navItems[currentSlide];
-    
+
     if (!activeItem) return;
 
     // Get item position relative to track
@@ -180,27 +178,15 @@ export function initTestimonials() {
   function updateSlideStates() {
     slides.forEach((slide, index) => {
       // Remove all state classes
-      slide.classList.remove(
-        "is-active",
-        "is-prev",
-        "is-next",
-        "is-far-prev",
-        "is-far-next"
-      );
+      slide.classList.remove("is-active", "is-prev", "is-next", "is-far-prev", "is-far-next");
 
       const diff = index - currentSlide;
 
       if (diff === 0) {
         slide.classList.add("is-active");
-      } else if (
-        diff === -1 ||
-        (currentSlide === 0 && index === slides.length - 1)
-      ) {
+      } else if (diff === -1 || (currentSlide === 0 && index === slides.length - 1)) {
         slide.classList.add("is-prev");
-      } else if (
-        diff === 1 ||
-        (currentSlide === slides.length - 1 && index === 0)
-      ) {
+      } else if (diff === 1 || (currentSlide === slides.length - 1 && index === 0)) {
         slide.classList.add("is-next");
       } else if (diff < -1) {
         slide.classList.add("is-far-prev");
@@ -229,7 +215,7 @@ export function initTestimonials() {
   function handleTouchStart(e) {
     // Ignore if touch started on avatar navigation
     if (e.target.closest(".testimonials-nav")) return;
-    
+
     touchStartX = e.changedTouches[0].screenX;
     isDragging = true;
   }
@@ -238,7 +224,7 @@ export function initTestimonials() {
     if (!isDragging) return;
     // Ignore if touch on avatar navigation
     if (e.target.closest(".testimonials-nav")) return;
-    
+
     // Prevent default to stop page scrolling during swipe
     if (Math.abs(e.changedTouches[0].screenX - touchStartX) > 10) {
       e.preventDefault();
@@ -249,7 +235,7 @@ export function initTestimonials() {
     if (!isDragging) return;
     // Ignore if touch on avatar navigation
     if (e.target.closest(".testimonials-nav")) return;
-    
+
     touchEndX = e.changedTouches[0].screenX;
     handleSwipe();
     isDragging = false;
@@ -258,7 +244,7 @@ export function initTestimonials() {
   function handleMouseDown(e) {
     // Ignore if mouse started on avatar navigation
     if (e.target.closest(".testimonials-nav")) return;
-    
+
     e.preventDefault();
     touchStartX = e.clientX;
     isDragging = true;
@@ -299,7 +285,7 @@ export function initTestimonials() {
 
   function handleAvatarTouchStart(e) {
     calculateAvatarLimits();
-    
+
     // Only handle if there's overflow
     if (minAvatarOffset >= 0) return;
 
@@ -323,7 +309,7 @@ export function initTestimonials() {
     const diff = currentX - avatarTouchStartX;
 
     avatarOffset = avatarStartOffset + diff;
-    
+
     // Add rubber band effect at edges
     if (avatarOffset > maxAvatarOffset) {
       avatarOffset = maxAvatarOffset + (avatarOffset - maxAvatarOffset) * 0.3;
@@ -358,7 +344,7 @@ export function initTestimonials() {
 
   function handleAvatarMouseDown(e) {
     calculateAvatarLimits();
-    
+
     // Only handle if there's overflow
     if (minAvatarOffset >= 0) return;
 
@@ -388,7 +374,7 @@ export function initTestimonials() {
     const diff = currentX - avatarTouchStartX;
 
     avatarOffset = avatarStartOffset + diff;
-    
+
     // Add rubber band effect at edges
     if (avatarOffset > maxAvatarOffset) {
       avatarOffset = maxAvatarOffset + (avatarOffset - maxAvatarOffset) * 0.3;

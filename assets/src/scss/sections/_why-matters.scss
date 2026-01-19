@@ -89,14 +89,18 @@
 .food-card {
   pointer-events: none;
   position: absolute;
+  // Начальное состояние - скрыто
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
 
-  @include tablet {
+  // Анимированное состояние
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  @include desktop {
-  }
-
-
 
   img {
     width: 140px;
@@ -118,6 +122,7 @@
 .food-card-1 {
   display: none;
   left: 25px;
+  top: 20px;
 
   @include tablet {
     display: block;
@@ -126,6 +131,7 @@
   @include desktop {
     display: block;
     left: -25px;
+    top: 30px;
   }
 }
 
@@ -182,8 +188,6 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 100%;
-
-
 }
 
 .why-title {

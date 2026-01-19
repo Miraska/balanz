@@ -42,7 +42,10 @@ $color-accent: #f2415a; // розовый акцент для иконок мо�
 
 // Font Families
 $font-body: "Asul", Georgia, serif;
-$font-heading: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
+$font-heading:
+  "Plus Jakarta Sans",
+  -apple-system,
+  BlinkMacSystemFont,
   sans-serif;
 
 // Font Sizes (по макету)

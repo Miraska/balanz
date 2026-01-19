@@ -173,7 +173,9 @@
 
 .team-card--active {
   .team-card-inner {
-    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    transition:
+      opacity 0.2s ease-out,
+      transform 0.2s ease-out;
   }
 
   // Состояние при смене контента - fade out + небольшое смещение вниз
@@ -378,7 +380,6 @@
   margin-bottom: $space-8;
   text-align: left;
 
-
   @include tablet-up {
     text-align: left;
   }
@@ -394,7 +395,6 @@
   line-height: 1.5;
   color: $color-gray-500;
   text-align: left;
-
 
   @include tablet-up {
     text-align: left;

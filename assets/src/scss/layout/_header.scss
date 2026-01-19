@@ -43,7 +43,9 @@
   max-width: 600px;
   margin: 0 auto;
   // Анимируем расширение ширины и появление тени плавно
-  transition: max-width $transition-base ease, box-shadow $transition-base ease,
+  transition:
+    max-width $transition-base ease,
+    box-shadow $transition-base ease,
     padding $transition-base ease;
 
   @include tablet-up {
@@ -73,9 +75,13 @@
   gap: 6px;
   color: $color-white;
 
-  .logo-left,
-  .logo-right {
+  .logo-left {
     width: 103px;
+    height: auto;
+  }
+
+  .logo-right {
+    width: 180px;
     height: auto;
   }
 
@@ -90,7 +96,7 @@
     }
 
     .logo-right {
-      width: 102px;
+      width: 140px;
       height: auto;
     }
   }
@@ -235,7 +241,9 @@
   opacity: 0;
   text-align: center;
   visibility: hidden;
-  transition: opacity $transition-base, visibility $transition-base,
+  transition:
+    opacity $transition-base,
+    visibility $transition-base,
     top $transition-base;
   z-index: $z-header - 1;
 

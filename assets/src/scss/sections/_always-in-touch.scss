@@ -241,7 +241,9 @@
   height: 48px;
   border-radius: $radius-full;
   overflow: hidden;
-  transition: transform $transition-fast, box-shadow $transition-fast;
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast;
 
   &:hover {
     transform: scale(1.05);

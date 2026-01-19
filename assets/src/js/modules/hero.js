@@ -5,7 +5,7 @@
 
 export function initHeroMarquee() {
   const programsGrid = document.querySelector(".programs-grid");
-  
+
   if (!programsGrid) return;
 
   const MOBILE_BREAKPOINT = 900;
@@ -32,12 +32,12 @@ export function initHeroMarquee() {
     marqueeTrack.className = "marquee-track";
 
     // Move original cards to track
-    originalCards.forEach(card => {
+    originalCards.forEach((card) => {
       marqueeTrack.appendChild(card);
     });
 
     // Clone all cards once for seamless loop
-    originalCards.forEach(card => {
+    originalCards.forEach((card) => {
       const clone = card.cloneNode(true);
       clone.classList.add("is-clone");
       clone.setAttribute("aria-hidden", "true");
@@ -64,7 +64,7 @@ export function initHeroMarquee() {
     const originalCards = marqueeTrack.querySelectorAll(".program-card:not(.is-clone)");
 
     // Move originals back to grid
-    originalCards.forEach(card => {
+    originalCards.forEach((card) => {
       programsGrid.appendChild(card);
     });
 
@@ -113,6 +113,6 @@ export function initHeroMarquee() {
     }, 200);
   });
 
-  // Init with slight delay for DOM readiness
-  setTimeout(init, 50);
+  // Init immediately - DOM is ready when this runs
+  init();
 }

@@ -15,6 +15,10 @@ $copyright_text = get_field('footer_copyright', 'option') ?: '© ' . date('Y') .
 $nav_home_text = get_field('nav_home_text', 'option') ?: 'Home';
 $nav_about_text = get_field('nav_about_text', 'option') ?: 'About Us';
 
+// Get About Us page URL dynamically
+$about_page = get_page_by_path('about-us');
+$about_url = $about_page ? get_permalink($about_page->ID) : home_url('/about-us/');
+
 // Logo from ACF or default
 $footer_logo = get_field('footer_logo', 'option');
 $footer_logo_url = $footer_logo ? esc_url($footer_logo['url']) : BALANZ_THEME_URI . '/assets/images/logo/logo.svg';
@@ -67,7 +71,7 @@ $google_play_link = get_field('google_play_link', 'option');
                     <nav class="footer-nav" aria-label="Footer navigation">
                         <ul class="footer-nav-list">
                             <li><a href="<?php echo esc_url(home_url('/')); ?>" class="footer-nav-link"><?php echo esc_html($nav_home_text); ?></a></li>
-                            <li><a href="<?php echo esc_url(home_url('/about-us/')); ?>" class="footer-nav-link"><?php echo esc_html($nav_about_text); ?></a></li>
+                            <li><a href="<?php echo esc_url($about_url); ?>" class="footer-nav-link"><?php echo esc_html($nav_about_text); ?></a></li>
                         </ul>
                     </nav>
                     

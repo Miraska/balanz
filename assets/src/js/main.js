@@ -1,11 +1,5 @@
-/**
- * Balanz Theme - Main JavaScript
- */
-
-// Import SCSS
 import "../scss/main.scss";
 
-// Import modules
 import { initHeader } from "./modules/header";
 import { initMobileMenu } from "./modules/mobile-menu";
 import { initScrollAnimations } from "./modules/scroll-animations";
@@ -19,38 +13,45 @@ import { initCTA } from "./modules/cta";
 import { initPhilosophyVideo } from "./modules/philosophy-video";
 import { initValuesInAction } from "./modules/values-in-action";
 import { initTeam } from "./modules/team";
+import { initFoodCards } from "./modules/food-cards";
 
-/**
- * Initialize app
- */
-function init() {
-  // Core modules
-  initHeader();
-  initMobileMenu();
-  initScrollAnimations();
+const modules = [
+  { name: "header", fn: initHeader },
+  { name: "mobileMenu", fn: initMobileMenu },
+  { name: "scrollAnimations", fn: initScrollAnimations },
+  { name: "heroMarquee", fn: initHeroMarquee },
+  { name: "howItWorks", fn: initHowItWorks },
+  { name: "appScreens", fn: initAppScreens },
+  { name: "testimonials", fn: initTestimonials },
+  { name: "accordion", fn: initAccordion },
+  { name: "share", fn: initShare },
+  { name: "cta", fn: initCTA },
+  { name: "philosophyVideo", fn: initPhilosophyVideo },
+  { name: "valuesInAction", fn: initValuesInAction },
+  { name: "team", fn: initTeam },
+  { name: "foodCards", fn: initFoodCards },
+];
 
-  // Page-specific modules
-  initHeroMarquee();
-  initHowItWorks();
-  initAppScreens();
-  initTestimonials();
-  initAccordion();
-  initShare();
-  initCTA();
-  initPhilosophyVideo();
-  initValuesInAction();
-  initTeam();
+function initModule({ name, fn }) {
+  try {
+    fn();
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.error(`[Balanz] Module "${name}" failed to initialize:`, error);
+    }
+  }
 }
 
-// DOM Ready
+function init() {
+  modules.forEach(initModule);
+}
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", init);
 } else {
   init();
 }
 
-// Window Load
 window.addEventListener("load", () => {
-  // Trigger scroll animations check
   window.dispatchEvent(new Event("scroll"));
 });

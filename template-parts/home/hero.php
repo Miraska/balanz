@@ -17,7 +17,7 @@ $bg_url = $background ? $background['url'] : BALANZ_THEME_URI . '/assets/images/
 <section class="hero-section" id="hero">
     <!-- Background Image + Content Over Background -->
     <div class="hero-bg">
-        <img src="<?php echo esc_url($bg_url); ?>" alt="">
+        <img src="<?php echo esc_url($bg_url); ?>" alt="" loading="eager" fetchpriority="high" decoding="async">
         
         <!-- Content Over Background -->
         <div class="hero-container">
@@ -96,5 +96,6 @@ $bg_url = $background ? $background['url'] : BALANZ_THEME_URI . '/assets/images/
             </a>
         </div>
         
-    </div>
+        </div><!-- .hero-container -->
+    </div><!-- .hero-bg -->
 </section>

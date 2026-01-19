@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Balanz - User Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            background: #fff;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2d5a27;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+        }
+        
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 35px 0 15px;
+            color: #1a1a1a;
+        }
+        
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 20px 0 10px;
+            color: #444;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            color: #333;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            border-left: 3px solid #2d5a27;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-box p {
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .credentials {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .credentials-row {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .credentials-row:last-child {
+            border-bottom: none;
+        }
+        
+        .credentials-label {
+            width: 120px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .credentials-value {
+            flex: 1;
+            font-family: monospace;
+            font-size: 14px;
+            color: #1a1a1a;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            width: 28px;
+            height: 28px;
+            background: #2d5a27;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+            padding-top: 3px;
+        }
+        
+        .step-content p {
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        ul {
+            margin: 10px 0 10px 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .highlight {
+            background: #fffde7;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+        }
+        
+        @media print {
+            @page {
+                size: A4;
+                margin: 15mm;
+            }
+            
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            body {
+                max-width: 100% !important;
+                font-size: 11pt;
+            }
+            
+            .logo {
+                font-size: 24pt;
+            }
+            
+            h1 {
+                font-size: 20pt;
+                margin-bottom: 25px;
+            }
+            
+            h2 {
+                font-size: 14pt;
+                margin: 20px 0 10px;
+            }
+            
+            h3 {
+                font-size: 11pt;
+            }
+            
+            .subtitle {
+                margin-bottom: 30px;
+                padding-bottom: 15px;
+            }
+            
+            .section {
+                margin-bottom: 25px;
+                page-break-inside: avoid;
+            }
+            
+            .credentials {
+                margin: 12px 0;
+                padding: 12px 15px;
+            }
+            
+            .credentials-row {
+                padding: 5px 0;
+            }
+            
+            .info-box {
+                margin: 12px 0;
+                padding: 10px 15px;
+            }
+            
+            .step {
+                margin-bottom: 10px;
+            }
+            
+            .step-number {
+                width: 22px;
+                height: 22px;
+                font-size: 11pt;
+            }
+            
+            .footer {
+                margin-top: 30px;
+                padding-top: 15px;
+            }
+            
+            ul {
+                margin: 8px 0 8px 15px;
+            }
+            
+            li {
+                margin-bottom: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">Balanz</div>
+    <div class="subtitle">Website Administrator Guide</div>
+    
+    <h1>How to Manage Your Website</h1>
+    
+    <div class="section">
+        <h2>Access Details</h2>
+        
+        <div class="credentials">
+            <div class="credentials-row">
+                <div class="credentials-label">Admin Panel</div>
+                <div class="credentials-value">https://findbalanz.com/wp-admin</div>
+            </div>
+            <div class="credentials-row">
+                <div class="credentials-label">Username (email)</div>
+                <div class="credentials-value">CRM@yummykitchen.org</div>
+            </div>
+            <div class="credentials-row">
+                <div class="credentials-label">Password</div>
+                <div class="credentials-value">s5AN69Tv23hjbhub2398@(</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>What You Need to Fill In</h2>
+        <p>Log in to the admin panel and go to <span class="highlight">Theme Settings</span> in the left menu.</p>
+        
+        <h3>1. App Links</h3>
+        <p>Add your app download links:</p>
+        <ul>
+            <li>App Store Link — your iOS app link</li>
+            <li>Google Play Link — your Android app link</li>
+        </ul>
+        
+        <h3>2. Contact Info</h3>
+        <p>Enter the email address where you want to receive form submissions from the website.</p>
+        
+        <h3>3. Social Links</h3>
+        <p>Add links to your social media pages:</p>
+        <ul>
+            <li>Instagram</li>
+            <li>Facebook</li>
+            <li>LinkedIn</li>
+            <li>X (Twitter)</li>
+        </ul>
+        
+        <div class="info-box">
+            <p>Don't forget to click the <strong>Update</strong> button on the right side after making changes.</p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>How to Edit Pages</h2>
+        
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <p>Click <strong>Pages</strong> in the left menu</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <p>Select the page you want to edit (Home or About Us)</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <p>Edit the text and images in the fields</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <p>Click <strong>Update</strong> to save your changes</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Contact Form Submissions</h2>
+        <p>All submissions from the "Ask a Question" form are sent to the email you specified.</p>
+        <p>You can also view them in the admin panel: <span class="highlight">Form Submissions</span> in the left menu.</p>
+    </div>
+    
+    
+    <div class="footer">
+        Balanz © 2026
+    </div>
+</body>
+</html>

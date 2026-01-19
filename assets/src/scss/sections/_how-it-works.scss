@@ -101,7 +101,7 @@
   width: 100%;
 
   // Fast transition for background/border - immediate visual feedback
-  transition: 
+  transition:
     background-color 0.2s ease,
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -214,9 +214,9 @@
     margin-top: 0;
     opacity: 0;
     border-width: 0;
-    
+
     // Smooth transitions for expand/collapse
-    transition: 
+    transition:
       max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
       margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1),
       opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -237,7 +237,7 @@
     height: auto;
     display: block;
     margin: 0 auto;
-    
+
     @include tablet {
       margin-bottom: -140px;
     }
@@ -290,7 +290,7 @@
     opacity: 0;
 
     // Smooth fade transition with slight scale for depth
-    transition: 
+    transition:
       opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
       transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     transform: scale(1.02);

@@ -41,7 +41,9 @@
   background-color: $color-white;
   border: 1px solid $color-gray-200;
   border-radius: $radius-md;
-  transition: border-color $transition-fast, box-shadow $transition-fast;
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast;
 
   &::placeholder {
     color: $color-gray-500;

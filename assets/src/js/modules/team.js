@@ -1,10 +1,10 @@
 /**
  * Team Slider
- * 
+ *
  * 3 фиксированные карточки на своих позициях.
  * При переключении меняется только контент карточек с анимацией.
  * Высота контейнера определяется автоматически по самой высокой карточке.
- * 
+ *
  * Позиции:
  * - team-card--active: передняя (активная)
  * - team-card--back-1: первая сзади (клик = следующий)
@@ -72,11 +72,11 @@ export function initTeam() {
         populateCard(cardActive, members[0]);
         populateCard(cardBack1, members[wrapIndex(1)]);
         populateCard(cardBack2, members[wrapIndex(2)]);
-        
+
         updateNav();
         setupEvents();
         startAutoplay();
-        
+
         // Добавляем ResizeObserver для автоматического перерасчёта
         setupResizeObserver();
       });
@@ -112,7 +112,7 @@ export function initTeam() {
     resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         const newWidth = entry.contentRect.width;
-        
+
         // Перерасчёт только при изменении ширины
         if (Math.abs(newWidth - lastCardWidth) > 1) {
           lastCardWidth = newWidth;
@@ -195,9 +195,9 @@ export function initTeam() {
    */
   function applyFixedHeight() {
     const cards = [cardActive, cardBack1, cardBack2].filter(Boolean);
-    
+
     // Устанавливаем высоту inner элементам
-    cards.forEach(card => {
+    cards.forEach((card) => {
       const inner = card.querySelector(".team-card-inner");
       if (inner) {
         inner.style.height = `${fixedCardHeight}px`;
@@ -297,7 +297,7 @@ export function initTeam() {
   function goTo(index) {
     const newIndex = wrapIndex(index);
     if (newIndex === current) return;
-    
+
     current = newIndex;
     updateCardsAnimated();
     updateNav();
@@ -341,7 +341,7 @@ export function initTeam() {
 
     const wrapperWidth = navWrapper.offsetWidth;
     const activeItem = navItems[current];
-    
+
     if (!activeItem) return;
 
     // Get item position relative to track
@@ -438,7 +438,7 @@ export function initTeam() {
       resizeTimeout = setTimeout(() => {
         calculateAvatarLimits();
         centerActiveAvatar();
-        
+
         // Fallback для браузеров без ResizeObserver
         if (!window.ResizeObserver) {
           calculateMaxHeight();
@@ -453,7 +453,7 @@ export function initTeam() {
 
   function handleAvatarTouchStart(e) {
     calculateAvatarLimits();
-    
+
     // Only handle if there's overflow
     if (minAvatarOffset >= 0) return;
 
@@ -473,7 +473,7 @@ export function initTeam() {
     const diff = currentX - avatarTouchStartX;
 
     avatarOffset = avatarStartOffset + diff;
-    
+
     // Rubber band effect at edges
     if (avatarOffset > maxAvatarOffset) {
       avatarOffset = maxAvatarOffset + (avatarOffset - maxAvatarOffset) * 0.3;
@@ -504,7 +504,7 @@ export function initTeam() {
 
   function handleAvatarMouseDown(e) {
     calculateAvatarLimits();
-    
+
     // Only handle if there's overflow
     if (minAvatarOffset >= 0) return;
 
@@ -533,7 +533,7 @@ export function initTeam() {
     const diff = currentX - avatarTouchStartX;
 
     avatarOffset = avatarStartOffset + diff;
-    
+
     // Rubber band effect at edges
     if (avatarOffset > maxAvatarOffset) {
       avatarOffset = maxAvatarOffset + (avatarOffset - maxAvatarOffset) * 0.3;

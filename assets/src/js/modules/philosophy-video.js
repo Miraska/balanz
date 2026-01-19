@@ -19,12 +19,7 @@ export function initPhilosophyVideo() {
   if (externalVideoUrl && embedPlaceholder) {
     playButton.addEventListener("click", (e) => {
       e.preventDefault();
-      loadExternalVideo(
-        externalVideoUrl,
-        container,
-        playButton,
-        embedPlaceholder
-      );
+      loadExternalVideo(externalVideoUrl, container, playButton, embedPlaceholder);
     });
     return;
   }
@@ -131,18 +126,13 @@ function getEmbedUrl(url) {
   }
 
   // Vimeo
-  const vimeoMatch = url.match(
-    /(?:vimeo\.com\/|player\.vimeo\.com\/video\/)(\d+)/
-  );
+  const vimeoMatch = url.match(/(?:vimeo\.com\/|player\.vimeo\.com\/video\/)(\d+)/);
   if (vimeoMatch) {
     return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1`;
   }
 
   // If already an embed URL, return as is with autoplay
-  if (
-    url.includes("youtube.com/embed/") ||
-    url.includes("player.vimeo.com/video/")
-  ) {
+  if (url.includes("youtube.com/embed/") || url.includes("player.vimeo.com/video/")) {
     const separator = url.includes("?") ? "&" : "?";
     return url + separator + "autoplay=1";
   }

@@ -11,6 +11,10 @@ $nav_about_text = get_field('nav_about_text', 'option') ?: 'About Us';
 $download_btn_text = get_field('download_button_text', 'option') ?: 'Download App';
 $site_name = get_bloginfo('name');
 
+// Get About Us page URL dynamically
+$about_page = get_page_by_path('about-us');
+$about_url = $about_page ? get_permalink($about_page->ID) : home_url('/about-us/');
+
 // Logo from ACF or default
 $logo_main = get_field('site_logo', 'option');
 $logo_secondary = get_field('site_logo_secondary', 'option');
@@ -54,7 +58,7 @@ $logo_secondary_url = $logo_secondary ? esc_url($logo_secondary['url']) : BALANZ
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo esc_url(home_url('/about-us/')); ?>" class="nav-link <?php echo is_page('about-us') ? 'is-active' : ''; ?>">
+                            <a href="<?php echo esc_url($about_url); ?>" class="nav-link <?php echo is_page('about-us') ? 'is-active' : ''; ?>">
                                 <?php echo esc_html($nav_about_text); ?>
                             </a>
                         </li>
@@ -87,7 +91,7 @@ $logo_secondary_url = $logo_secondary ? esc_url($logo_secondary['url']) : BALANZ
                 </a>
             </li>
             <li>
-                <a href="<?php echo esc_url(home_url('/about-us/')); ?>" class="mobile-nav-link <?php echo is_page('about-us') ? 'is-active' : ''; ?>">
+                <a href="<?php echo esc_url($about_url); ?>" class="mobile-nav-link <?php echo is_page('about-us') ? 'is-active' : ''; ?>">
                     <?php echo esc_html($nav_about_text); ?>
                 </a>
             </li>

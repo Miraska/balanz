@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: $space-24;
-  
+
   @include tablet-up {
     grid-template-columns: repeat(2, 1fr);
     gap: $space-32;
@@ -21,12 +21,12 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: $space-24;
-  
+
   @include tablet-up {
     grid-template-columns: repeat(2, 1fr);
     gap: $space-32;
   }
-  
+
   @include desktop {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -36,16 +36,16 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: $space-16;
-  
+
   @include mobile {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   @include tablet-up {
     grid-template-columns: repeat(3, 1fr);
     gap: $space-24;
   }
-  
+
   @include desktop {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -61,12 +61,12 @@
   grid-template-columns: 1fr;
   gap: $space-32;
   align-items: center;
-  
+
   @include desktop {
     grid-template-columns: 1fr 1fr;
     gap: $space-64;
   }
-  
+
   &.reverse {
     @include desktop {
       .grid-image {
@@ -85,11 +85,11 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   padding: $space-16 0;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
-  
+
   @include desktop {
     justify-content: center;
     overflow-x: visible;
@@ -100,7 +100,7 @@
   flex: 0 0 auto;
   scroll-snap-align: start;
   min-width: 160px;
-  
+
   @include tablet-up {
     min-width: 200px;
   }

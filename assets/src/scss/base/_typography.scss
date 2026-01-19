@@ -7,10 +7,10 @@
 // ============================================
 
 // Asul - Body text
-@import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap");
 
 // Plus Jakarta Sans - Headings
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
 // ============================================
 // BASE TYPOGRAPHY
@@ -26,25 +26,29 @@ body {
 // HEADINGS
 // ============================================
 
-h1, .h1 {
+h1,
+.h1 {
   @include heading-80;
   color: $color-primary;
   margin-bottom: $space-24;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   @include heading-52;
   color: $color-primary;
   margin-bottom: $space-24;
 }
 
-h3, .h3 {
+h3,
+.h3 {
   @include heading-32;
   color: $color-primary;
   margin-bottom: $space-8;
 }
 
-h4, .h4 {
+h4,
+.h4 {
   @include heading-24;
   color: $color-primary;
   margin-bottom: $space-16;
@@ -56,7 +60,7 @@ h4, .h4 {
 
 p {
   margin-bottom: $space-16;
-  
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -85,7 +89,7 @@ p {
 a {
   color: $color-primary;
   transition: color $transition-fast;
-  
+
   &:hover {
     color: $color-primary-lighter;
   }

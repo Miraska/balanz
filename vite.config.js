@@ -10,6 +10,16 @@ export default defineConfig({
     emptyOutDir: true,
     manifest: false,
     sourcemap: false,
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+      format: {
+        comments: false,
+      },
+    },
 
     rollupOptions: {
       input: {
@@ -37,9 +47,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        // Modern Sass API - no deprecation warnings
-        api: 'modern-compiler',
-        silenceDeprecations: ['legacy-js-api', 'import'],
+        api: "modern-compiler",
+        silenceDeprecations: ["legacy-js-api", "import"],
       },
     },
   },
